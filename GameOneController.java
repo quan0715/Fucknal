@@ -97,7 +97,7 @@ public class GameOneController implements Initializable {
   // score chang / rate chang
   public void ChangedScore() {
     score += 10;
-    rate *= 1.03;
+    rate = rate+(4-rate)*0.03;
     move.setRate(rate);
     System.out.println(score / 10 + " " + rate);
     ScoreText.setText("Score : " + score);

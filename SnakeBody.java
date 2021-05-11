@@ -29,10 +29,18 @@ public class SnakeBody {
       Body.get(i).ChangPosition(Body.get(i - 1).GetPosition());
     }
     switch (direction) {
-      case UP -> HeadY -= Snake.SnakeWidth;
-      case DOWN -> HeadY += Snake.SnakeWidth;
-      case RIGHT -> HeadX += Snake.SnakeWidth;
-      case LEFT -> HeadX -= Snake.SnakeWidth;
+      case UP :
+        HeadY -= Snake.SnakeWidth;
+        break;
+      case DOWN:
+        HeadY += Snake.SnakeWidth;
+        break;
+      case RIGHT:
+        HeadX += Snake.SnakeWidth;
+        break;
+      case LEFT:
+        HeadX -= Snake.SnakeWidth;
+        break;
     }
     if(HeadX >= WeightLimit){
       ChangBodyPosition(0, new Point(0, HeadY));
