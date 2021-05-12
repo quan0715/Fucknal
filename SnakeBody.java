@@ -36,6 +36,8 @@ public abstract class SnakeBody {
         HeadX -= Snake.SnakeWidth;
         break;
     }
+    HeadX=(HeadX + WeightLimit) % WeightLimit;
+    HeadY=(HeadY + HeightLimit) % HeightLimit;
     boolean check = CheckEating(apple);
     if(check){
       AddNewBody(GetBodyPosition(Body.size() - 1));
@@ -48,9 +50,7 @@ public abstract class SnakeBody {
         ChangBodyPosition(i, GetBodyPosition(i - 1));
       }
     }
-    ChangBodyPosition(0,new Point(
-        (HeadX + WeightLimit) % WeightLimit, (HeadY + HeightLimit) % HeightLimit)
-      );
+    ChangBodyPosition(0,new Point(HeadX, HeadY));
     return check;
   }
   public void AddNewBody(int x,int y){
@@ -66,11 +66,6 @@ public abstract class SnakeBody {
     return Body.get(id).GetPosition();
   }
   public void ChangBodyPosition(int id,Point point){
-    if(id == 0){
-      HeadX = point.getX();
-      HeadY = point.getY();
-    }
-    System.out.println(HeadX + " " + HeadY);
     Body.get(id).ChangPosition(point);
   }
   public boolean CheckGameOver(){
