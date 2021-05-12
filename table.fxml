@@ -38,7 +38,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #95CACA;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GameOneController">
    <children>
-      <Label fx:id="ScoreText" layoutX="231.0" layoutY="13.0" prefHeight="27.0" prefWidth="139.0" text="Score :" textFill="#90716a">
+      <Label fx:id="ScoreText" layoutX="317.0" layoutY="13.0" prefHeight="27.0" prefWidth="139.0" text="Score :" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
@@ -56,7 +56,7 @@
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="RecordS" layoutX="412.0" layoutY="13.0" prefHeight="27.0" prefWidth="139.0" text="Record Height :" textFill="#90716a">
+      <Label fx:id="RecordS" layoutX="447.0" layoutY="13.0" prefHeight="27.0" prefWidth="139.0" text="Record :" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
