@@ -35,28 +35,27 @@ public class GameOneController implements Initializable {
   private SnakeBody snake1;
   private Queue<Direction> direct;
   private Direction LastDirection;
-  private Record record;
+  private int record;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
   @FXML private Label AlertText;
   @FXML private Label UserName;
-  //@FXML private Label RecordS;
+  @FXML private Label RecordS;
   @Override
   public void initialize(URL q, ResourceBundle p) {
     DrawLine();
-    /*
-    try {
-      record = new Record("RecordScore.txt");
-    } catch (IOException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
-    }
-    */
-    //RecordS.setText("Record : " + record.getRecordScore());
+    RecordS.setText("Record : ");
     direct = new LinkedList<Direction>();
     apple = new Food();
     snake1 = new SnakeBody();
     LastDirection =Direction.RIGHT;
+    try {
+      CheckScoreRecord(score);
+      RecordS.setText("Record : " + record);
+    } catch (IOException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+    }
     ScoreText.setText("Score : 0");
     move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
       //ChangDirection = false;
@@ -109,42 +108,35 @@ public class GameOneController implements Initializable {
     for (Snake snake : snake1.getBody()) GameTable.getChildren().add(snake.GetBody());
     return snake1.CheckGameOver();
   }
-  /*
-  public int CheckScoreRecord(int CurrentScore) throws IOException{
-      Score = new File("./RecordScore.txt");
+  public void CheckScoreRecord(int CurrentScore) throws IOException{
+      File Score = new File("src/Application/RecordScore.txt");
       Score.createNewFile();
       FileReader ScoreReader = new FileReader(Score);
       BufferedReader br = new BufferedReader(ScoreReader);
-      int records = Integer.valueOf(br.readLine());
-      if(CurrentScore > records){
+      record = Integer.valueOf(br.readLine());
+      br.close();
+      if(CurrentScore > record){
         FileWriter ScoreWriter = new FileWriter(Score);
         ScoreWriter.write(Integer.toString(CurrentScore));
         ScoreWriter.flush();
         ScoreWriter.close();
-        return CurrentScore;
+        record = CurrentScore;
       }
-      return records;
-      //System.out.println(records);
   }
-  */
   // score chang / rate chang
   public void ChangedScore() {
     score += 10;
     rate = rate+(4-rate)*0.03;
-    /*
-    if(score > record.getRecordScore()){
-      try {
-        record.setRecord(score);
-        RecordS.setText("Record : " + record.getRecordScore());
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+    try {
+      CheckScoreRecord(score);
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
-    */
     move.setRate(rate);
     System.out.println(score / 10 + " " + rate);
     ScoreText.setText("Score : " + score);
+    RecordS.setText("Record : "+ record);
   }
   //next game set
   public void GameOver() {
