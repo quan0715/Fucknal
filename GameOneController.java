@@ -27,7 +27,7 @@ public class GameOneController implements Initializable {
   private Food apple;
   private int score = 0;
   private boolean CanPlayNewGame = true;
-  private SnakeBody snake1;
+  private ClassicSnakeBody snake1;
   private Queue<Direction> direct;
   private Direction LastDirection;
   @FXML private AnchorPane GameTable;
@@ -40,7 +40,7 @@ public class GameOneController implements Initializable {
     DrawLine();
     direct = new LinkedList<Direction>();
     apple = new Food();
-    snake1 = new SnakeBody();
+    snake1 = new ClassicSnakeBody();
     LastDirection =Direction.RIGHT;
     ScoreText.setText("Score : 0");
     move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
