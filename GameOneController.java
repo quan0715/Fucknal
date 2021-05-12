@@ -145,9 +145,11 @@ public class GameOneController implements Initializable {
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
+    GameTable.getChildren().remove(AlertText);
     AlertText.setText("Game Over\n(Tap Enter to start a new game)");
     AlertText.setAlignment(Pos.CENTER);
     AlertText.setTextFill(Color.RED);
+    GameTable.getChildren().add(AlertText);
     LastDirection = Direction.RIGHT;
     CanPlayNewGame = true;
   }
