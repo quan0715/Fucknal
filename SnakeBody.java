@@ -24,16 +24,16 @@ public abstract class SnakeBody {
   public boolean SnakeMoving(Direction direction,Food apple){
     switch (direction) {
       case UP :
-        HeadY -= Snake.SnakeWidth;
+        HeadY = (HeadY - Snake.SnakeWidth) % WeightLimit;
         break;
       case DOWN:
-        HeadY += Snake.SnakeWidth;
+        HeadY = (HeadY + Snake.SnakeWidth) % WeightLimit;
         break;
       case RIGHT:
-        HeadX += Snake.SnakeWidth;
+        HeadX = (HeadX + Snake.SnakeWidth) % HeightLimit;
         break;
       case LEFT:
-        HeadX -= Snake.SnakeWidth;
+        HeadX = (HeadX - Snake.SnakeWidth) % HeightLimit;
         break;
     }
     boolean check = CheckEating(apple);
@@ -48,9 +48,7 @@ public abstract class SnakeBody {
         ChangBodyPosition(i, GetBodyPosition(i - 1));
       }
     }
-    ChangBodyPosition(0,new Point(
-        (HeadX + WeightLimit) % WeightLimit, (HeadY + HeightLimit) % HeightLimit)
-      );
+    ChangBodyPosition(0,new Point(HeadX,HeadY));
     return check;
   }
   public void AddNewBody(int x,int y){
