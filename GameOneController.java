@@ -56,11 +56,6 @@ public class GameOneController implements Initializable {
       // TODO Auto-generated catch block
       e1.printStackTrace();
     }
-    //RecordS.setText("Record : " + record.getRecordScore());
-    direct = new LinkedList<Direction>();
-    apple = new Food();
-    snake1 = new ClassicSnakeBody();
-    LastDirection =Direction.RIGHT;
     ScoreText.setText("Score : 0");
     move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
       //ChangDirection = false;
@@ -150,9 +145,11 @@ public class GameOneController implements Initializable {
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
+    GameTable.getChildren().remove(AlertText);
     AlertText.setText("Game Over\n(Tap Enter to start a new game)");
     AlertText.setAlignment(Pos.CENTER);
     AlertText.setTextFill(Color.RED);
+    GameTable.getChildren().add(AlertText);
     LastDirection = Direction.RIGHT;
     CanPlayNewGame = true;
   }
@@ -169,22 +166,22 @@ public class GameOneController implements Initializable {
   public void KeyEven(KeyEvent event){
     KeyCode key = event.getCode();
     if (key.equals(KeyCode.ENTER) && NewGame()) StartGame();
-    if (key.equals(KeyCode.UP) && !LastDirection.equals(Direction.DOWN) ) {
+    if (key.equals(KeyCode.UP) && !LastDirection.equals(Direction.DOWN) && !LastDirection.equals(Direction.UP) ) {
       LastDirection = Direction.UP;
       System.out.println("UP");
       direct.offer(Direction.UP);
     }
-    else if (key.equals(KeyCode.DOWN) && !LastDirection.equals(Direction.UP) ) {
+    else if (key.equals(KeyCode.DOWN) && !LastDirection.equals(Direction.UP) && !LastDirection.equals(Direction.DOWN)) {
       System.out.println("DOWN");
       LastDirection = Direction.DOWN;
         direct.offer(Direction.DOWN);
     }
-    else if (key.equals(KeyCode.RIGHT) && !LastDirection.equals(Direction.LEFT)) {
+    else if (key.equals(KeyCode.RIGHT) && !LastDirection.equals(Direction.LEFT) && !LastDirection.equals(Direction.RIGHT)) {
       System.out.println("RIGHT");
       LastDirection = Direction.RIGHT;
         direct.offer(Direction.RIGHT);
     }
-    else if (key.equals(KeyCode.LEFT) && !LastDirection.equals(Direction.RIGHT)) {
+    else if (key.equals(KeyCode.LEFT) && !LastDirection.equals(Direction.RIGHT) && !LastDirection.equals(Direction.LEFT)) {
       System.out.println("LEFT");
       LastDirection = Direction.LEFT;
         direct.offer(Direction.LEFT);
