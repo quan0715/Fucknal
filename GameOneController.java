@@ -35,15 +35,24 @@ public class GameOneController implements Initializable {
   private SnakeBody snake1;
   private Queue<Direction> direct;
   private Direction LastDirection;
-  private File Score;
+  private Record record;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
   @FXML private Label AlertText;
   @FXML private Label UserName;
-
+  //@FXML private Label RecordS;
   @Override
   public void initialize(URL q, ResourceBundle p) {
     DrawLine();
+    /*
+    try {
+      record = new Record("RecordScore.txt");
+    } catch (IOException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+    }
+    */
+    //RecordS.setText("Record : " + record.getRecordScore());
     direct = new LinkedList<Direction>();
     apple = new Food();
     snake1 = new SnakeBody();
@@ -122,6 +131,17 @@ public class GameOneController implements Initializable {
   public void ChangedScore() {
     score += 10;
     rate = rate+(4-rate)*0.03;
+    /*
+    if(score > record.getRecordScore()){
+      try {
+        record.setRecord(score);
+        RecordS.setText("Record : " + record.getRecordScore());
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+    */
     move.setRate(rate);
     System.out.println(score / 10 + " " + rate);
     ScoreText.setText("Score : " + score);
