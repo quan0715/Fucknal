@@ -1,8 +1,9 @@
 package Application;
 
 import java.util.ArrayList;
-public abstract class SnakeBody {
-    private ArrayList<Snake> Body;
+
+public class SnakeBody {
+  private ArrayList<Snake> Body;
   //private AnchorPane GameTable;
   private int HeadX;
   private int HeadY;
@@ -53,26 +54,14 @@ public abstract class SnakeBody {
     if(HeadX >= WeightLimit){
       ChangBodyPosition(0, new Point(0, HeadY));
     }
-    public void AddNewBody(){
-        int x = GetBodyPosition(size - 1).getX();
-        int px = GetBodyPosition(size - 2).getX();
-        int y = GetBodyPosition(size - 1).getY();
-        int py = GetBodyPosition(size - 2).getY();
-        if (x - Snake.SnakeWidth >= 0 && x - Snake.SnakeWidth != px)
-        AddNewBody(x - Snake.SnakeWidth, y);
-        else if (x + Snake.SnakeWidth < WeightLimit && x + Snake.SnakeWidth != px)
-        AddNewBody(x + Snake.SnakeWidth, y);
-        else if (y - Snake.SnakeWidth >= 0 && y - Snake.SnakeWidth != py)
-        AddNewBody(x, y - Snake.SnakeWidth);
-        else if (y + Snake.SnakeWidth < HeightLimit && y + Snake.SnakeWidth != py)
-        AddNewBody(x, y + Snake.SnakeWidth);
+    else if(HeadX < 0){
+      ChangBodyPosition(0, new Point(WeightLimit- Snake.SnakeWidth, HeadY));
     }
-    public void AddNewBody(int x,int y){
-        Body.add(new Snake( new Point(x,y)));
-        size++;
+    else if (HeadY >= HeightLimit) {
+      ChangBodyPosition(0, new Point(HeadX, 0));
     }
-    public Point GetBodyPosition(int id){
-        return Body.get(id).GetPosition();
+    else if (HeadY < 0) {
+      ChangBodyPosition(0, new Point(HeadX,HeightLimit - Snake.SnakeWidth));
     }
     else
       ChangBodyPosition(0,new Point(HeadX, HeadY));
@@ -121,22 +110,31 @@ public abstract class SnakeBody {
       if (HeadX == x && HeadY == y) {
         System.out.println(Body.get(i) + " id = " + i);
         return true;
-        }
-        return false;
+      }
     }
-    public int GetHeadX(){
-        return HeadX;
+    return false;
+  }
+  public boolean CheckEating(Food apple){
+    int foodX = apple.GetFoodPosition().getX();
+    int foodY = apple.GetFoodPosition().getY();
+    if(HeadX ==  foodX && HeadY == foodY){
+      return true;
     }
-    public int GetHeadY() {
-        return HeadY;
-    }
-    public ArrayList<Snake> getBody() {
-        return Body;
-    }
-    public Snake getSnake(int id) {
-        return Body.get(id);
-    }
-    public int getSize(){
-        return size;
-    }
+    return false;
+  }
+  public int GetHeadX(){
+    return HeadX;
+  }
+  public int GetHeadY() {
+    return HeadY;
+  }
+  public ArrayList<Snake> getBody() {
+    return Body;
+  }
+  public Snake getSnake(int id) {
+    return Body.get(id);
+  }
+  public int getSize(){
+    return size;
+  }
 }
