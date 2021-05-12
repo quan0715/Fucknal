@@ -2,7 +2,7 @@ package Application;
 
 import java.util.ArrayList;
 
-public class SnakeBody {
+public abstract class SnakeBody {
   private ArrayList<Snake> Body;
   //private AnchorPane GameTable;
   private int HeadX;

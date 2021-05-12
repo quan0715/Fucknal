@@ -32,7 +32,7 @@ public class GameOneController implements Initializable {
   private Food apple;
   private int score = 0;
   private boolean CanPlayNewGame = true;
-  private ClassicSnakeBody snake1;
+  private SnakeBody snake1;
   private Queue<Direction> direct;
   private Direction LastDirection;
   private Record record;
