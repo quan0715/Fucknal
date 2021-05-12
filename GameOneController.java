@@ -1,4 +1,9 @@
 package Application;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -30,6 +35,7 @@ public class GameOneController implements Initializable {
   private SnakeBody snake1;
   private Queue<Direction> direct;
   private Direction LastDirection;
+  private File Score;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
   @FXML private Label AlertText;
@@ -53,7 +59,7 @@ public class GameOneController implements Initializable {
     }));
   }
   // Game flow
-  public void StartGame() {
+  public void StartGame(){
     CanPlayNewGame = false;
     direct.clear();
     LastDirection = Direction.RIGHT;
@@ -85,15 +91,33 @@ public class GameOneController implements Initializable {
   //moving event
   public boolean SnakeRun(Direction direction) {
     for (Snake snake : snake1.getBody()) GameTable.getChildren().remove(snake.GetBody());
-    snake1.SnakeMoving(direction);
-    if (snake1.CheckEating(apple)) {
+    
+    if (snake1.SnakeMoving(direction,apple)) {
+      //snake1.ChangHead(apple.GetFoodPosition());
       NewFood(apple);
-      snake1.AddNewBody();
       ChangedScore();
     }
     for (Snake snake : snake1.getBody()) GameTable.getChildren().add(snake.GetBody());
     return snake1.CheckGameOver();
   }
+  /*
+  public int CheckScoreRecord(int CurrentScore) throws IOException{
+      Score = new File("./RecordScore.txt");
+      Score.createNewFile();
+      FileReader ScoreReader = new FileReader(Score);
+      BufferedReader br = new BufferedReader(ScoreReader);
+      int records = Integer.valueOf(br.readLine());
+      if(CurrentScore > records){
+        FileWriter ScoreWriter = new FileWriter(Score);
+        ScoreWriter.write(Integer.toString(CurrentScore));
+        ScoreWriter.flush();
+        ScoreWriter.close();
+        return CurrentScore;
+      }
+      return records;
+      //System.out.println(records);
+  }
+  */
   // score chang / rate chang
   public void ChangedScore() {
     score += 10;

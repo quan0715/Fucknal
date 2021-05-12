@@ -24,10 +24,7 @@ public class SnakeBody {
     Body.add(new Snake(new Point(this.HeadX - Snake.SnakeWidth * 2, this.HeadY)));
     size = 3;
   }
-  public void SnakeMoving(Direction direction){
-    for (int i = Body.size() - 1; i > 0; i--) {
-      Body.get(i).ChangPosition(Body.get(i - 1).GetPosition());
-    }
+  public boolean SnakeMoving(Direction direction,Food apple){
     switch (direction) {
       case UP :
         HeadY -= Snake.SnakeWidth;
@@ -42,6 +39,18 @@ public class SnakeBody {
         HeadX -= Snake.SnakeWidth;
         break;
     }
+    boolean check = CheckEating(apple);
+    if(check){
+      AddNewBody(GetBodyPosition(Body.size() - 1));
+      for (int i = Body.size() - 2; i > 0; i--) {
+        ChangBodyPosition(i, GetBodyPosition(i - 1));
+      }
+    }
+    else {
+      for (int i = Body.size() -1 ; i > 0; i--) {
+        ChangBodyPosition(i, GetBodyPosition(i - 1));
+      }
+    }
     if(HeadX >= WeightLimit){
       ChangBodyPosition(0, new Point(0, HeadY));
     }
@@ -54,13 +63,11 @@ public class SnakeBody {
     else if (HeadY < 0) {
       ChangBodyPosition(0, new Point(HeadX,HeightLimit - Snake.SnakeWidth));
     }
-    if (HeadX >= WeightLimit || HeadX < 0 || HeadY >= HeightLimit || HeadY < 0) {
-      System.out.println("Out of Bound");
-      ChangBodyPosition(0, new Point(HeadX, HeadY));
-    }
     else
       ChangBodyPosition(0,new Point(HeadX, HeadY));
+    return check;
   }
+  /*
   public void AddNewBody(){
     int x = GetBodyPosition(size - 1).getX();
     int px = GetBodyPosition(size - 2).getX();
@@ -75,9 +82,15 @@ public class SnakeBody {
     else if (y + Snake.SnakeWidth < HeightLimit && y + Snake.SnakeWidth != py)
       AddNewBody(x, y + Snake.SnakeWidth);
   }
+  */
   public void AddNewBody(int x,int y){
     Body.add(new Snake( new Point(x,y)));
     size++;
+  }
+  public void AddNewBody(Point position) {
+    int x = position.getX();
+    int y = position.getY();
+    AddNewBody(x,y);
   }
   public Point GetBodyPosition(int id){
     return Body.get(id).GetPosition();
@@ -87,12 +100,11 @@ public class SnakeBody {
       HeadX = point.getX();
       HeadY = point.getY();
     }
+    System.out.println(HeadX + " " + HeadY);
     Body.get(id).ChangPosition(point);
   }
   public boolean CheckGameOver(){
-    HeadX = GetBodyPosition(0).getX();
-    HeadY = GetBodyPosition(0).getY();
-    for (int i = 1; i < size ; i++) {
+    for (int i = 1; i < Body.size() ; i++) {
       int x = GetBodyPosition(i).getX();
       int y = GetBodyPosition(i).getY();
       if (HeadX == x && HeadY == y) {
