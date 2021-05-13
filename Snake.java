@@ -1,5 +1,4 @@
 package Application;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 public abstract class Snake{
   public static final int SnakeWidth = Point.GridWidth;
