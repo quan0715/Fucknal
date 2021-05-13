@@ -12,7 +12,7 @@ public class Food{
   public void init(){
     this.FoodPosition = Point.getrandompointGrid();
     body = new Rectangle(FoodPosition.getX(),FoodPosition.getY(),Point.GridWidth, Point.GridWidth);
-    body.setFill(Color.BLACK);
+    body.setFill(Color.web("272727"));
     System.out.println(FoodPosition.toString());
   }
   public Point GetFoodPosition(){

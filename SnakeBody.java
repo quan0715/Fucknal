@@ -2,6 +2,8 @@ package Application;
 
 import java.util.ArrayList;
 
+import javafx.scene.paint.Color;
+
 public abstract class SnakeBody {
   private ArrayList<Snake> Body;
   //private AnchorPane GameTable;
@@ -10,12 +12,33 @@ public abstract class SnakeBody {
   private int HeightLimit = 600;
   private int WeightLimit = 600;
   private int size;
+  private Color color = Color.GREEN;
   public SnakeBody(){
     Body = new ArrayList<Snake>();
+    HeadX = 300;
+    HeadY = 300;
+  }
+  public SnakeBody(int x,int y) {
+    Body = new ArrayList<Snake>();
+    HeadX = x;
+    HeadY = y;
   }
   public void init(){
     if(Body.size()!=0)Body.clear();
     HeadX = HeadY = 300;
+    Body.add(new Snake(new Point(this.HeadX, this.HeadY),color));
+    Body.add(new Snake(new Point(this.HeadX - Snake.SnakeWidth, this.HeadY),color));
+    Body.add(new Snake(new Point(this.HeadX - Snake.SnakeWidth * 2, this.HeadY),color));
+    size = 3;
+  }
+  public void SetSnakeColor(Color color){
+    this.color =color;
+  }
+  public void init(int x,int y) {
+    if (Body.size() != 0)
+      Body.clear();
+    HeadX = x;
+    HeadY = y;
     Body.add(new Snake(new Point(this.HeadX, this.HeadY)));
     Body.add(new Snake(new Point(this.HeadX - Snake.SnakeWidth, this.HeadY)));
     Body.add(new Snake(new Point(this.HeadX - Snake.SnakeWidth * 2, this.HeadY)));
@@ -57,10 +80,16 @@ public abstract class SnakeBody {
     Body.add(new Snake( new Point(x,y)));
     size++;
   }
+  
+  public void AddNewBody(int x, int y,Color color) {
+    Body.add(new Snake(new Point(x, y),color));
+    size++;
+  }
+
   public void AddNewBody(Point position) {
     int x = position.getX();
     int y = position.getY();
-    AddNewBody(x,y);
+    AddNewBody(x,y,color);
   }
   public Point GetBodyPosition(int id){
     return Body.get(id).GetPosition();

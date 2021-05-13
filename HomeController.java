@@ -33,4 +33,21 @@ public class HomeController {
       }
     });
   }
+  
+  public void SwitchTwoManGame(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("table2.fxml"));
+    String PinName = GamePin.getText();
+    System.out.println(PinName);
+    Parent root = loader.load();
+    scene = (Scene) ((Node) event.getSource()).getScene();
+    scene.setRoot(root);
+    GameTwoController controller = loader.getController();
+    controller.GetPinName(PinName);
+    scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
+      @Override
+      public void handle(KeyEvent event) {
+        controller.KeyEven(event);
+      }
+    });
+  }
 }

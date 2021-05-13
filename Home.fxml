@@ -25,7 +25,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button defaultButton="true" layoutX="213.0" layoutY="527.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="171.0" text="雙人模式">
+      <Button fx:id="ButtonTwo" defaultButton="true" layoutX="213.0" layoutY="527.0" mnemonicParsing="false" onAction="#SwitchTwoManGame" prefHeight="37.0" prefWidth="171.0" text="雙人模式">
          <font>
             <Font size="18.0" />
          </font>
