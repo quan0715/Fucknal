@@ -2,8 +2,9 @@ package Application;
 
 import java.util.ArrayList;
 
-public abstract class SnakeBody {
-  private ArrayList<Snake> Body;
+public class SnakeBody<T extends Snake> {
+  private ArrayList<T> Body;
+  private Class<T> classInstance;
   //private AnchorPane GameTable;
   private int HeadX;
   private int HeadY;
@@ -11,17 +12,25 @@ public abstract class SnakeBody {
   private int WeightLimit = 600;
   private int size;
   public SnakeBody(){
-    Body = new ArrayList<Snake>();
+    Body = new ArrayList<T>();
   }
-  public void init(){
+  public void init(Class<? extends ClassicSnake> snakeType){
+    classInstance=(Class<T>) snakeType;
     if(Body.size()!=0)Body.clear();
     HeadX = HeadY = 300;
-    Body.add(new Snake(new Point(this.HeadX, this.HeadY)));
-    Body.add(new Snake(new Point(this.HeadX - Snake.SnakeWidth, this.HeadY)));
-    Body.add(new Snake(new Point(this.HeadX - Snake.SnakeWidth * 2, this.HeadY)));
+    for(int i=0;i<3;i++){
+      try{
+        T bod=classInstance.getDeclaredConstructor().newInstance();
+        bod.InitialSnakeBody(new Point(this.HeadX - Snake.SnakeWidth * i, this.HeadY));
+        Body.add(bod);
+      }
+      catch(Exception e){
+        System.out.println(e);
+      }
+    }
     size = 3;
   }
-  public boolean SnakeMoving(Direction direction,Food apple){
+  public boolean SnakeMoving(Direction direction,Food apple) throws Exception{
     switch (direction) {
       case UP :
         HeadY = (HeadY - Snake.SnakeWidth) % WeightLimit;
@@ -53,11 +62,13 @@ public abstract class SnakeBody {
     ChangBodyPosition(0,new Point(HeadX,HeadY));
     return check;
   }
-  public void AddNewBody(int x,int y){
-    Body.add(new Snake( new Point(x,y)));
+  public void AddNewBody(int x,int y) throws Exception{
+    T bod=classInstance.getDeclaredConstructor().newInstance();
+    bod.InitialSnakeBody(new Point(x, y));
+    Body.add(bod);
     size++;
   }
-  public void AddNewBody(Point position) {
+  public void AddNewBody(Point position) throws Exception {
     int x = position.getX();
     int y = position.getY();
     AddNewBody(x,y);
@@ -93,7 +104,7 @@ public abstract class SnakeBody {
   public int GetHeadY() {
     return HeadY;
   }
-  public ArrayList<Snake> getBody() {
+  public ArrayList<T> getBody() {
     return Body;
   }
   public Snake getSnake(int id) {

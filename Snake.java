@@ -1,15 +1,10 @@
 package Application;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-public class Snake {
+public abstract class Snake{
   public static final int SnakeWidth = Point.GridWidth;
-  private Rectangle body ;
-  private Point position ; 
-  public Snake(Point position){
-    this.position = position;
-    this.body = new Rectangle(position.getX(),position.getY(),SnakeWidth, SnakeWidth);
-    this.body.setFill(Color.GREEN);
-  }
+  protected Rectangle body ;
+  protected Point position ; 
+  public abstract void InitialSnakeBody(Point position);
   public void ChangPosition(Point newPosition){
     this.position.setX(newPosition.getX());
     this.position.setY(newPosition.getY());
