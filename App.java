@@ -19,6 +19,7 @@ public class App extends Application {
         System.out.println(primaryStage);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Jack");
+        ((HomeController)(loader.getController())).GamePin.requestFocus();
         primaryStage.show();
     }
 }

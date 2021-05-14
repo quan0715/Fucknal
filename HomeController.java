@@ -13,19 +13,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.Node;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 
 public class HomeController implements Initializable{
   @FXML Button ButtonOne;
-  @FXML TextField GamePin;
+  @FXML public TextField GamePin;
   private Scene scene;
-  public void SwitchOneManGame(ActionEvent event) throws IOException{
+  public void SwitchOneManGame() throws IOException{
     FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
-    scene = (Scene)((Node) event.getSource()).getScene();
+    scene = ButtonOne.getScene();
     scene.setRoot(root);
     GameOneController controller = loader.getController();
     controller.GetPinName(PinName);
@@ -56,6 +57,18 @@ public class HomeController implements Initializable{
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    scene = ButtonOne.getScene();
+    ButtonOne.setOnKeyPressed((e) -> {
+      if(e.getCode() == KeyCode.ENTER){
+        e.consume();
+        try {
+          SwitchOneManGame();
+        } catch (IOException e1) {
+          // TODO Auto-generated catch block
+          e1.printStackTrace();
+        }
+      }
+    });
     GamePin.setOnAction(e->{
       e.consume();
       ButtonOne.requestFocus();
