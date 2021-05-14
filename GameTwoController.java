@@ -57,7 +57,7 @@ public class GameTwoController implements Initializable {
     //RecordS.setText("Record : ");
     direct1 = new LinkedList<Direction>();
     direct2 = new LinkedList<Direction>();
-    apple = new Food();
+    apple = new normalFood();
     snake1 = new SnakeBody<ClassicSnake>();
     snake2 = new SnakeBody<ClassicSnake>();
     LastDirection1 = Direction.UP;
