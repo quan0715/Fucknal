@@ -23,7 +23,7 @@ import javafx.scene.shape.Line;
 import javafx.util.Duration;
 public class GameOneController implements Initializable {
   private int windowWidth = 600;
-  private int windowHeight = 600;
+  //private int windowHeight = 600;
   private int GridWidth = 20;
   private int time = 150;
   private Timeline move;
@@ -32,10 +32,11 @@ public class GameOneController implements Initializable {
   private Food apple;
   private int score = 0;
   private boolean CanPlayNewGame = true;
-  private SnakeBody snake1;
+  private SnakeBody<ClassicSnake> snake1;
   private Queue<Direction> direct;
   private Direction LastDirection;
   private int record;
+  private Class<? extends Snake> snakeType;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
   @FXML private Label AlertText;
@@ -46,33 +47,37 @@ public class GameOneController implements Initializable {
     DrawLine();
     RecordS.setText("Record : ");
     direct = new LinkedList<Direction>();
-    apple = new Food();
-    snake1 = new ClassicSnakeBody();
+    apple = new normalFood();
+    snake1 = new SnakeBody<ClassicSnake>();
     LastDirection =Direction.RIGHT;
     try {
       CheckScoreRecord(score);
       RecordS.setText("Record : " + record);
     } catch (IOException e1) {
-      // TODO Auto-generated catch block
       e1.printStackTrace();
     }
     ScoreText.setText("Score : 0");
     move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
       //ChangDirection = false;
-      if (SnakeRun((direct.size() == 1 ? direct.peek() :direct.poll()))) {
-        move.stop();
-        GameOver();
+      try {
+        if (SnakeRun((direct.size() == 1 ? direct.peek() :direct.poll()))) {
+          move.stop();
+          GameOver();
+        }
+      } catch (Exception e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
       }
       //ChangDirection = true;
     }));
   }
   // Game flow
   public void StartGame(){
+    snake1.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
     CanPlayNewGame = false;
     direct.clear();
     LastDirection = Direction.RIGHT;
     direct.add(Direction.RIGHT);
-    snake1.init();
     NewFood(apple);
     AlertText.setText("");
     score = 0;
@@ -97,7 +102,7 @@ public class GameOneController implements Initializable {
     GameTable.getChildren().add(apple.GetFoodBody());
   }
   //moving event
-  public boolean SnakeRun(Direction direction) {
+  public boolean SnakeRun(Direction direction) throws Exception {
     for (Snake snake : snake1.getBody()) GameTable.getChildren().remove(snake.GetBody());
     
     if (snake1.SnakeMoving(direction,apple)) {

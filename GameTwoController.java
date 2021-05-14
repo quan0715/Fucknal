@@ -33,8 +33,8 @@ public class GameTwoController implements Initializable {
   private Food apple;
   //private int score = 0;
   private boolean CanPlayNewGame = true;
-  private SnakeBody snake1;
-  private SnakeBody snake2;
+  private SnakeBody<ClassicSnake> snake1;
+  private SnakeBody<ClassicSnake> snake2;
   private Queue<Direction> direct1 ;
   private Queue<Direction> direct2 ;
   private Direction LastDirection1;
@@ -57,9 +57,9 @@ public class GameTwoController implements Initializable {
     //RecordS.setText("Record : ");
     direct1 = new LinkedList<Direction>();
     direct2 = new LinkedList<Direction>();
-    apple = new Food();
-    snake1 = new ClassicSnakeBody();
-    snake2 = new ClassicSnakeBody();
+    apple = new normalFood();
+    snake1 = new SnakeBody<ClassicSnake>();
+    snake2 = new SnakeBody<ClassicSnake>();
     LastDirection1 = Direction.UP;
     LastDirection2 = Direction.DOWN;
     direct1.add(LastDirection1);
@@ -94,10 +94,8 @@ public class GameTwoController implements Initializable {
     LastDirection2 = Direction.DOWN;
     direct1.add(LastDirection1);
     direct2.add(LastDirection2);
-    snake1.SetSnakeColor(Color.web("D2D8B3"));
-    snake2.SetSnakeColor(Color.web("90A987"));
-    snake1.init();
-    snake2.init();
+    snake1.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
+    snake2.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
     NewFood(apple);
     AlertText.setText("");
     //score = 0;
@@ -130,10 +128,15 @@ public class GameTwoController implements Initializable {
       GameTable.getChildren().remove(snake.GetBody());
     for (Snake snake : snake2.getBody())
       GameTable.getChildren().remove(snake.GetBody());    
-    if (snake1.SnakeMoving(direction1, apple) || snake2.SnakeMoving(direction2, apple)) {
-      // snake1.ChangHead(apple.GetFoodPosition());
-      NewFood(apple);
-      ChangedScore();
+    try {
+      if (snake1.SnakeMoving(direction1, apple) || snake2.SnakeMoving(direction2, apple)) {
+        // snake1.ChangHead(apple.GetFoodPosition());
+        NewFood(apple);
+        ChangedScore();
+      }
+    } catch (Exception e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
     }
     for (Snake snake : snake1.getBody())
       GameTable.getChildren().add(snake.GetBody());
