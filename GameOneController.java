@@ -12,8 +12,11 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -32,6 +35,7 @@ public class GameOneController implements Initializable {
   private Food apple;
   private int score = 0;
   private boolean CanPlayNewGame = true;
+  private boolean PauseGame = false;
   private FoodGenerator foodGenerator;
   private DirectionController directionController;
   private SnakeBody<? extends Snake> snake1;
@@ -44,6 +48,7 @@ public class GameOneController implements Initializable {
   @Override
   public void initialize(URL q, ResourceBundle p) {
     DrawLine();
+    setAlertText("Tap  ENTER  to start new game", Color.WHITE);
     RecordS.setText("Record : ");
     directionController = new DirectionController();
     apple = new NormalFood();
@@ -140,11 +145,7 @@ public class GameOneController implements Initializable {
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
-    GameTable.getChildren().remove(AlertText);
-    AlertText.setText("Game Over\n(Tap Enter to start a new game)");
-    AlertText.setAlignment(Pos.CENTER);
-    AlertText.setTextFill(Color.RED);
-    GameTable.getChildren().add(AlertText);
+    setAlertText("Game Over\n(Tap Enter to start a new game)", Color.RED);
     CanPlayNewGame = true;
   }
   //get button click or not
@@ -157,9 +158,42 @@ public class GameOneController implements Initializable {
     if(Username.length() != 0) UserName.setText(Username);
     else UserName.setText(DefaultName);
   }
-  public void KeyEven(KeyEvent event){
+  
+  public void setAlertText(String text, Color color) {
+    GameTable.getChildren().remove(AlertText);
+    AlertText.setText(text);
+    AlertText.setAlignment(Pos.CENTER);
+    AlertText.setTextFill(color);
+    GameTable.getChildren().add(AlertText);
+  }
+
+  public void KeyEven(KeyEvent event) throws IOException{
     KeyCode key = event.getCode();
-    if (key.equals(KeyCode.ENTER) && NewGame()) StartGame();
-    directionController.Direction2(event);
+    if (key == KeyCode.H) {
+      move.stop();
+      BackToHomePage(event);
+    }
+    if (key == KeyCode.ENTER && NewGame()) StartGame();
+      if (key == KeyCode.SPACE && !PauseGame) {
+      move.pause();
+      setAlertText("Tap Space --> continue the game\nTap H --> return Home Page", Color.WHITE);
+      PauseGame = true;
+    } 
+    else if (key == KeyCode.SPACE && PauseGame) {
+      move.play();
+      setAlertText("", Color.BLACK);
+      PauseGame = false;
+    }
+    // snake1
+    if (!NewGame() && !PauseGame) {
+      directionController.Direction2(event);
+    }
+  }
+  
+  public void BackToHomePage(KeyEvent e) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+    Parent root = loader.load();
+    Scene scene = (Scene) GameTable.getScene();
+    scene.setRoot(root);
   }
 }

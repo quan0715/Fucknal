@@ -1,7 +1,4 @@
 package Application;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,8 +6,11 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -23,12 +23,15 @@ public class GameTwoController implements Initializable {
   private int windowWidth = 600;
   private int windowHeight = 600;
   private int GridWidth = 20;
+
   private int time = 150;
   private Timeline move;
   private double rate = 1.0;
   private String Username;
   private int score1 = 0;
   private int score2 = 0;
+
+  private boolean PauseGame = false;
   private boolean CanPlayNewGame = true;
   private SnakeBody<ClassicSnake> snake1;
   private SnakeBody<ClassicSnake> snake2;
@@ -47,6 +50,7 @@ public class GameTwoController implements Initializable {
   @Override
   public void initialize(URL q, ResourceBundle p) {
     DrawLine();
+    setAlertText("Tap  ENTER  to start new game", Color.WHITE);
     score1 = 0;
     Score1.setText(Integer.toString(score1));
     score2 = 0;
@@ -116,53 +120,26 @@ public class GameTwoController implements Initializable {
     //return snake1.CheckGameOver();
   }
 
-  public void CheckScoreRecord(int CurrentScore) throws IOException {
-    File Score = new File("src/Application/RecordScore.txt");
-    Score.createNewFile();
-    FileReader ScoreReader = new FileReader(Score);
-    BufferedReader br = new BufferedReader(ScoreReader);
-    /*
-    record = Integer.valueOf(br.readLine());
-    br.close();
-    if (CurrentScore > record) {
-      FileWriter ScoreWriter = new FileWriter(Score);
-      ScoreWriter.write(Integer.toString(CurrentScore));
-      ScoreWriter.flush();
-      ScoreWriter.close();
-      record = CurrentScore;
-    }
-    */
-  }
-
   // score chang / rate chang
   public void ChangedScore() {
     //score += 10;
-    rate = rate + (4 - rate) * 0.03;
-    /*
-    try {
-      CheckScoreRecord(score);
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    */
+    rate = rate + (3 - rate) * 0.03;
     move.setRate(rate);
-    //System.out.println(score / 10 + " " + rate);
-    //ScoreText.setText("Score : " + score);
-    //RecordS.setText("Record : " + record);
   }
 
   // next game set
   public void GameOver() {
     for (Snake snake : snake1.getBody())
       GameTable.getChildren().remove(snake.GetBody());
-    GameTable.getChildren().remove(apple.GetFoodBody());
-    GameTable.getChildren().remove(AlertText);
-    AlertText.setText("Game Over\n(Tap Enter to start a new game)");
-    AlertText.setAlignment(Pos.CENTER);
-    AlertText.setTextFill(Color.RED);
-    GameTable.getChildren().add(AlertText);
+    setAlertText("Game Over\n(Tap Enter to start a new game)",Color.RED);
     CanPlayNewGame = true;
+  }
+  public void setAlertText(String text , Color color){
+    GameTable.getChildren().remove(AlertText);
+    AlertText.setText(text);
+    AlertText.setAlignment(Pos.CENTER);
+    AlertText.setTextFill(color);
+    GameTable.getChildren().add(AlertText);
   }
 
   // get button click or not
@@ -183,11 +160,33 @@ public class GameTwoController implements Initializable {
     }
   }
 
-  public void KeyEven(KeyEvent event) {
+  public void KeyEven(KeyEvent event) throws IOException {
     KeyCode key = event.getCode();
+    if (key == KeyCode.H ){
+      move.stop();
+      BackToHomePage(event);
+    }
+    if (key == KeyCode.SPACE && !PauseGame){
+      move.pause();
+      setAlertText("Tap Space --> continue the game\nTap H --> return Home Page", Color.WHITE);
+      PauseGame = true;
+    }
+    else if (key == KeyCode.SPACE && PauseGame) {
+      move.play();
+      setAlertText("", Color.BLACK);
+      PauseGame = false;
+    }
     if (key == KeyCode.ENTER && NewGame()) StartGame();
     //snake1
-    directionController1.Direction1(event);
-    directionController2.Direction2(event);
+    if (!NewGame() && !PauseGame){
+      directionController1.Direction1(event);
+      directionController2.Direction2(event);
+    }
+  }
+  public void BackToHomePage(KeyEvent e) throws IOException{
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+    Parent root = loader.load();
+    Scene scene = (Scene)GameTable.getScene();
+    scene.setRoot(root);
   }
 }

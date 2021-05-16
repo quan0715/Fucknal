@@ -33,7 +33,12 @@ public class HomeController implements Initializable{
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent event) {
-        controller.KeyEven(event);
+        try {
+          controller.KeyEven(event);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
       }
     });
   }
@@ -50,7 +55,12 @@ public class HomeController implements Initializable{
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent event) {
-        controller.KeyEven(event);
+        try {
+          controller.KeyEven(event);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
       }
     });
   }
