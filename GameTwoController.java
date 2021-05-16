@@ -12,11 +12,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 public class GameTwoController implements Initializable {
@@ -33,8 +36,8 @@ public class GameTwoController implements Initializable {
 
   private boolean PauseGame = false;
   private boolean CanPlayNewGame = true;
-  private SnakeBody<ClassicSnake> snake1;
-  private SnakeBody<ClassicSnake> snake2;
+  private SnakeBody<VscodeSnake> snake1;
+  private SnakeBody<PythonSnake> snake2;
   DirectionController directionController1;
   DirectionController directionController2;
   private Food apple;
@@ -55,8 +58,8 @@ public class GameTwoController implements Initializable {
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
-    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.WHITE);
-    snake2 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.BLACK);
+    snake1 = new SnakeBody<VscodeSnake>(new VscodeSnake(), Color.WHITE);
+    snake2 = new SnakeBody<PythonSnake>(new PythonSnake(), Color.BLACK);
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
     move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
@@ -69,8 +72,8 @@ public class GameTwoController implements Initializable {
     CanPlayNewGame = false;
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
-    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.WHITE);
-    snake2 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.BLACK);
+    snake1 = new SnakeBody<VscodeSnake>(new VscodeSnake(), Color.WHITE);
+    snake2 = new SnakeBody<PythonSnake>(new PythonSnake(), Color.BLACK);
     foodGenerator.RefreshFood();
     AlertText.setText("");
     rate = 1.0;
@@ -108,17 +111,17 @@ public class GameTwoController implements Initializable {
     }
     return CheckGameOver(snake1,snake2);
   }
-  public int CheckGameOver(SnakeBody<ClassicSnake> snake1,SnakeBody<ClassicSnake> snake2){
+  public int CheckGameOver(SnakeBody<VscodeSnake> snake1,SnakeBody<PythonSnake> snake2){
     int x1 = snake1.GetHeadX();
     int x2 = snake2.GetHeadX();
     int y1 = snake1.GetHeadY();
     int y2 = snake2.GetHeadY();
-    for(ClassicSnake Snake : snake1.getBody()){
+    for(VscodeSnake Snake : snake1.getBody()){
       if(Snake.GetPosition().getX() == x2 && Snake.GetPosition().getY() == y2){
         return 1; 
       }
     }
-    for (ClassicSnake Snake : snake2.getBody()) {
+    for (PythonSnake Snake : snake2.getBody()) {
       if (Snake.GetPosition().getX() == x1 && Snake.GetPosition().getY() == y1) {
         return 2;
       }

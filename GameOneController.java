@@ -49,7 +49,7 @@ public class GameOneController implements Initializable {
     setAlertText("Tap  ENTER  to start new game", Color.WHITE);
     RecordS.setText("Record : ");
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
-    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake());
+    snake1 = new SnakeBody<IGSnake>(new IGSnake());
     directionController = new DirectionController();
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
@@ -75,7 +75,7 @@ public class GameOneController implements Initializable {
   }
   // Game flow
   public void StartGame(){
-    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake());
+    snake1 = new SnakeBody<IGSnake>(new IGSnake());
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     foodGenerator.RefreshFood();
