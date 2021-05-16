@@ -32,11 +32,10 @@ public class GameOneController implements Initializable {
   private Food apple;
   private int score = 0;
   private boolean CanPlayNewGame = true;
-  private SnakeBody<ClassicSnake> snake1;
+  private SnakeBody<? extends Snake> snake1;
   private Queue<Direction> direct;
   private Direction LastDirection;
   private int record;
-  private Class<? extends Snake> snakeType;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
   @FXML private Label AlertText;
@@ -48,7 +47,7 @@ public class GameOneController implements Initializable {
     RecordS.setText("Record : ");
     direct = new LinkedList<Direction>();
     apple = new normalFood();
-    snake1 = new SnakeBody<ClassicSnake>();
+    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake());
     LastDirection =Direction.RIGHT;
     try {
       CheckScoreRecord(score);
@@ -73,7 +72,6 @@ public class GameOneController implements Initializable {
   }
   // Game flow
   public void StartGame(){
-    snake1.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
     CanPlayNewGame = false;
     direct.clear();
     LastDirection = Direction.RIGHT;

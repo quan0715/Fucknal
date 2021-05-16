@@ -2,7 +2,6 @@ package Application;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
@@ -58,8 +57,8 @@ public class GameTwoController implements Initializable {
     direct1 = new LinkedList<Direction>();
     direct2 = new LinkedList<Direction>();
     apple = new normalFood();
-    snake1 = new SnakeBody<ClassicSnake>();
-    snake2 = new SnakeBody<ClassicSnake>();
+    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake());
+    snake2 = new SnakeBody<ClassicSnake>(new ClassicSnake());
     LastDirection1 = Direction.UP;
     LastDirection2 = Direction.DOWN;
     direct1.add(LastDirection1);
@@ -94,8 +93,6 @@ public class GameTwoController implements Initializable {
     LastDirection2 = Direction.DOWN;
     direct1.add(LastDirection1);
     direct2.add(LastDirection2);
-    snake1.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
-    snake2.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
     NewFood(apple);
     AlertText.setText("");
     //score = 0;

@@ -11,11 +11,12 @@ public class SnakeBody<T extends Snake> {
   private int HeightLimit = 600;
   private int WeightLimit = 600;
   private int size;
-  public SnakeBody(){
+  public SnakeBody(T instance){
     Body = new ArrayList<T>();
+    classInstance = (Class<T>) instance.getClass();
+    init();
   }
-  public void init(Class<? extends ClassicSnake> snakeType){
-    classInstance=(Class<T>) snakeType;
+  private void init(){
     if(Body.size()!=0)Body.clear();
     HeadX = HeadY = 300;
     for(int i=0;i<3;i++){
