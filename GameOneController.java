@@ -5,8 +5,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -43,12 +41,13 @@ public class GameOneController implements Initializable {
   @FXML private Label RecordS;
   @Override
   public void initialize(URL q, ResourceBundle p) {
-    DrawLine();
-    RecordS.setText("Record : ");
-    directionController = new DirectionController();
-    apple = new NormalFood();
+    GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     foodGenerator = new FoodGenerator(GameTable, (NormalFood)apple);
     snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake());
+    directionController = new DirectionController();
+    apple = new NormalFood();
+    DrawLine();
+    RecordS.setText("Record : ");
     try {
       CheckScoreRecord(score);
       RecordS.setText("Record : " + record);
@@ -69,7 +68,7 @@ public class GameOneController implements Initializable {
   }
   // Game flow
   public void StartGame(){
-    //snake1.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
+    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake());
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     foodGenerator.RefreshFood();
@@ -93,14 +92,10 @@ public class GameOneController implements Initializable {
 
   //moving event
   public boolean SnakeRun(Direction direction) throws Exception {
-    for (Snake snake : snake1.getBody()) GameTable.getChildren().remove(snake.GetBody());
-    
     if (snake1.SnakeMoving(direction,apple)) {
-      //snake1.ChangHead(apple.GetFoodPosition());
       foodGenerator.RefreshFood();
       ChangedScore();
     }
-    for (Snake snake : snake1.getBody()) GameTable.getChildren().add(snake.GetBody());
     return snake1.CheckGameOver();
   }
   public void CheckScoreRecord(int CurrentScore) throws IOException{
@@ -125,7 +120,6 @@ public class GameOneController implements Initializable {
     try {
       CheckScoreRecord(score);
     } catch (IOException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     move.setRate(rate);
@@ -135,8 +129,7 @@ public class GameOneController implements Initializable {
   }
   //next game set
   public void GameOver() {
-    for (Snake snake : snake1.getBody()) 
-      GameTable.getChildren().remove(snake.GetBody());
+    snake1.clearOnScreen();
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
