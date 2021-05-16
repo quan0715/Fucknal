@@ -33,16 +33,13 @@
 -->
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="600.0" style="-fx-background-color: #95CACA;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.GameTwoController">
    <children>
-      <Label fx:id="ScoreText" layoutX="317.0" layoutY="13.0" prefHeight="27.0" prefWidth="139.0" text="Score :" textFill="#90716a">
-         <font>
-            <Font name="System Bold Italic" size="20.0" />
-         </font>
-      </Label>
       <AnchorPane fx:id="GameTable" layoutY="50.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #CF9E9E;">
          <children>
             <Label fx:id="AlertText" alignment="CENTER" layoutX="96.0" layoutY="228.0" prefHeight="124.0" prefWidth="409.0" text="Tap  ENTER  to start new game" textAlignment="CENTER" textFill="#fffcfb">
@@ -51,15 +48,30 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <Label fx:id="UserName" layoutX="31.0" layoutY="13.0" prefHeight="27.0" prefWidth="175.0" text="HI!! " textFill="#90716a">
+      <Label fx:id="UserName1" alignment="TOP_RIGHT" layoutX="160.0" layoutY="15.0" prefHeight="27.0" prefWidth="90.0" text="Player1" textAlignment="CENTER" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="RecordS" layoutX="447.0" layoutY="13.0" prefHeight="27.0" prefWidth="139.0" text="Record :" textFill="#90716a">
+      <Label fx:id="UserName2" alignment="TOP_LEFT" layoutX="350.0" layoutY="15.0" prefHeight="27.0" prefWidth="90.0" text="Player2" textAlignment="CENTER" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
+      <Label fx:id="Score1" alignment="TOP_RIGHT" layoutX="100.0" layoutY="15.0" prefHeight="27.0" prefWidth="60.0" text="0" textAlignment="CENTER" textFill="#90716a">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="Score2" alignment="TOP_LEFT" layoutX="440.0" layoutY="15.0" prefHeight="27.0" prefWidth="60.0" text="0" textAlignment="CENTER" textFill="#90716a">
+         <font>
+            <Font name="System Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="280.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@vscode.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
