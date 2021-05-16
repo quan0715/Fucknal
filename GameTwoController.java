@@ -51,19 +51,16 @@ public class GameTwoController implements Initializable {
   public void initialize(URL q, ResourceBundle p) {
     DrawLine();
     setAlertText("Tap  ENTER  to start new game", Color.WHITE);
-    score1 = 0;
-    Score1.setText(Integer.toString(score1));
-    score2 = 0;
-    Score2.setText(Integer.toString(score2));
+    ScoreRefresh(0, 0);
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
     snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.WHITE);
     snake2 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.BLACK);
     apple = new NormalFood();
-    foodGenerator = new FoodGenerator(GameTable,(NormalFood)apple);
+    foodGenerator = new FoodGenerator((NormalFood)apple);
     move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
-      SnakeRun(directionController1.NextDirection(),directionController2.NextDirection());
+      GameOver(SnakeRun(directionController1.NextDirection(),directionController2.NextDirection()));
     }));
   }
 
@@ -78,14 +75,11 @@ public class GameTwoController implements Initializable {
     AlertText.setText("");
     rate = 1.0;
     move.setRate(rate);
-    score1 = 0;
-    Score1.setText(Integer.toString(score1));
-    score2 = 0;
-    Score2.setText(Integer.toString(score2));
+    score1 = score2 = 0;
+    ScoreRefresh(score1,score2);
     move.setCycleCount(Animation.INDEFINITE);
     move.play();
   }
-
   /// initializable method
   public void DrawLine() {
     for (int i = 0; i <= windowWidth; i += GridWidth) {
@@ -99,34 +93,62 @@ public class GameTwoController implements Initializable {
   }
 
   // moving event
-  public void SnakeRun(Direction direction1, Direction direction2) {
+  public int SnakeRun(Direction direction1, Direction direction2) {
     try {
-      if (snake1.SnakeMoving(direction1, apple) || snake2.SnakeMoving(direction2, apple)) {
-        // snake1.ChangHead(apple.GetFoodPosition());
+      if (snake1.SnakeMoving(direction1, apple)) {
         foodGenerator.RefreshFood();
-        ChangedScore();
+        ChangedScore(1);
+      }
+      if(snake2.SnakeMoving(direction2, apple)){
+        foodGenerator.RefreshFood();
+        ChangedScore(2);
       }
     } catch (Exception e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    //return snake1.CheckGameOver();
+    return CheckGameOver(snake1,snake2);
   }
-
+  public int CheckGameOver(SnakeBody<ClassicSnake> snake1,SnakeBody<ClassicSnake> snake2){
+    int x1 = snake1.GetHeadX();
+    int x2 = snake2.GetHeadX();
+    int y1 = snake1.GetHeadY();
+    int y2 = snake2.GetHeadY();
+    for(ClassicSnake Snake : snake1.getBody()){
+      if(Snake.GetPosition().getX() == x2 && Snake.GetPosition().getY() == y2){
+        return 1; 
+      }
+    }
+    for (ClassicSnake Snake : snake2.getBody()) {
+      if (Snake.GetPosition().getX() == x1 && Snake.GetPosition().getY() == y1) {
+        return 2;
+      }
+    }
+    return 0;
+  }
   // score chang / rate chang
-  public void ChangedScore() {
+  public void ChangedScore(int id) {
     //score += 10;
+    if(id==1) score1+=10;
+    else score2 += 10;
+    ScoreRefresh(score1, score2);
     rate = rate + (3 - rate) * 0.03;
     move.setRate(rate);
   }
-
+  public void ScoreRefresh(int score1 ,int score2){
+    Score1.setText(Integer.toString(score1));
+    Score2.setText(Integer.toString(score2));
+  }
   // next game set
-  public void GameOver() {
-    snake1.clearOnScreen();
-    snake2.clearOnScreen();
-    setAlertText("Game Over\n(Tap Enter to start a new game)", Color.RED);
-    GameTable.getChildren().remove(apple.GetFoodBody());
-    CanPlayNewGame = true;
+  public void GameOver(int w) {
+    if(w!=0){
+      move.stop();
+      snake1.clearOnScreen();
+      snake2.clearOnScreen();
+      setAlertText(Username + w + " Win\n(Tap Enter to start a new game)", Color.RED);
+      GameTable.getChildren().remove(apple.GetFoodBody());
+      CanPlayNewGame = true;
+    }
+    
   }
   public void setAlertText(String text , Color color){
     GameTable.getChildren().remove(AlertText);
@@ -142,16 +164,12 @@ public class GameTwoController implements Initializable {
   }
 
   public void GetPinName(String name) {
-    String DefaultName = "JACK";
     this.Username = name;
-    if (Username.length() != 0){
-      UserName1.setText(Username+"1");
-      UserName2.setText(Username+"1");
+    if (Username.length() == 0){
+      Username = "Jack" ;
     }
-    else{
-      UserName1.setText(DefaultName + "2");
-      UserName2.setText(DefaultName + "2");
-    }
+    UserName1.setText(Username+"1");
+    UserName2.setText(Username+"2");
   }
 
   public void KeyEven(KeyEvent event) throws IOException {

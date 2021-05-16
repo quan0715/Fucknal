@@ -127,4 +127,8 @@ public class SnakeBody<T extends Snake> {
     ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
     for (Snake snake : Body) children.add(snake.GetBody());
   }
+  public ArrayList<T> getBody(){
+    return Body ;
+  }
+  
 }

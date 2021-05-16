@@ -52,7 +52,7 @@ public class GameOneController implements Initializable {
     snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake());
     directionController = new DirectionController();
     apple = new NormalFood();
-    foodGenerator = new FoodGenerator(GameTable, (NormalFood)apple);
+    foodGenerator = new FoodGenerator((NormalFood)apple);
     DrawLine();
     RecordS.setText("Record : ");
     try {
