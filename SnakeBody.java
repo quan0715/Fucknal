@@ -2,6 +2,8 @@ package Application;
 
 import java.util.ArrayList;
 
+import javafx.scene.paint.Color;
+
 public class SnakeBody<T extends Snake> {
   private ArrayList<T> Body;
   private Class<T> classInstance;
@@ -11,17 +13,22 @@ public class SnakeBody<T extends Snake> {
   private int HeightLimit = 600;
   private int WeightLimit = 600;
   private int size;
+  private Color color = Color.GREEN;
   public SnakeBody(){
     Body = new ArrayList<T>();
   }
-  public void init(Class<? extends ClassicSnake> snakeType){
+  public SnakeBody(Color color) {
+    Body = new ArrayList<T>();
+    this.color = color;
+  }
+  public void init(Class<? extends Snake> snakeType){
     classInstance=(Class<T>) snakeType;
     if(Body.size()!=0)Body.clear();
     HeadX = HeadY = 300;
     for(int i=0;i<3;i++){
       try{
         T bod=classInstance.getDeclaredConstructor().newInstance();
-        bod.InitialSnakeBody(new Point(this.HeadX - Snake.SnakeWidth * i, this.HeadY));
+        bod.InitialSnakeBody(new Point(this.HeadX - Snake.SnakeWidth * i, this.HeadY),color);
         Body.add(bod);
       }
       catch(Exception e){
@@ -64,7 +71,7 @@ public class SnakeBody<T extends Snake> {
   }
   public void AddNewBody(int x,int y) throws Exception{
     T bod=classInstance.getDeclaredConstructor().newInstance();
-    bod.InitialSnakeBody(new Point(x, y));
+    bod.InitialSnakeBody(new Point(x, y),color);
     Body.add(bod);
     size++;
   }

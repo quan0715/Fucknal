@@ -33,8 +33,8 @@ public class GameOneController implements Initializable {
   private int score = 0;
   private boolean CanPlayNewGame = true;
   private SnakeBody<ClassicSnake> snake1;
-  private Queue<Direction> direct;
-  private Direction LastDirection;
+  private FoodGenerator foodGenerator;
+  private DirectionController directionController;
   private int record;
   private Class<? extends Snake> snakeType;
   @FXML private AnchorPane GameTable;
@@ -46,10 +46,10 @@ public class GameOneController implements Initializable {
   public void initialize(URL q, ResourceBundle p) {
     DrawLine();
     RecordS.setText("Record : ");
-    direct = new LinkedList<Direction>();
-    apple = new normalFood();
+    directionController = new DirectionController();
+    apple = new NormalFood();
+    foodGenerator = new FoodGenerator(GameTable, (NormalFood)apple);
     snake1 = new SnakeBody<ClassicSnake>();
-    LastDirection =Direction.RIGHT;
     try {
       CheckScoreRecord(score);
       RecordS.setText("Record : " + record);
@@ -58,27 +58,22 @@ public class GameOneController implements Initializable {
     }
     ScoreText.setText("Score : 0");
     move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
-      //ChangDirection = false;
       try {
-        if (SnakeRun((direct.size() == 1 ? direct.peek() :direct.poll()))) {
+        if (SnakeRun(directionController.NextDirection())) {
           move.stop();
           GameOver();
         }
       } catch (Exception e1) {
-        // TODO Auto-generated catch block
         e1.printStackTrace();
       }
-      //ChangDirection = true;
     }));
   }
   // Game flow
   public void StartGame(){
     snake1.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
+    directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
-    direct.clear();
-    LastDirection = Direction.RIGHT;
-    direct.add(Direction.RIGHT);
-    NewFood(apple);
+    foodGenerator.RefreshFood();
     AlertText.setText("");
     score = 0;
     ScoreText.setText("Score : " + score);
@@ -96,18 +91,14 @@ public class GameOneController implements Initializable {
       GameTable.getChildren().add(cols);
     }
   }
-  public void NewFood(Food apple) {
-    GameTable.getChildren().remove(apple.GetFoodBody());
-    apple.init();
-    GameTable.getChildren().add(apple.GetFoodBody());
-  }
+
   //moving event
   public boolean SnakeRun(Direction direction) throws Exception {
     for (Snake snake : snake1.getBody()) GameTable.getChildren().remove(snake.GetBody());
     
     if (snake1.SnakeMoving(direction,apple)) {
       //snake1.ChangHead(apple.GetFoodPosition());
-      NewFood(apple);
+      foodGenerator.RefreshFood();
       ChangedScore();
     }
     for (Snake snake : snake1.getBody()) GameTable.getChildren().add(snake.GetBody());
@@ -155,7 +146,6 @@ public class GameOneController implements Initializable {
     AlertText.setAlignment(Pos.CENTER);
     AlertText.setTextFill(Color.RED);
     GameTable.getChildren().add(AlertText);
-    LastDirection = Direction.RIGHT;
     CanPlayNewGame = true;
   }
   //get button click or not
@@ -171,25 +161,6 @@ public class GameOneController implements Initializable {
   public void KeyEven(KeyEvent event){
     KeyCode key = event.getCode();
     if (key.equals(KeyCode.ENTER) && NewGame()) StartGame();
-    if (key.equals(KeyCode.UP) && !LastDirection.equals(Direction.DOWN) && !LastDirection.equals(Direction.UP) ) {
-      LastDirection = Direction.UP;
-      System.out.println("UP");
-      direct.offer(Direction.UP);
-    }
-    else if (key.equals(KeyCode.DOWN) && !LastDirection.equals(Direction.UP) && !LastDirection.equals(Direction.DOWN)) {
-      System.out.println("DOWN");
-      LastDirection = Direction.DOWN;
-        direct.offer(Direction.DOWN);
-    }
-    else if (key.equals(KeyCode.RIGHT) && !LastDirection.equals(Direction.LEFT) && !LastDirection.equals(Direction.RIGHT)) {
-      System.out.println("RIGHT");
-      LastDirection = Direction.RIGHT;
-        direct.offer(Direction.RIGHT);
-    }
-    else if (key.equals(KeyCode.LEFT) && !LastDirection.equals(Direction.RIGHT) && !LastDirection.equals(Direction.LEFT)) {
-      System.out.println("LEFT");
-      LastDirection = Direction.LEFT;
-        direct.offer(Direction.LEFT);
-    }
+    directionController.Direction2(event);
   }
 }
