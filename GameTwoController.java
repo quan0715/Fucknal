@@ -51,6 +51,7 @@ public class GameTwoController implements Initializable {
     Score1.setText(Integer.toString(score1));
     score2 = 0;
     Score2.setText(Integer.toString(score2));
+    GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
     snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.WHITE);
@@ -95,10 +96,6 @@ public class GameTwoController implements Initializable {
 
   // moving event
   public void SnakeRun(Direction direction1, Direction direction2) {
-    for (ClassicSnake snake : snake1.getBody())
-      GameTable.getChildren().remove(snake.GetBody());
-    for (Snake snake : snake2.getBody())
-      GameTable.getChildren().remove(snake.GetBody());    
     try {
       if (snake1.SnakeMoving(direction1, apple) || snake2.SnakeMoving(direction2, apple)) {
         // snake1.ChangHead(apple.GetFoodPosition());
@@ -109,10 +106,6 @@ public class GameTwoController implements Initializable {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    for (Snake snake : snake1.getBody())
-      GameTable.getChildren().add(snake.GetBody());
-    for (Snake snake : snake2.getBody())
-      GameTable.getChildren().add(snake.GetBody());
     //return snake1.CheckGameOver();
   }
 
@@ -154,8 +147,8 @@ public class GameTwoController implements Initializable {
 
   // next game set
   public void GameOver() {
-    for (Snake snake : snake1.getBody())
-      GameTable.getChildren().remove(snake.GetBody());
+    snake1.clearOnScreen();
+    snake2.clearOnScreen();
     GameTable.getChildren().remove(apple.GetFoodBody());
     GameTable.getChildren().remove(AlertText);
     AlertText.setText("Game Over\n(Tap Enter to start a new game)");

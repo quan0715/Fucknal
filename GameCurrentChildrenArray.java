@@ -1,13 +1,12 @@
 package Application;
 
-import java.util.ArrayList;
-
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
 public class GameCurrentChildrenArray {
     static GameCurrentChildrenArray Instance=new GameCurrentChildrenArray();
-    private ArrayList<Node> arr;
-    public void set(ArrayList<Node> a){arr=a;}
-    public ArrayList<Node> get(){return arr;}
+    private ObservableList<Node> arr;
+    public void set(ObservableList<Node> observableList){arr=observableList;}
+    public ObservableList<Node> get(){return arr;}
     private GameCurrentChildrenArray(){}
 }

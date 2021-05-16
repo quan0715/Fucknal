@@ -2,6 +2,8 @@ package Application;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 
 public class SnakeBody<T extends Snake> {
@@ -42,6 +44,7 @@ public class SnakeBody<T extends Snake> {
     size = 3;
   }
   public boolean SnakeMoving(Direction direction,Food apple) throws Exception{
+    clearOnScreen();
     switch (direction) {
       case UP :
         HeadY = (HeadY - Snake.SnakeWidth) % WeightLimit;
@@ -71,6 +74,7 @@ public class SnakeBody<T extends Snake> {
       }
     }
     ChangBodyPosition(0,new Point(HeadX,HeadY));
+    showOnScreen();
     return check;
   }
   public void AddNewBody(int x,int y) throws Exception{
@@ -115,13 +119,12 @@ public class SnakeBody<T extends Snake> {
   public int GetHeadY() {
     return HeadY;
   }
-  public ArrayList<T> getBody() {
-    return Body;
+  public void clearOnScreen() {
+    ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
+    for (Snake snake : Body) children.remove(snake.GetBody());
   }
-  public Snake getSnake(int id) {
-    return Body.get(id);
-  }
-  public int getSize(){
-    return size;
+  public void showOnScreen() {
+    ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
+    for (Snake snake : Body) children.add(snake.GetBody());
   }
 }
