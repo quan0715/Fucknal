@@ -69,7 +69,7 @@ public class GameOneController implements Initializable {
   }
   // Game flow
   public void StartGame(){
-    //snake1.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
+    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake());
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     foodGenerator.RefreshFood();

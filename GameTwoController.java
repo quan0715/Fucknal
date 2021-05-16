@@ -27,7 +27,8 @@ public class GameTwoController implements Initializable {
   private Timeline move;
   private double rate = 1.0;
   private String Username;
-  //private int score = 0;
+  private int score1 = 0;
+  private int score2 = 0;
   private boolean CanPlayNewGame = true;
   private SnakeBody<ClassicSnake> snake1;
   private SnakeBody<ClassicSnake> snake2;
@@ -39,11 +40,17 @@ public class GameTwoController implements Initializable {
   @FXML  private AnchorPane GameTable;
   @FXML  private Label ScoreText;
   @FXML  private Label AlertText;
-  @FXML  private Label UserName;
-  @FXML  private Label RecordS;
+  @FXML  private Label UserName1;
+  @FXML  private Label Score1;
+  @FXML private Label UserName2;
+  @FXML private Label Score2;
   @Override
   public void initialize(URL q, ResourceBundle p) {
     DrawLine();
+    score1 = 0;
+    Score1.setText(Integer.toString(score1));
+    score2 = 0;
+    Score2.setText(Integer.toString(score2));
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
     snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.WHITE);
@@ -66,8 +73,10 @@ public class GameTwoController implements Initializable {
     AlertText.setText("");
     rate = 1.0;
     move.setRate(rate);
-    //score = 0;
-    //ScoreText.setText("Score : " + score);
+    score1 = 0;
+    Score1.setText(Integer.toString(score1));
+    score2 = 0;
+    Score2.setText(Integer.toString(score2));
     move.setCycleCount(Animation.INDEFINITE);
     move.play();
   }
@@ -164,10 +173,14 @@ public class GameTwoController implements Initializable {
   public void GetPinName(String name) {
     String DefaultName = "JACK";
     this.Username = name;
-    if (Username.length() != 0)
-      UserName.setText(Username);
-    else
-      UserName.setText(DefaultName);
+    if (Username.length() != 0){
+      UserName1.setText(Username+"1");
+      UserName2.setText(Username+"1");
+    }
+    else{
+      UserName1.setText(DefaultName + "2");
+      UserName2.setText(DefaultName + "2");
+    }
   }
 
   public void KeyEven(KeyEvent event) {
