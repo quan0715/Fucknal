@@ -2,7 +2,6 @@ package Application;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,8 +46,8 @@ public class GameTwoController implements Initializable {
     DrawLine();
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
-    snake1 = new SnakeBody<ClassicSnake>(Color.WHITE);
-    snake2 = new SnakeBody<ClassicSnake>(Color.BLACK);
+    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.WHITE);
+    snake2 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.BLACK);
     apple = new NormalFood();
     foodGenerator = new FoodGenerator(GameTable,(NormalFood)apple);
     move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
@@ -61,8 +60,8 @@ public class GameTwoController implements Initializable {
     CanPlayNewGame = false;
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
-    snake1.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
-    snake2.init((Class<ClassicSnake>)(new ClassicSnake()).getClass());
+    snake1 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.WHITE);
+    snake2 = new SnakeBody<ClassicSnake>(new ClassicSnake(), Color.BLACK);
     foodGenerator.RefreshFood();
     AlertText.setText("");
     rate = 1.0;

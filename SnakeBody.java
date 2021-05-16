@@ -14,15 +14,19 @@ public class SnakeBody<T extends Snake> {
   private int WeightLimit = 600;
   private int size;
   private Color color = Color.GREEN;
-  public SnakeBody(){
+
+  public SnakeBody(T instance){
     Body = new ArrayList<T>();
+    classInstance = (Class<T>) instance.getClass();
+    init();
   }
-  public SnakeBody(Color color) {
+  public SnakeBody(T instance,Color color) {
     Body = new ArrayList<T>();
     this.color = color;
+    classInstance = (Class<T>) instance.getClass();
+    init();
   }
-  public void init(Class<? extends Snake> snakeType){
-    classInstance=(Class<T>) snakeType;
+  private void init(){
     if(Body.size()!=0)Body.clear();
     HeadX = HeadY = 300;
     for(int i=0;i<3;i++){
