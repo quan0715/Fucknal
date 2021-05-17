@@ -48,9 +48,10 @@ public class HomeController implements Initializable{
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
-    Scene scene = new Scene(root);
-    App.stage.setScene(scene);
-    GameTwoController controller = loader.getController();
+    scene = (Scene) ((Node) event.getSource()).getScene();
+    scene.setRoot(root);
+    GameTwoController<PythonSnake,VscodeSnake> controller = loader.getController();
+    controller.init(new PythonSnake(), new VscodeSnake());
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
       @Override
