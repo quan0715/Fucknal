@@ -26,8 +26,8 @@ public class HomeController implements Initializable{
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
-    scene = ButtonOne.getScene();
-    scene.setRoot(root);
+    Scene scene = new Scene(root);
+    App.stage.setScene(scene);
     GameOneController controller = loader.getController();
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
@@ -48,8 +48,8 @@ public class HomeController implements Initializable{
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
-    scene = (Scene) ((Node) event.getSource()).getScene();
-    scene.setRoot(root);
+    Scene scene = new Scene(root);
+    App.stage.setScene(scene);
     GameTwoController controller = loader.getController();
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {

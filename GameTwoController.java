@@ -28,8 +28,10 @@ public class GameTwoController implements Initializable {
   private int GridWidth = 20;
 
   private int time = 150;
-  private Timeline move;
-  private double rate = 1.0;
+  private Timeline move1;
+  private Timeline move2;
+  private double rate1 = 1.0;
+  private double rate2= 1.0;
   private String Username;
   private int score1 = 0;
   private int score2 = 0;
@@ -52,6 +54,7 @@ public class GameTwoController implements Initializable {
   @FXML private Label Score2;
   @Override
   public void initialize(URL q, ResourceBundle p) {
+   
     DrawLine();
     setAlertText("Tap  ENTER  to start new game", Color.WHITE);
     ScoreRefresh(0, 0);
@@ -62,8 +65,11 @@ public class GameTwoController implements Initializable {
     snake2 = new SnakeBody<PythonSnake>(new PythonSnake(), Color.BLACK);
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
-    move = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
-      GameOver(SnakeRun(directionController1.NextDirection(),directionController2.NextDirection()));
+    move1 = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
+      GameOver(SnakeRun1(directionController1.NextDirection()));
+    }));
+    move2 = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
+      GameOver(SnakeRun2(directionController2.NextDirection()));
     }));
   }
 
@@ -76,12 +82,15 @@ public class GameTwoController implements Initializable {
     snake2 = new SnakeBody<PythonSnake>(new PythonSnake(), Color.BLACK);
     foodGenerator.RefreshFood();
     AlertText.setText("");
-    rate = 1.0;
-    move.setRate(rate);
+    rate1 = rate2 = 1.0;
+    move1.setRate(rate1);
+    move2.setRate(rate2);
     score1 = score2 = 0;
     ScoreRefresh(score1,score2);
-    move.setCycleCount(Animation.INDEFINITE);
-    move.play();
+    move1.setCycleCount(Animation.INDEFINITE);
+    move2.setCycleCount(Animation.INDEFINITE);
+    move1.play();
+    move2.play();
   }
   /// initializable method
   public void DrawLine() {
@@ -96,21 +105,30 @@ public class GameTwoController implements Initializable {
   }
 
   // moving event
-  public int SnakeRun(Direction direction1, Direction direction2) {
+  public int SnakeRun1(Direction direction) {
     try {
-      if (snake1.SnakeMoving(direction1, apple)) {
+      if (snake1.SnakeMoving(direction, apple)) {
         foodGenerator.RefreshFood();
         ChangedScore(1);
-      }
-      if(snake2.SnakeMoving(direction2, apple)){
-        foodGenerator.RefreshFood();
-        ChangedScore(2);
       }
     } catch (Exception e) {
       e.printStackTrace();
     }
     return CheckGameOver(snake1,snake2);
   }
+  
+  public int SnakeRun2(Direction direction) {
+    try {
+      if (snake1.SnakeMoving(direction, apple)) {
+        foodGenerator.RefreshFood();
+        ChangedScore(2);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return CheckGameOver(snake1, snake2);
+  }
+  
   public int CheckGameOver(SnakeBody<VscodeSnake> snake1,SnakeBody<PythonSnake> snake2){
     int x1 = snake1.GetHeadX();
     int x2 = snake2.GetHeadX();
@@ -131,12 +149,19 @@ public class GameTwoController implements Initializable {
   // score chang / rate chang
   public void ChangedScore(int id) {
     //score += 10;
-    if(id==1) score1+=10;
-    else score2 += 10;
+    if(id==1) {
+      score1+=10;
+      rate1 = rate1 + (3 - rate1) * 0.03;
+      move1.setRate(rate1);
+    }
+    else {
+      score2 += 10;
+      rate2 = rate2 + (3 - rate2) * 0.03;
+      move2.setRate(rate2);
+    } 
     ScoreRefresh(score1, score2);
-    rate = rate + (3 - rate) * 0.03;
-    move.setRate(rate);
   }
+  
   public void ScoreRefresh(int score1 ,int score2){
     Score1.setText(Integer.toString(score1));
     Score2.setText(Integer.toString(score2));
@@ -144,7 +169,8 @@ public class GameTwoController implements Initializable {
   // next game set
   public void GameOver(int w) {
     if(w!=0){
-      move.stop();
+      move1.stop();
+      move2.stop();
       snake1.clearOnScreen();
       snake2.clearOnScreen();
       setAlertText(Username + w + " Win\n(Tap Enter to start a new game)", Color.RED);
@@ -178,16 +204,19 @@ public class GameTwoController implements Initializable {
   public void KeyEven(KeyEvent event) throws IOException {
     KeyCode key = event.getCode();
     if (key == KeyCode.H ){
-      move.stop();
+      move1.stop();
+      move2.stop();
       BackToHomePage(event);
     }
     if (key == KeyCode.SPACE && !PauseGame){
-      move.pause();
+      move1.pause();
+      move2.pause();
       setAlertText("Tap Space --> continue the game\nTap H --> return Home Page", Color.WHITE);
       PauseGame = true;
     }
     else if (key == KeyCode.SPACE && PauseGame) {
-      move.play();
+      move1.play();
+      move2.play();
       setAlertText("", Color.BLACK);
       PauseGame = false;
     }
@@ -201,7 +230,6 @@ public class GameTwoController implements Initializable {
   public void BackToHomePage(KeyEvent e) throws IOException{
     FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
     Parent root = loader.load();
-    Scene scene = (Scene)GameTable.getScene();
-    scene.setRoot(root);
+    App.stage.setScene(new Scene(root));
   }
 }

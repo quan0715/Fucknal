@@ -6,11 +6,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 public class App extends Application {
+    static Stage stage; 
     public static void main(String[] args) {
         launch(args);
     }  
     @Override
     public void start(Stage primaryStage) throws IOException {
+        stage=primaryStage;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
