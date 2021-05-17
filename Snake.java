@@ -8,7 +8,7 @@ public abstract class Snake{
   protected Rectangle body ;
   protected Point position ; 
   protected Image image;
-  public abstract void InitialSnakeBody(Point position,Color color);
+  public abstract void InitialSnakeBody(Point position);
   public void ChangPosition(Point newPosition){
     this.position.setX(newPosition.getX());
     this.position.setY(newPosition.getY());

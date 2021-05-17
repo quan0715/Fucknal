@@ -10,8 +10,8 @@ public class SnakeBody<T extends Snake> {
   private ArrayList<T> Body;
   private Class<T> classInstance;
   //private AnchorPane GameTable;
-  private int HeadX;
-  private int HeadY;
+  private int HeadX = 300;
+  private int HeadY = 300;
   private int HeightLimit = 600;
   private int WeightLimit = 600;
   private int size;
@@ -22,19 +22,20 @@ public class SnakeBody<T extends Snake> {
     classInstance = (Class<T>) instance.getClass();
     init();
   }
-  public SnakeBody(T instance,Color color) {
+  
+  public SnakeBody(T instance,int x,int y) {
+    HeadX = x;
+    HeadY = y;
     Body = new ArrayList<T>();
-    this.color = color;
     classInstance = (Class<T>) instance.getClass();
     init();
   }
   private void init(){
     if(Body.size()!=0)Body.clear();
-    HeadX = HeadY = 300;
     for(int i=0;i<3;i++){
       try{
         T bod=classInstance.getDeclaredConstructor().newInstance();
-        bod.InitialSnakeBody(new Point(this.HeadX - Snake.SnakeWidth * i, this.HeadY),color);
+        bod.InitialSnakeBody(new Point(this.HeadX - Snake.SnakeWidth * i, this.HeadY));
         Body.add(bod);
       }
       catch(Exception e){
@@ -79,7 +80,7 @@ public class SnakeBody<T extends Snake> {
   }
   public void AddNewBody(int x,int y) throws Exception{
     T bod=classInstance.getDeclaredConstructor().newInstance();
-    bod.InitialSnakeBody(new Point(x, y),color);
+    bod.InitialSnakeBody(new Point(x, y));
     Body.add(bod);
     size++;
   }

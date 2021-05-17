@@ -63,8 +63,8 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     directionController2 = new DirectionController();
     snake1Instance=s1;
     snake2Instance=s2;
-    snake1 = new SnakeBody<T>(snake1Instance, Color.WHITE);
-    snake2 = new SnakeBody<U>(snake2Instance, Color.BLACK);
+    snake1 = new SnakeBody<T>(snake1Instance,200,200);
+    snake2 = new SnakeBody<U>(snake2Instance,400,400);
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
     move1 = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
@@ -80,8 +80,8 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     CanPlayNewGame = false;
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
-    snake1 = new SnakeBody<T>(snake1Instance, Color.WHITE);
-    snake2 = new SnakeBody<U>(snake2Instance, Color.BLACK);
+    snake1 = new SnakeBody<T>(snake1Instance, 200,200);
+    snake2 = new SnakeBody<U>(snake2Instance, 400,400);
     foodGenerator.RefreshFood();
     AlertText.setText("");
     rate1 = rate2 = 1.0;
@@ -121,7 +121,7 @@ public class GameTwoController<T extends Snake,U extends Snake>{
   
   public int SnakeRun2(Direction direction) {
     try {
-      if (snake1.SnakeMoving(direction, apple)) {
+      if (snake2.SnakeMoving(direction, apple)) {
         foodGenerator.RefreshFood();
         ChangedScore(2);
       }
@@ -135,6 +135,9 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     int x2 = snake2.GetHeadX();
     int y1 = snake1.GetHeadY();
     int y2 = snake2.GetHeadY();
+    if (x1 == x2 && y1 ==y2){
+      return 3;
+    }
     for(Snake Snake : snake1.getBody()){
       if(Snake.GetPosition().getX() == x2 && Snake.GetPosition().getY() == y2){
         return 1; 
@@ -174,7 +177,15 @@ public class GameTwoController<T extends Snake,U extends Snake>{
       move2.stop();
       snake1.clearOnScreen();
       snake2.clearOnScreen();
-      setAlertText(Username + w + " Win\n(Tap Enter to start a new game)", Color.RED);
+      if(w==3){
+        if(score1 == score2){
+          setAlertText( "Tie \n(Tap Enter to start a new game)", Color.RED);
+        }
+        else{
+          setAlertText(Username + (score1 > score2 ? "1" : "2") + " Win\n(Tap Enter to start a new game)", Color.RED);
+        }
+      }
+      else setAlertText(Username + w + " Win\n(Tap Enter to start a new game)", Color.RED);
       GameTable.getChildren().remove(apple.GetFoodBody());
       CanPlayNewGame = true;
     }

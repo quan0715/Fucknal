@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 
 public class PythonSnake extends Snake{
   @Override
-  public void InitialSnakeBody(Point position, Color color) {
+  public void InitialSnakeBody(Point position) {
     // TODO Auto-generated method stub
     this.position = position;
     this.body = new Rectangle(position.getX(), position.getY(), SnakeWidth, SnakeWidth);

@@ -6,7 +6,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class VscodeSnake extends Snake{
-  public void InitialSnakeBody(Point position, Color color) {
+  public void InitialSnakeBody(Point position) {
     // TODO Auto-generated method stub
     this.position = position;
     this.body = new Rectangle(position.getX(), position.getY(), SnakeWidth, SnakeWidth);
