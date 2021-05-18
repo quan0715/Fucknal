@@ -8,9 +8,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" style="-fx-background-color: #292929#292929;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" style="-fx-background-color: #292929#292929;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.HomeController">
    <children>
-      <ImageView fitHeight="182.0" fitWidth="180.0" layoutX="220.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="182.0" fitWidth="180.0" layoutX="220.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/python.png" />
          </image>
@@ -20,19 +20,24 @@
             <Font name="JackeyFont" size="70.0" />
          </font>
       </Text>
-      <Button fx:id="ButtonOne" defaultButton="true" layoutX="225.0" layoutY="464.0" mnemonicParsing="false" onAction="#SwitchOneManGame" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb;" text="單人模式">
+      <Button fx:id="ButtonOne" defaultButton="true" layoutX="225.0" layoutY="452.0" mnemonicParsing="false" onAction="#SwitchOneManGame" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb;" styleClass="buttom" text="SINGAL">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonTwo" defaultButton="true" layoutX="225.0" layoutY="528.0" mnemonicParsing="false" onAction="#SwitchTwoManGame" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb#d5e2cb;" text="雙人模式">
+      <Button fx:id="ButtonTwo" defaultButton="true" layoutX="225.0" layoutY="510.0" mnemonicParsing="false" onAction="#SwitchTwoManGame" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb#d5e2cb;" styleClass="buttom" text="DOUBLE">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <TextField fx:id="GamePin" alignment="CENTER" layoutX="181.0" layoutY="363.0" prefHeight="37.0" prefWidth="268.0" promptText="GAME PIN ">
+      <TextField fx:id="GamePin" alignment="CENTER" layoutX="176.0" layoutY="363.0" prefHeight="37.0" prefWidth="268.0" promptText="GAME PIN ">
          <font>
             <Font name="JackeyFont" size="13.0" />
          </font></TextField>
+      <Button fx:id="SnakeButton" defaultButton="true" layoutX="225.0" layoutY="564.0" mnemonicParsing="false" onAction="#SwitchChoseSnake" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb#d5e2cb;" styleClass="buttom" text="CHOOSE SNAKE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

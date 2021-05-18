@@ -43,13 +43,37 @@ public class HomeController implements Initializable{
     });
   }
   
+  public void SwitchChoseSnake() throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/SnakeControl.fxml"));
+    String PinName = GamePin.getText();
+    System.out.println(PinName);
+    Parent root = loader.load();
+    Scene scene = new Scene(root);
+    scene.setRoot(root);
+    App.stage.setScene(scene);
+    //ChoseSnakeController controller = loader.getController();
+    //controller.GetPinName(PinName);
+    /*
+    scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
+      @Override
+      public void handle(KeyEvent event) {
+        try {
+          controller.KeyEven(event);
+        } catch (IOException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      }
+    });
+    */
+  }
   public void SwitchTwoManGame(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table2.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
-    scene = (Scene) ((Node) event.getSource()).getScene();
-    scene.setRoot(root);
+    Scene scene = new Scene(root);
+    App.stage.setScene(scene);
     GameTwoController<PythonSnake,VscodeSnake> controller = loader.getController();
     controller.init(new PythonSnake(), new VscodeSnake());
     controller.GetPinName(PinName);

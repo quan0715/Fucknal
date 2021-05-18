@@ -173,7 +173,7 @@ public class GameOneController implements Initializable {
     if (key == KeyCode.ENTER && NewGame()) StartGame();
       if (key == KeyCode.SPACE && !PauseGame) {
       move.pause();
-      setAlertText("Tap Space --> continue the game\nTap H --> return Home Page", Color.WHITE);
+      setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", Color.WHITE);
       PauseGame = true;
     } 
     else if (key == KeyCode.SPACE && PauseGame) {

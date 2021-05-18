@@ -254,7 +254,7 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     if (key == KeyCode.SPACE && !PauseGame){
       move1.pause();
       move2.pause();
-      setAlertText("Tap Space --> continue the game\nTap H --> return Home Page", Color.WHITE);
+      setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", Color.WHITE);
       PauseGame = true;
     }
     else if (key == KeyCode.SPACE && PauseGame) {

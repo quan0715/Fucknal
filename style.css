@@ -6,3 +6,7 @@
     -fx-font-family: 'JackeyFont';
     
 }
+.button {
+    -fx-font-family: 'JackeyFont';
+    -fx-background-color : 'd5e2cb';
+}
