@@ -21,6 +21,7 @@ public class App extends Application {
         scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Jack");
+        primaryStage.setResizable(false);
         ((HomeController)(loader.getController())).GamePin.requestFocus();
         primaryStage.show();
     }

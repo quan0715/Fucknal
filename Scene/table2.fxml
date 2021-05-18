@@ -42,9 +42,9 @@
    <children>
       <AnchorPane fx:id="GameTable" layoutX="10.0" layoutY="48.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #333f48;">
          <children>
-            <Label fx:id="AlertText" alignment="CENTER" layoutX="98.0" layoutY="222.0" prefHeight="124.0" prefWidth="409.0" text="Tap  ENTER  to start new game" textAlignment="CENTER" textFill="#fffcfb">
+            <Label fx:id="AlertText" alignment="CENTER" layoutY="201.0" prefHeight="158.0" prefWidth="606.0" text="TAP ENTER TO START NEW GAME" textAlignment="CENTER" textFill="#fffcfb">
                <font>
-                  <Font name="System Bold Italic" size="26.0" />
+                  <Font size="26.0" />
                </font>
             </Label>
          </children></AnchorPane>

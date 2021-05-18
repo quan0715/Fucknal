@@ -46,7 +46,7 @@ public class GameOneController implements Initializable {
   @Override
   public void initialize(URL q, ResourceBundle p) {
     DrawLine();
-    setAlertText("Tap  ENTER  to start new game", Color.WHITE);
+    setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     RecordS.setText("Record : ");
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     snake1 = new SnakeBody<IGSnake>(new IGSnake());
@@ -92,7 +92,8 @@ public class GameOneController implements Initializable {
       Line cols = new Line(i, 0, i, windowWidth);
       rows.setStroke(Color.web("#D6D6AD"));
       cols.setStroke(Color.web("#D6D6AD"));
-      
+      rows.setStrokeWidth(0.3);
+      cols.setStrokeWidth(0.3);
       GameTable.getChildren().add(rows);
       GameTable.getChildren().add(cols);
     }
@@ -141,7 +142,7 @@ public class GameOneController implements Initializable {
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
-    setAlertText("Game Over\n(Tap Enter to start a new game)", Color.web("#d82909"));
+    setAlertText("Game Over\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
     CanPlayNewGame = true;
   }
   //get button click or not

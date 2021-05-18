@@ -60,7 +60,7 @@ public class GameTwoController<T extends Snake,U extends Snake>{
   @FXML  private Label GamePoint2;
   public void init(T s1,U s2) {
     DrawLine();
-    setAlertText("Tap  ENTER  to start new game", Color.WHITE);
+    setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     score1 = score2 = 0;
     gamepoint1 = gamepoint2 = 0;
     ScoreRefresh(score1, score2);
@@ -109,6 +109,8 @@ public class GameTwoController<T extends Snake,U extends Snake>{
       Line cols = new Line(i, 0, i, windowWidth);
       rows.setStroke(Color.web("#D6D6AD"));
       cols.setStroke(Color.web("#D6D6AD"));
+      rows.setStrokeWidth(0.3);
+      cols.setStrokeWidth(0.3);
       GameTable.getChildren().add(rows);
       GameTable.getChildren().add(cols);
     }
@@ -193,26 +195,26 @@ public class GameTwoController<T extends Snake,U extends Snake>{
       snake2.clearOnScreen();
       if(w==3){
         if(score1 == score2){
-          setAlertText( "Tie \n(Tap Enter to start a new game)", Color.web("#d82909"));
+          setAlertText( "TIE \n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
         }
         else{
           if(score1 > score2){
             gamepoint1 +=1;
-            setAlertText(Username + "1 Win\n(Tap Enter to start a new game)", Color.web("#d82909"));
+            setAlertText(Username + "1 Win\n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
           }
           else{
             gamepoint2 += 1;
-            setAlertText(Username + "2 Win\n(Tap Enter to start a new game)", Color.web("#d82909"));
+            setAlertText(Username + "2 Win\n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
           }
         }
       }
       if(w==1){
         gamepoint1 += 1;
-        setAlertText(Username + "1 Win\n(Tap Enter to start a new game)", Color.web("#d82909"));
+        setAlertText(Username + "1 Win\n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
       }
       if(w==2){
         gamepoint2 += 1;
-        setAlertText(Username + "2 Win\n(Tap Enter to start a new game)", Color.web("#d82909"));
+        setAlertText(Username + "2 Win\n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
       }
       GameTable.getChildren().remove(apple.GetFoodBody());
       GamePointRefresh(gamepoint1, gamepoint2);
