@@ -36,7 +36,7 @@ public class GameOneController implements Initializable {
   private boolean PauseGame = false;
   private FoodGenerator foodGenerator;
   private DirectionController directionController;
-  private SnakeBody<? extends Snake> snake1;
+  private SnakeBody snake1;
   private int record;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
@@ -49,7 +49,7 @@ public class GameOneController implements Initializable {
     setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     RecordS.setText("Record : ");
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
-    snake1 = new SnakeBody<IGSnake>(new IGSnake());
+    snake1 = new SnakeBody(new IGSnake());
     directionController = new DirectionController();
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
@@ -75,7 +75,7 @@ public class GameOneController implements Initializable {
   }
   // Game flow
   public void StartGame(){
-    snake1 = new SnakeBody<IGSnake>(new IGSnake());
+    snake1 = new SnakeBody(new IGSnake());
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     foodGenerator.RefreshFood();

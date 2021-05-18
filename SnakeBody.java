@@ -4,37 +4,34 @@ import java.util.ArrayList;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
-import javafx.scene.paint.Color;
 
-public class SnakeBody<T extends Snake> {
-  private ArrayList<T> Body;
-  private Class<T> classInstance;
+public class SnakeBody {
+  private ArrayList<Snake> Body;
+  private Snake snakeInstance;
   //private AnchorPane GameTable;
   private int HeadX = 300;
   private int HeadY = 300;
   private int HeightLimit = 600;
   private int WeightLimit = 600;
-  private int size;
-  private Color color = Color.GREEN;
 
-  public SnakeBody(T instance){
-    Body = new ArrayList<T>();
-    classInstance = (Class<T>) instance.getClass();
+  public SnakeBody(Snake instance){
+    Body = new ArrayList<Snake>();
+    snakeInstance=instance;
     init();
   }
   
-  public SnakeBody(T instance,int x,int y) {
+  public SnakeBody(Snake instance,int x,int y) {
     HeadX = x;
     HeadY = y;
-    Body = new ArrayList<T>();
-    classInstance = (Class<T>) instance.getClass();
+    Body = new ArrayList<Snake>();
+    snakeInstance=instance;
     init();
   }
   private void init(){
     if(Body.size()!=0)Body.clear();
     for(int i=0;i<3;i++){
       try{
-        T bod=classInstance.getDeclaredConstructor().newInstance();
+        Snake bod=snakeInstance.getClass().getDeclaredConstructor().newInstance();
         bod.InitialSnakeBody(new Point(this.HeadX - Snake.SnakeWidth * i, this.HeadY));
         Body.add(bod);
       }
@@ -42,7 +39,6 @@ public class SnakeBody<T extends Snake> {
         System.out.println(e);
       }
     }
-    size = 3;
   }
   public boolean SnakeMoving(Direction direction,Food apple) throws Exception{
     clearOnScreen();
@@ -79,10 +75,9 @@ public class SnakeBody<T extends Snake> {
     return check;
   }
   public void AddNewBody(int x,int y) throws Exception{
-    T bod=classInstance.getDeclaredConstructor().newInstance();
+    Snake bod=snakeInstance.getClass().getDeclaredConstructor().newInstance();
     bod.InitialSnakeBody(new Point(x, y));
     Body.add(bod);
-    size++;
   }
   public void AddNewBody(Point position) throws Exception {
     int x = position.getX();
@@ -128,7 +123,7 @@ public class SnakeBody<T extends Snake> {
     ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
     for (Snake snake : Body) children.add(snake.GetBody());
   }
-  public ArrayList<T> getBody(){
+  public ArrayList<Snake> getBody(){
     return Body ;
   }
   

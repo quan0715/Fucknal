@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -20,7 +19,9 @@ import javafx.scene.input.KeyEvent;
 public class HomeController implements Initializable{
   @FXML Button ButtonOne;
   @FXML public TextField GamePin;
-  private Scene scene;
+  public static Snake Player1=new PythonSnake();
+  public static Snake Player2=new VscodeSnake();
+  
   public void SwitchOneManGame() throws IOException{
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table.fxml"));
     String PinName = GamePin.getText();
@@ -49,7 +50,6 @@ public class HomeController implements Initializable{
     System.out.println(PinName);
     Parent root = loader.load();
     Scene scene = new Scene(root);
-    scene.setRoot(root);
     App.stage.setScene(scene);
     //ChoseSnakeController controller = loader.getController();
     //controller.GetPinName(PinName);
@@ -74,7 +74,7 @@ public class HomeController implements Initializable{
     Parent root = loader.load();
     Scene scene = new Scene(root);
     App.stage.setScene(scene);
-    GameTwoController<PythonSnake,VscodeSnake> controller = loader.getController();
+    GameTwoController controller = loader.getController();
     controller.init(new PythonSnake(), new VscodeSnake());
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
@@ -92,7 +92,7 @@ public class HomeController implements Initializable{
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    scene = ButtonOne.getScene();
+    ButtonOne.getScene();
     ButtonOne.setOnKeyPressed((e) -> {
       if(e.getCode() == KeyCode.ENTER){
         e.consume();
