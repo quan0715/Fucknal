@@ -60,7 +60,7 @@ public class SnakeBody {
     HeadY=(HeadY + HeightLimit) % HeightLimit;
     boolean check = CheckEating(apple);
     if(check){
-      AddNewBody(GetBodyPosition(Body.size() - 1));
+      AddNewBody();
       for (int i = Body.size() - 2; i > 0; i--) {
         ChangBodyPosition(i, GetBodyPosition(i - 1));
       }
@@ -74,15 +74,15 @@ public class SnakeBody {
     showOnScreen();
     return check;
   }
-  public void AddNewBody(int x,int y) throws Exception{
+  private void addNewBody(int x,int y) throws Exception{
     Snake bod=snakeInstance.getClass().getDeclaredConstructor().newInstance();
     bod.InitialSnakeBody(new Point(x, y));
     Body.add(bod);
   }
-  public void AddNewBody(Point position) throws Exception {
-    int x = position.getX();
-    int y = position.getY();
-    AddNewBody(x,y);
+  public void AddNewBody() throws Exception {
+    int x = GetBodyPosition(Body.size() - 1).getX();
+    int y = GetBodyPosition(Body.size() - 1).getY();
+    addNewBody(x,y);
   }
   public Point GetBodyPosition(int id){
     return Body.get(id).GetPosition();

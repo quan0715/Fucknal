@@ -223,11 +223,6 @@ public class GameTwoController{
     GameTable.getChildren().add(AlertText);
   }
 
-  // get button click or not
-  public boolean NewGame() {
-    return CanPlayNewGame;
-  }
-
   public void GetPinName(String name) {
     this.Username = name;
     if (Username.length() == 0){
@@ -256,9 +251,9 @@ public class GameTwoController{
       setAlertText("", Color.BLACK);
       PauseGame = false;
     }
-    if (key == KeyCode.ENTER && NewGame()) StartGame();
+    if (key == KeyCode.ENTER &&CanPlayNewGame) StartGame();
     //snake1
-    if (!NewGame() && !PauseGame){
+    if (!CanPlayNewGame && !PauseGame){
       directionController1.Direction1(event);
       directionController2.Direction2(event);
     }
