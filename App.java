@@ -16,7 +16,9 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
+        root = loader.load();
+        scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Jack");
         ((HomeController)(loader.getController())).GamePin.requestFocus();
