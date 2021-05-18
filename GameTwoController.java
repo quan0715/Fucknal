@@ -1,30 +1,23 @@
 package Application;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
-public class GameTwoController<T extends Snake,U extends Snake>{
+public class GameTwoController{
   private int windowWidth = 600;
-  private int windowHeight = 600;
   private int GridWidth = 20;
 
   private int time = 150;
@@ -40,10 +33,10 @@ public class GameTwoController<T extends Snake,U extends Snake>{
 
   private boolean PauseGame = false;
   private boolean CanPlayNewGame = true;
-  private SnakeBody<T> snake1;
-  private SnakeBody<U> snake2;
-  private T snake1Instance;
-  private U snake2Instance;
+  private SnakeBody snake1;
+  private SnakeBody snake2;
+  private Snake snake1Instance;
+  private Snake snake2Instance;
   DirectionController directionController1;
   DirectionController directionController2;
   private Food apple;
@@ -58,7 +51,7 @@ public class GameTwoController<T extends Snake,U extends Snake>{
   @FXML  private Label Score2;
   @FXML  private Label GamePoint1;
   @FXML  private Label GamePoint2;
-  public void init(T s1,U s2) {
+  public void init(Snake s1,Snake s2) {
     DrawLine();
     setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     score1 = score2 = 0;
@@ -70,8 +63,8 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     directionController2 = new DirectionController();
     snake1Instance=s1;
     snake2Instance=s2;
-    snake1 = new SnakeBody<T>(snake1Instance,200,200);
-    snake2 = new SnakeBody<U>(snake2Instance,400,400);
+    snake1 = new SnakeBody(snake1Instance,200,200);
+    snake2 = new SnakeBody(snake2Instance,400,400);
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
     move1 = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
@@ -87,8 +80,8 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     CanPlayNewGame = false;
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
-    snake1 = new SnakeBody<T>(snake1Instance, 200,200);
-    snake2 = new SnakeBody<U>(snake2Instance, 400,400);
+    snake1 = new SnakeBody(snake1Instance, 200,200);
+    snake2 = new SnakeBody(snake2Instance, 400,400);
     foodGenerator.RefreshFood();
     AlertText.setText("");
     rate1 = rate2 = 1.0;
@@ -141,7 +134,7 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     return CheckGameOver(snake1, snake2);
   }
 
-  public int CheckGameOver(SnakeBody<T> snake1,SnakeBody<U> snake2){
+  public int CheckGameOver(SnakeBody snake1,SnakeBody snake2){
     int x1 = snake1.GetHeadX();
     int x2 = snake2.GetHeadX();
     int y1 = snake1.GetHeadY();
@@ -166,12 +159,12 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     //score += 10;
     if(id==1) {
       score1+=10;
-      rate1 = rate1 + (3 - rate1) * 0.03;
+      rate1 = rate1 + (4 - rate1) * 0.025;
       move1.setRate(rate1);
     }
     else {
       score2 += 10;
-      rate2 = rate2 + (3 - rate2) * 0.03;
+      rate2 = rate2 + (4 - rate2) * 0.025;
       move2.setRate(rate2);
     } 
     ScoreRefresh(score1, score2);

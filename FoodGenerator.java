@@ -1,7 +1,4 @@
 package Application;
-
-import javafx.scene.layout.AnchorPane;
-
 public class FoodGenerator{
   private Food food;
   //private Class currentClass;
