@@ -10,7 +10,7 @@ public class VscodeSnake extends Snake{
     // TODO Auto-generated method stub
     this.position = position;
     this.body = new Rectangle(position.getX(), position.getY(), SnakeWidth, SnakeWidth);
-    this.image = new Image(getClass().getResource("vscode.png").toString());
+    this.image = new Image(getClass().getResource("./img/vscode.png").toString());
     this.body.setFill(new ImagePattern(image));
   }
 }

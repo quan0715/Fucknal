@@ -186,7 +186,7 @@ public class GameOneController implements Initializable {
   }
   
   public void BackToHomePage(KeyEvent e) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("Home.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
     Parent root = loader.load();
     App.stage.setScene(new Scene(root));
   }

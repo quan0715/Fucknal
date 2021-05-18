@@ -22,7 +22,7 @@ public class HomeController implements Initializable{
   @FXML public TextField GamePin;
   private Scene scene;
   public void SwitchOneManGame() throws IOException{
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("table.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
@@ -44,7 +44,7 @@ public class HomeController implements Initializable{
   }
   
   public void SwitchTwoManGame(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("table2.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table2.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
