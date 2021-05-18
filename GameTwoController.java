@@ -35,6 +35,8 @@ public class GameTwoController<T extends Snake,U extends Snake>{
   private String Username;
   private int score1 = 0;
   private int score2 = 0;
+  private int gamepoint1 = 0;
+  private int gamepoint2 = 0;
 
   private boolean PauseGame = false;
   private boolean CanPlayNewGame = true;
@@ -52,12 +54,17 @@ public class GameTwoController<T extends Snake,U extends Snake>{
   @FXML  private Label AlertText;
   @FXML  private Label UserName1;
   @FXML  private Label Score1;
-  @FXML private Label UserName2;
-  @FXML private Label Score2;
+  @FXML  private Label UserName2;
+  @FXML  private Label Score2;
+  @FXML  private Label GamePoint1;
+  @FXML  private Label GamePoint2;
   public void init(T s1,U s2) {
     DrawLine();
     setAlertText("Tap  ENTER  to start new game", Color.WHITE);
-    ScoreRefresh(0, 0);
+    score1 = score2 = 0;
+    gamepoint1 = gamepoint2 = 0;
+    ScoreRefresh(score1, score2);
+    GamePointRefresh(gamepoint1 ,gamepoint2);
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
@@ -89,6 +96,7 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     move2.setRate(rate2);
     score1 = score2 = 0;
     ScoreRefresh(score1,score2);
+    GamePointRefresh(gamepoint1, gamepoint2);
     move1.setCycleCount(Animation.INDEFINITE);
     move2.setCycleCount(Animation.INDEFINITE);
     move1.play();
@@ -130,6 +138,7 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     }
     return CheckGameOver(snake1, snake2);
   }
+
   public int CheckGameOver(SnakeBody<T> snake1,SnakeBody<U> snake2){
     int x1 = snake1.GetHeadX();
     int x2 = snake2.GetHeadX();
@@ -170,6 +179,11 @@ public class GameTwoController<T extends Snake,U extends Snake>{
     Score1.setText(Integer.toString(score1));
     Score2.setText(Integer.toString(score2));
   }
+  
+  public void GamePointRefresh(int score1, int score2) {
+    GamePoint1.setText(Integer.toString(score1));
+    GamePoint2.setText(Integer.toString(score2));
+  }
   // next game set
   public void GameOver(int w) {
     if(w!=0){
@@ -179,14 +193,29 @@ public class GameTwoController<T extends Snake,U extends Snake>{
       snake2.clearOnScreen();
       if(w==3){
         if(score1 == score2){
-          setAlertText( "Tie \n(Tap Enter to start a new game)", Color.RED);
+          setAlertText( "Tie \n(Tap Enter to start a new game)", Color.web("#d82909"));
         }
         else{
-          setAlertText(Username + (score1 > score2 ? "1" : "2") + " Win\n(Tap Enter to start a new game)", Color.RED);
+          if(score1 > score2){
+            gamepoint1 +=1;
+            setAlertText(Username + "1 Win\n(Tap Enter to start a new game)", Color.web("#d82909"));
+          }
+          else{
+            gamepoint2 += 1;
+            setAlertText(Username + "2 Win\n(Tap Enter to start a new game)", Color.web("#d82909"));
+          }
         }
       }
-      else setAlertText(Username + w + " Win\n(Tap Enter to start a new game)", Color.RED);
+      if(w==1){
+        gamepoint1 += 1;
+        setAlertText(Username + "1 Win\n(Tap Enter to start a new game)", Color.web("#d82909"));
+      }
+      if(w==2){
+        gamepoint2 += 1;
+        setAlertText(Username + "2 Win\n(Tap Enter to start a new game)", Color.web("#d82909"));
+      }
       GameTable.getChildren().remove(apple.GetFoodBody());
+      GamePointRefresh(gamepoint1, gamepoint2);
       CanPlayNewGame = true;
     }
     

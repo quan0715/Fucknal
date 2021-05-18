@@ -92,6 +92,7 @@ public class GameOneController implements Initializable {
       Line cols = new Line(i, 0, i, windowWidth);
       rows.setStroke(Color.web("#D6D6AD"));
       cols.setStroke(Color.web("#D6D6AD"));
+      
       GameTable.getChildren().add(rows);
       GameTable.getChildren().add(cols);
     }
@@ -140,7 +141,7 @@ public class GameOneController implements Initializable {
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
-    setAlertText("Game Over\n(Tap Enter to start a new game)", Color.RED);
+    setAlertText("Game Over\n(Tap Enter to start a new game)", Color.web("#d82909"));
     CanPlayNewGame = true;
   }
   //get button click or not

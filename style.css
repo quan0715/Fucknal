@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'JackeyFont';
+    src: url("./main.ttf");
+}
+.label {
+    -fx-font-family: 'Fleftex';
+    
+}
