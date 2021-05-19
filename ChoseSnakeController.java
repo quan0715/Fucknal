@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Pair;
@@ -51,49 +52,50 @@ public class ChoseSnakeController implements Initializable{
     snakes[3][1]=new ClassicSnake();
     snakes[3][2]=new ClassicSnake();
     table.requestFocus();
-    table.setOnKeyPressed((e)->{
-      if(e.getCode()==KeyCode.ENTER)fixed1=!fixed1;
-      if(e.getCode()==KeyCode.SPACE)fixed2=!fixed2;
-      if(!fixed1)
-        switch(e.getCode()){
+    
+  }
+  public void handle(KeyEvent e){
+      if (e.getCode() == KeyCode.ENTER)
+        fixed1 = !fixed1;
+      if (e.getCode() == KeyCode.SPACE)
+        fixed2 = !fixed2;
+      if (!fixed1)
+        switch (e.getCode()) {
           case UP:
-            hover1=new Pair<>((hover1.getKey())%4,(hover1.getValue()-1)%5);
+            hover1 = new Pair<>((hover1.getKey()) % 4, (hover1.getValue() - 1) % 5);
             break;
           case DOWN:
-            hover1=new Pair<>((hover1.getKey())%4,(hover1.getValue()+1)%5);
+            hover1 = new Pair<>((hover1.getKey()) % 4, (hover1.getValue() + 1) % 5);
             break;
           case LEFT:
-            hover1=new Pair<>((hover1.getKey()-1)%4,(hover1.getValue())%5);
+            hover1 = new Pair<>((hover1.getKey() - 1) % 4, (hover1.getValue()) % 5);
             break;
           case RIGHT:
-            hover1=new Pair<>((hover1.getKey()+1)%4,(hover1.getValue())%5);
+            hover1 = new Pair<>((hover1.getKey() + 1) % 4, (hover1.getValue()) % 5);
             break;
           default:
-          break;
+            break;
         }
-      if(!fixed2)
-        switch(e.getCode()){
+      if (!fixed2)
+        switch (e.getCode()) {
           case W:
-          hover2=new Pair<>((hover2.getKey())%4,(hover2.getValue()-1)%5);
-          break;
+            hover2 = new Pair<>((hover2.getKey()) % 4, (hover2.getValue() - 1) % 5);
+            break;
           case S:
-          hover2=new Pair<>((hover2.getKey())%4,(hover2.getValue()+1)%5);
-          break;
+            hover2 = new Pair<>((hover2.getKey()) % 4, (hover2.getValue() + 1) % 5);
+            break;
           case A:
-          hover2=new Pair<>((hover2.getKey()-1)%4,(hover2.getValue())%5);
-          break;
+            hover2 = new Pair<>((hover2.getKey() - 1) % 4, (hover2.getValue()) % 5);
+            break;
           case D:
-          hover2=new Pair<>((hover2.getKey()+1)%4,(hover2.getValue())%5);
-          break;
+            hover2 = new Pair<>((hover2.getKey() + 1) % 4, (hover2.getValue()) % 5);
+            break;
           default:
-          break;
+            break;
         }
-      System.out.println(hover2.getKey() + " " +hover2.getValue());
-      
       GridPane.setColumnIndex(P1Hover, hover1.getKey());
       GridPane.setRowIndex(P1Hover, hover1.getValue());
       GridPane.setColumnIndex(P2Hover, hover2.getKey());
-      GridPane.setRowIndex(P2Hover,hover2.getValue());
-    });
+      GridPane.setRowIndex(P2Hover, hover2.getValue());
   }
 }
