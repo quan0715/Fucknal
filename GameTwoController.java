@@ -243,13 +243,13 @@ public class GameTwoController{
       move2.stop();
       BackToHomePage(event);
     }
-    if (key == KeyCode.SPACE && !PauseGame){
+    if (key == KeyCode.SPACE && !PauseGame && !CanPlayNewGame){
       move1.pause();
       move2.pause();
       setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", Color.WHITE);
       PauseGame = true;
     }
-    else if (key == KeyCode.SPACE && PauseGame) {
+    else if (key == KeyCode.SPACE && PauseGame && !CanPlayNewGame) {
       move1.play();
       move2.play();
       setAlertText("", Color.BLACK);
