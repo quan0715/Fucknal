@@ -1,14 +1,15 @@
-package Application;
+package Application.Snake;
 
+import Application.Point;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
-public class KobeSnake extends Snake{
+public class RainbowSnake extends Snake{
     public void InitialSnakeBody(Point position) {
       this.position = position;
       this.body = new Rectangle(position.getX(), position.getY(), SnakeWidth, SnakeWidth);
-      this.image = new Image(getClass().getResource("./img/kobe.png").toString());
+      this.image = new Image(getClass().getResource("../img/Rainbow.jpg").toString());
       this.body.setFill(new ImagePattern(image));
     }
 }

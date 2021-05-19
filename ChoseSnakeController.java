@@ -2,12 +2,22 @@ package Application;
 
 import java.io.IOException;
 
+import Application.Snake.AppleSnake;
+import Application.Snake.ClassicSnake;
+import Application.Snake.IGSnake;
+import Application.Snake.KobeSnake;
+import Application.Snake.NCUSnake;
+import Application.Snake.PythonSnake;
+import Application.Snake.RainbowSnake;
+import Application.Snake.Snake;
+import Application.Snake.VscodeSnake;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -25,10 +35,13 @@ public class ChoseSnakeController{
   @FXML private Pane Hover;
   @FXML private Pane playerOneExhibitPane;
   @FXML private Pane playerTwoExhibitPane;
+  @FXML private Label SnakeType1;
+  @FXML private Label SnakeType2;
   @FXML private AnchorPane GameTable1;
   private Snake[][] snakes = new Snake[5][4];
   private Pair<Integer,Integer> hover1=new Pair<>(0,0);
   private Pair<Integer,Integer> hover2=new Pair<>(0,3);
+  private String[][] name = new String[5][4];
   private boolean fixed1=false;
   private boolean fixed2=false;
   private Timeline player1Timeline;
@@ -52,13 +65,6 @@ public class ChoseSnakeController{
   }
   public void init() {
     GameCurrentChildrenArray.Instance.set(GameTable1.getChildren());
-    table.getChildren().remove(P1select);
-    table.getChildren().remove(P2select);
-    table.getChildren().remove(Hover);
-    GridPane.setColumnIndex(P1Hover, hover1.getValue());
-    GridPane.setRowIndex(P1Hover, hover1.getKey());
-    GridPane.setColumnIndex(P2Hover, hover2.getValue());
-    GridPane.setRowIndex(P2Hover,hover2.getKey());
     exhibitDir[0][0]=Direction.UP;
     exhibitDir[0][1]=Direction.UP;
     exhibitDir[0][2]=Direction.LEFT;
@@ -95,7 +101,36 @@ public class ChoseSnakeController{
     snakes[4][1]=new ClassicSnake();
     snakes[4][2]=new ClassicSnake();
     snakes[4][3]=new ClassicSnake();
+    name[0][0] = "ClassicSnake";
+    name[0][1] = "IGSnake";
+    name[0][2] = "PythonSnake";
+    name[0][3] = "VscodeSnake";
+    name[1][0] = "NCUSnake";
+    name[1][1] = "KobeSnake";
+    name[1][2] = "RainbowSnake";
+    name[1][3] = "AppleSnake";
+    name[2][0] = "ClassicSnake";
+    name[2][1] = "ClassicSnake";
+    name[2][2] = "ClassicSnake";
+    name[2][3] = "ClassicSnake";
+    name[3][0] = "ClassicSnake";
+    name[3][1] = "ClassicSnake";
+    name[3][2] = "ClassicSnake";
+    name[3][3] = "ClassicSnake";
+    name[4][0] = "ClassicSnake";
+    name[4][1] = "ClassicSnake";
+    name[4][2] = "ClassicSnake";
+    name[4][3] = "ClassicSnake";
     nextDir[0]=nextDir[1]=0;
+    table.getChildren().remove(P1select);
+    table.getChildren().remove(P2select);
+    table.getChildren().remove(Hover);
+    GridPane.setColumnIndex(P1Hover, hover1.getValue());
+    GridPane.setRowIndex(P1Hover, hover1.getKey());
+    GridPane.setColumnIndex(P2Hover, hover2.getValue());
+    GridPane.setRowIndex(P2Hover, hover2.getKey());
+    SnakeType1.setText(name[hover1.getKey()][hover1.getValue()]);
+    SnakeType2.setText(name[hover2.getKey()][hover2.getValue()]);
     player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],530,220);
     try {
       player1Body.AddNewBody();
@@ -114,7 +149,7 @@ public class ChoseSnakeController{
     }));
     player1Timeline.setCycleCount(-1);
     player1Timeline.play();
-    player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],70,220);
+    player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],90,220);
     try {
       player2Body.AddNewBody();
     } catch (Exception e2) {
@@ -138,6 +173,7 @@ public class ChoseSnakeController{
     });
     table.requestFocus();
   }
+  @FXML
   private void handle(KeyEvent e) {
     table.getChildren().remove(P1select);
     table.getChildren().remove(P2select);
@@ -227,6 +263,7 @@ public class ChoseSnakeController{
       table.getChildren().add(Hover);
       GridPane.setColumnIndex(Hover, hover1.getValue());
       GridPane.setRowIndex(Hover, hover1.getKey());
+      
     }
     else{
       if(fixed1){
@@ -250,6 +287,8 @@ public class ChoseSnakeController{
         GridPane.setRowIndex(P2Hover,hover2.getKey());
       }
     }
+    SnakeType1.setText(name[hover1.getKey()][hover1.getValue()]);
+    SnakeType2.setText(name[hover2.getKey()][hover2.getValue()]);
     if(changedPlayer==1){
       player1Body.clearOnScreen();
       nextDir[0]=0;

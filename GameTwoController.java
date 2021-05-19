@@ -1,5 +1,7 @@
 package Application;
 import java.io.IOException;
+
+import Application.Snake.Snake;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -80,6 +82,8 @@ public class GameTwoController{
     CanPlayNewGame = false;
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
+    snake1.clearOnScreen();
+    snake2.clearOnScreen();
     snake1 = new SnakeBody(snake1Instance, 200,200);
     snake2 = new SnakeBody(snake2Instance, 400,400);
     foodGenerator.RefreshFood();
@@ -184,8 +188,7 @@ public class GameTwoController{
     if(w!=0){
       move1.stop();
       move2.stop();
-      snake1.clearOnScreen();
-      snake2.clearOnScreen();
+      
       if(w==3){
         if(score1 == score2){
           setAlertText( "TIE \n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));

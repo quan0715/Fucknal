@@ -2,6 +2,7 @@ package Application;
 
 import java.util.ArrayList;
 
+import Application.Snake.Snake;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 

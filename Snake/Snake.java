@@ -1,4 +1,5 @@
-package Application;
+package Application.Snake;
+import Application.Point;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;

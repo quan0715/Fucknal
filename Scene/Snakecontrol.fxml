@@ -13,23 +13,23 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" style="-fx-background-color: #292929#292929;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ChoseSnakeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" style="-fx-background-color: #292929#292929;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ChoseSnakeController">
    <children>
       <Text fill="#b9e4b5" fontSmoothingType="LCD" layoutX="69.0" layoutY="115.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" text="CHOOSE SNAKE" textAlignment="CENTER" wrappingWidth="483.0">
          <font>
             <Font name="JackeyFont" size="70.0" />
          </font>
       </Text>
-      <AnchorPane fx:id="GameTable1" layoutX="10.0" layoutY="176.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #333f48;">
+      <AnchorPane fx:id="GameTable1" layoutX="10.0" layoutY="180.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #333f48;">
          <children>
-            <Label fx:id="UserName1" alignment="TOP_RIGHT" layoutX="14.0" layoutY="14.0" prefHeight="30.0" prefWidth="119.0" text="Player1" textAlignment="CENTER" textFill="#90716a">
+            <Label fx:id="UserName1" alignment="TOP_RIGHT" layoutX="23.0" layoutY="14.0" prefHeight="30.0" prefWidth="119.0" text="Player1" textAlignment="CENTER" textFill="#51bebf">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Label>
-            <AnchorPane fx:id="ChoseTable" layoutX="165.0" prefHeight="400.0" prefWidth="260.0" style="-fx-background-color: #79827F;">
+            <AnchorPane fx:id="ChoseTable" layoutX="175.0" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #79827F;">
                <children>
-                  <GridPane fx:id="table" alignment="CENTER" layoutX="11.0" layoutY="51.0" onKeyPressed="#handle" prefHeight="300.0" prefWidth="240.0">
+                  <GridPane fx:id="table" alignment="CENTER" layoutX="5.0" layoutY="50.0" prefHeight="300.0" prefWidth="240.0">
                     <columnConstraints>
                         <ColumnConstraints fx:id="board" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -212,17 +212,17 @@
                      </children>
                   </GridPane>
                </children></AnchorPane>
-            <Label fx:id="SnakeType1" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="356.0" prefHeight="30.0" prefWidth="119.0" text="SNAKE2" textFill="#90716a">
+            <Label fx:id="SnakeType1" alignment="TOP_CENTER" contentDisplay="CENTER" layoutY="356.0" prefHeight="30.0" prefWidth="180.0" text="SNAKE1" textFill="#769f93">
                <font>
-                  <Font name="System Bold Italic" size="30.0" />
+                  <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="SnakeType2" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="476.0" layoutY="356.0" prefHeight="30.0" prefWidth="110.0" text="SNAKE1" textAlignment="CENTER" textFill="#90716a">
+            <Label fx:id="SnakeType2" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="425.0" layoutY="356.0" prefHeight="30.0" prefWidth="174.0" text="SNAKE2" textAlignment="CENTER" textFill="#ffb549">
                <font>
-                  <Font name="System Bold Italic" size="30.0" />
+                  <Font name="System Bold Italic" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="UserName2" alignment="TOP_RIGHT" layoutX="467.0" layoutY="14.0" prefHeight="30.0" prefWidth="119.0" text="Player1" textAlignment="CENTER" textFill="#90716a">
+            <Label fx:id="UserName2" alignment="TOP_RIGHT" layoutX="453.0" layoutY="14.0" prefHeight="30.0" prefWidth="119.0" text="Player2" textAlignment="CENTER" textFill="#eb8a02">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
