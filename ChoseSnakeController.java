@@ -303,7 +303,7 @@ public class ChoseSnakeController{
     else if(changedPlayer==2){
       player2Body.clearOnScreen();
       nextDir[1]=0;
-      player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],70,220);
+      player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],90,220);
       try {
         player2Body.AddNewBody();
       } catch (Exception e2) {
