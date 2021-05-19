@@ -22,10 +22,12 @@ import javafx.scene.input.KeyEvent;
 public class HomeController implements Initializable{
   @FXML Button ButtonOne;
   @FXML public TextField GamePin;
+  private MusicController player = new MusicController();
   public static Snake Player1=new PythonSnake();
   public static Snake Player2=new VscodeSnake();
   
   public void SwitchOneManGame() throws IOException{
+    player.StopBackgroudMusic();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
@@ -49,6 +51,8 @@ public class HomeController implements Initializable{
   }
   
   public void SwitchChoseSnake() throws IOException {
+    player.StopBackgroudMusic();
+
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/SnakeControl.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
@@ -59,6 +63,8 @@ public class HomeController implements Initializable{
     App.stage.setScene(scene);
   }
   public void SwitchTwoManGame(ActionEvent event) throws IOException {
+    player.StopBackgroudMusic();
+
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table2.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
@@ -83,6 +89,7 @@ public class HomeController implements Initializable{
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    player.PlayBackgroudMusic();
     ButtonOne.getScene();
     ButtonOne.setOnKeyPressed((e) -> {
       if(e.getCode() == KeyCode.ENTER){
@@ -100,4 +107,5 @@ public class HomeController implements Initializable{
       ButtonOne.requestFocus();
     });
   }
+  
 }
