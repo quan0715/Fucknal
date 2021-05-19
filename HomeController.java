@@ -30,6 +30,7 @@ public class HomeController implements Initializable{
     Scene scene = new Scene(root);
     App.stage.setScene(scene);
     GameOneController controller = loader.getController();
+    controller.init(Player1);
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
       @Override
@@ -50,22 +51,9 @@ public class HomeController implements Initializable{
     System.out.println(PinName);
     Parent root = loader.load();
     Scene scene = new Scene(root);
+    ChoseSnakeController controller=loader.getController();
+    controller.init();
     App.stage.setScene(scene);
-    //ChoseSnakeController controller = loader.getController();
-    //controller.GetPinName(PinName);
-    /*
-    scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
-      @Override
-      public void handle(KeyEvent event) {
-        try {
-          controller.KeyEven(event);
-        } catch (IOException e) {
-          // TODO Auto-generated catch block
-          e.printStackTrace();
-        }
-      }
-    });
-    */
   }
   public void SwitchTwoManGame(ActionEvent event) throws IOException {
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table2.fxml"));
@@ -75,7 +63,7 @@ public class HomeController implements Initializable{
     Scene scene = new Scene(root);
     App.stage.setScene(scene);
     GameTwoController controller = loader.getController();
-    controller.init(new PythonSnake(), new VscodeSnake());
+    controller.init(Player1, Player2);
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
       @Override

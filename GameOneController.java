@@ -4,14 +4,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,7 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.util.Duration;
-public class GameOneController implements Initializable {
+public class GameOneController{
   private int windowWidth = 600;
   //private int windowHeight = 600;
   private int GridWidth = 20;
@@ -37,19 +34,20 @@ public class GameOneController implements Initializable {
   private FoodGenerator foodGenerator;
   private DirectionController directionController;
   private SnakeBody snake1;
+  private Snake snakeInstance;
   private int record;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
   @FXML private Label AlertText;
   @FXML private Label UserName;
   @FXML private Label RecordS;
-  @Override
-  public void initialize(URL q, ResourceBundle p) {
+  public void init(Snake instance) {
+    snakeInstance=instance;
     DrawLine();
     setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     RecordS.setText("Record : ");
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
-    snake1 = new SnakeBody(new IGSnake());
+    snake1 = new SnakeBody(instance);
     directionController = new DirectionController();
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
@@ -75,7 +73,7 @@ public class GameOneController implements Initializable {
   }
   // Game flow
   public void StartGame(){
-    snake1 = new SnakeBody(new IGSnake());
+    snake1 = new SnakeBody(snakeInstance);
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     foodGenerator.RefreshFood();
@@ -145,10 +143,6 @@ public class GameOneController implements Initializable {
     setAlertText("Game Over\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
     CanPlayNewGame = true;
   }
-  //get button click or not
-  public boolean NewGame() {
-    return CanPlayNewGame;
-  }
   public void GetPinName(String name){
     String DefaultName = "JACK";
     this.Username = name;
@@ -170,7 +164,7 @@ public class GameOneController implements Initializable {
       move.stop();
       BackToHomePage(event);
     }
-    if (key == KeyCode.ENTER && NewGame()) StartGame();
+    if (key == KeyCode.ENTER && CanPlayNewGame) StartGame();
       if (key == KeyCode.SPACE && !PauseGame) {
       move.pause();
       setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", Color.WHITE);
@@ -182,7 +176,7 @@ public class GameOneController implements Initializable {
       PauseGame = false;
     }
     // snake1
-    if (!NewGame() && !PauseGame) {
+    if (!CanPlayNewGame && !PauseGame) {
       directionController.Direction2(event);
     }
   }
