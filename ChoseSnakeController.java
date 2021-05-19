@@ -293,8 +293,8 @@ public class ChoseSnakeController{
         GridPane.setRowIndex(P2Hover,hover2.getKey());
       }
     }
-    SnakeType1.setText(name[hover1.getKey()][hover1.getValue()]);
-    SnakeType2.setText(name[hover2.getKey()][hover2.getValue()]);
+    SnakeType2.setText(name[hover1.getKey()][hover1.getValue()]);
+    SnakeType1.setText(name[hover2.getKey()][hover2.getValue()]);
     if(changedPlayer==1){
       player1Body.clearOnScreen();
       nextDir[0]=0;
