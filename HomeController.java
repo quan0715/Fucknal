@@ -24,12 +24,7 @@ public class HomeController implements Initializable{
   @FXML public TextField GamePin;
   public static Snake Player1=new PythonSnake();
   public static Snake Player2=new VscodeSnake();
-<<<<<<< HEAD
-  private static Scene controllerScene=null;
-  
-=======
   public static MusicController player = new MusicController();
->>>>>>> aad5e4c5be447a432fb1a89e9ad711eb07a7d16d
   public void SwitchOneManGame() throws IOException{
     player.StopBackground2();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table.fxml"));
