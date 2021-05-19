@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 public class App extends Application {
     static Stage stage; 
-    
-    static MusicController player = new MusicController();
     public static void main(String[] args) {
         launch(args);
     }  

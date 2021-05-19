@@ -32,7 +32,7 @@ public class GameTwoController{
   private int score2 = 0;
   private int gamepoint1 = 0;
   private int gamepoint2 = 0;
-
+  private MusicController player = HomeController.player;
   private boolean PauseGame = false;
   private boolean CanPlayNewGame = true;
   private SnakeBody snake1;
@@ -54,6 +54,7 @@ public class GameTwoController{
   @FXML  private Label GamePoint1;
   @FXML  private Label GamePoint2;
   public void init(Snake s1,Snake s2) {
+    player.PlayBackground1();
     DrawLine();
     setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     score1 = score2 = 0;
@@ -262,6 +263,7 @@ public class GameTwoController{
     }
   }
   public void BackToHomePage(KeyEvent e) throws IOException{
+    player.StopBackground1();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
     Parent root = loader.load();
     App.stage.setScene(new Scene(root));

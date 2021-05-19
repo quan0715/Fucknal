@@ -37,6 +37,7 @@ public class GameOneController{
   private DirectionController directionController;
   private SnakeBody snake1;
   private Snake snakeInstance;
+  private MusicController player = HomeController.player;
   private int record;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
@@ -45,6 +46,7 @@ public class GameOneController{
   @FXML private Label RecordS;
   public void init(Snake instance) {
     snakeInstance=instance;
+    player.PlayBackground1();
     DrawLine();
     setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     RecordS.setText("Record : ");
@@ -184,6 +186,7 @@ public class GameOneController{
   }
   
   public void BackToHomePage(KeyEvent e) throws IOException {
+    player.StopBackground1();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
     Parent root = loader.load();
     App.stage.setScene(new Scene(root));
