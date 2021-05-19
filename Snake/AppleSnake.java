@@ -6,6 +6,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class AppleSnake extends Snake{
+    @Override
     public void InitialSnakeBody(Point position) {
       this.position = position;
       this.body = new Rectangle(position.getX(), position.getY(), SnakeWidth, SnakeWidth);

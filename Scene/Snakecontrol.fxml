@@ -48,7 +48,7 @@
                         <Pane fx:id="P2Hover" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #769f93; -fx-border-width: 5;" GridPane.rowIndex="1" />
                         <Pane fx:id="P1Hover" prefHeight="60.0" prefWidth="60.0" style="-fx-border-color: #ed8b01; -fx-border-width: 5;" GridPane.columnIndex="3" />
                         <Pane fx:id="P1select" prefHeight="60.0" prefWidth="60.0" style="-fx-border-color: #FFB549; -fx-border-width: 5;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" onKeyPressed="#handle" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/snake.png" />
                            </image>

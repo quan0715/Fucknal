@@ -1,11 +1,8 @@
 package Application;
 
-import java.io.File;
-import java.net.URL;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.util.Duration;
 
 public class MusicController {
   private MediaPlayer BackGroundMediaPlayer;

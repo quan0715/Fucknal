@@ -25,6 +25,7 @@ public class HomeController implements Initializable{
   private MusicController player = new MusicController();
   public static Snake Player1=new PythonSnake();
   public static Snake Player2=new VscodeSnake();
+  private static Scene controllerScene=null;
   
   public void SwitchOneManGame() throws IOException{
     player.StopBackgroudMusic();
