@@ -1,5 +1,7 @@
 package Application;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,13 +17,21 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 
 public class HomeController implements Initializable{
   @FXML Button ButtonOne;
   @FXML public TextField GamePin;
+  @FXML private AnchorPane TT;
+  @FXML private ImageView Sound;
+  private Image img;
+  private static boolean SoundOff = false;
   public static Snake Player1=new PythonSnake();
   public static Snake Player2=new VscodeSnake();
   public static MusicController player = new MusicController();
@@ -86,6 +96,9 @@ public class HomeController implements Initializable{
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    SwitchIcon(SoundOff);
+    player.setVolume(SoundOff);
+    //TT.getChildren().add(Sound);
     player.PlayBackground2();
     ButtonOne.getScene();
     ButtonOne.setOnKeyPressed((e) -> {
@@ -104,5 +117,29 @@ public class HomeController implements Initializable{
       ButtonOne.requestFocus();
     });
   }
-  
+  public void SwitchIcon(boolean Off){
+    if(!Off){
+      try {
+        img = new Image(new FileInputStream("src/Application/img/sound.png"));
+      } catch (FileNotFoundException e2) {
+        // TODO Auto-generated catch block
+        e2.printStackTrace();
+      }
+    }
+    else {
+      try {
+        img = new Image(new FileInputStream("src/Application/img/no-sound.png"));
+      } catch (FileNotFoundException e2) {
+        // TODO Auto-generated catch block
+        e2.printStackTrace();
+      }
+    }
+    this.Sound.setImage(img);
+  }
+  public void Handler(MouseEvent e){
+    SoundOff = !SoundOff;
+    SwitchIcon(SoundOff);
+    player.setVolume(SoundOff);
+    System.out.println(SoundOff);
+  }
 }

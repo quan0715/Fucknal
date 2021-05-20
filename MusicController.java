@@ -1,6 +1,7 @@
 package Application;
 
 
+import javafx.event.ActionEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -26,5 +27,14 @@ public class MusicController {
   public void StopBackground2() {
     this.BackGround2MediaPlayer.stop();
   }
-  
+   public void setVolume(boolean SoundOff) {
+     if(SoundOff){
+       BackGround1MediaPlayer.setVolume(0);
+       BackGround2MediaPlayer.setVolume(0);
+     }
+     else{
+       BackGround1MediaPlayer.setVolume(1);
+       BackGround2MediaPlayer.setVolume(1);
+     }
+   }
 }

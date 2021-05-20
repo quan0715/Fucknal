@@ -147,8 +147,8 @@ public class ChoseSnakeController{
     snakes[1][1]=new KobeSnake();
     snakes[1][2]=new RainbowSnake();
     snakes[1][3]=new AppleSnake();
-    snakes[2][0]=new ClassicSnake();
-    snakes[2][1]=new ClassicSnake();
+    snakes[2][0]=new YouTubeSnake();
+    snakes[2][1]=new JackSnake();
     snakes[2][2]=new ClassicSnake();
     snakes[2][3]=new ClassicSnake();
     snakes[3][0]=new ClassicSnake();
@@ -158,7 +158,7 @@ public class ChoseSnakeController{
     snakes[4][0]=new ClassicSnake();
     snakes[4][1]=new ClassicSnake();
     snakes[4][2]=new ClassicSnake();
-    snakes[4][3]=new ClassicSnake();
+    snakes[4][3]=new QuestionSnake();
     name[0][0] = "ClassicSnake";
     name[0][1] = "IGSnake";
     name[0][2] = "PythonSnake";
@@ -167,8 +167,8 @@ public class ChoseSnakeController{
     name[1][1] = "KobeSnake";
     name[1][2] = "RainbowSnake";
     name[1][3] = "AppleSnake";
-    name[2][0] = "ClassicSnake";
-    name[2][1] = "ClassicSnake";
+    name[2][0] = "YouTubeSnake";
+    name[2][1] = "JackSnake";
     name[2][2] = "ClassicSnake";
     name[2][3] = "ClassicSnake";
     name[3][0] = "ClassicSnake";
@@ -178,7 +178,7 @@ public class ChoseSnakeController{
     name[4][0] = "ClassicSnake";
     name[4][1] = "ClassicSnake";
     name[4][2] = "ClassicSnake";
-    name[4][3] = "ClassicSnake";
+    name[4][3] = "Question";
   }
   private void handle(KeyEvent e) {
     table.getChildren().remove(P1select);
@@ -298,7 +298,7 @@ public class ChoseSnakeController{
     if(changedPlayer==1){
       player1Body.clearOnScreen();
       nextDir[0]=0;
-      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],530,220);
+      player1Body = new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],530,220);
       try {
         player1Body.AddNewBody();
       } catch (Exception e1) {
