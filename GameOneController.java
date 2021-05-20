@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.concurrent.Callable;
 
 import Application.Snake.Snake;
 import javafx.animation.Animation;
@@ -44,14 +45,13 @@ public class GameOneController{
   @FXML private Label AlertText;
   @FXML private Label UserName;
   @FXML private Label RecordS;
-  public void init(Snake instance) {
+  public void Init(Snake instance) {
     snakeInstance=instance;
     player.PlayBackground1();
     DrawLine();
     setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     RecordS.setText("Record : ");
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
-    snake1 = new SnakeBody(instance);
     directionController = new DirectionController();
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
@@ -77,7 +77,16 @@ public class GameOneController{
   }
   // Game flow
   public void StartGame(){
-    snake1 = new SnakeBody(snakeInstance);
+    snake1 = new SnakeBody(snakeInstance,300,300);
+    Food.addFoodHandler(snake1, new Callable<Void>(){
+      @Override
+      public Void call() throws Exception {
+        snake1.addNewBody();
+        foodGenerator.RefreshFood();
+        ChangedScore();
+        return null;
+      }
+    });
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     foodGenerator.RefreshFood();
@@ -103,10 +112,7 @@ public class GameOneController{
 
   //moving event
   public boolean SnakeRun(Direction direction) throws Exception {
-    if (snake1.SnakeMoving(direction,apple)) {
-      foodGenerator.RefreshFood();
-      ChangedScore();
-    }
+    snake1.SnakeMoving(direction);
     return snake1.CheckGameOver();
   }
   public void CheckScoreRecord(int CurrentScore) throws IOException{

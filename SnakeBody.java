@@ -1,6 +1,7 @@
 package Application;
 
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
 import Application.Snake.Snake;
 import javafx.collections.ObservableList;
@@ -14,21 +15,17 @@ public class SnakeBody {
   private int HeadY = 300;
   private int HeightLimit = 600;
   private int WeightLimit = 600;
+  private Direction currentDirection=Direction.RIGHT;
 
-  public SnakeBody(Snake instance){
-    Body = new ArrayList<Snake>();
-    snakeInstance=instance;
-    init();
-  }
   
   public SnakeBody(Snake instance,int x,int y) {
     HeadX = x;
     HeadY = y;
     Body = new ArrayList<Snake>();
     snakeInstance=instance;
-    init();
+    m_init();
   }
-  private void init(){
+  private void m_init(){
     if(Body.size()!=0)Body.clear();
     for(int i=0;i<3;i++){
       try{
@@ -41,7 +38,8 @@ public class SnakeBody {
       }
     }
   }
-  public boolean SnakeMoving(Direction direction,Food apple) throws Exception{
+  public void SnakeMoving(Direction direction) throws Exception{
+    currentDirection=direction;
     clearOnScreen();
     switch (direction) {
       case UP :
@@ -59,31 +57,17 @@ public class SnakeBody {
     }
     HeadX=(HeadX + WeightLimit) % WeightLimit;
     HeadY=(HeadY + HeightLimit) % HeightLimit;
-    boolean check = CheckEating(apple);
-    if(check){
-      AddNewBody();
-      for (int i = Body.size() - 2; i > 0; i--) {
-        ChangBodyPosition(i, GetBodyPosition(i - 1));
-      }
-    }
-    else {
-      for (int i = Body.size() -1 ; i > 0; i--) {
-        ChangBodyPosition(i, GetBodyPosition(i - 1));
-      }
-    }
+    for (int i = Body.size() -1 ; i > 0; i--) ChangBodyPosition(i, GetBodyPosition(i - 1));
     ChangBodyPosition(0,new Point(HeadX,HeadY));
     showOnScreen();
-    return check;
   }
-  private void addNewBody(int x,int y) throws Exception{
+  public void addNewBody() throws Exception{
+    int x = GetBodyPosition(Body.size() - 1).getX();
+    int y = GetBodyPosition(Body.size() - 1).getY();
+    SnakeMoving(currentDirection);
     Snake bod=snakeInstance.getClass().getDeclaredConstructor().newInstance();
     bod.InitialSnakeBody(new Point(x, y));
     Body.add(bod);
-  }
-  public void AddNewBody() throws Exception {
-    int x = GetBodyPosition(Body.size() - 1).getX();
-    int y = GetBodyPosition(Body.size() - 1).getY();
-    addNewBody(x,y);
   }
   public Point GetBodyPosition(int id){
     return Body.get(id).GetPosition();
@@ -127,5 +111,4 @@ public class SnakeBody {
   public ArrayList<Snake> getBody(){
     return Body ;
   }
-  
 }

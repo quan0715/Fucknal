@@ -34,7 +34,7 @@ public class HomeController implements Initializable{
     Scene scene = new Scene(root);
     App.stage.setScene(scene);
     GameOneController controller = loader.getController();
-    controller.init(Player1);
+    controller.Init(Player1);
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
       @Override

@@ -83,19 +83,17 @@ public class ChoseSnakeController{
     table.requestFocus();
   }
   private void playSnake1() {
-    player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],530,220);
+    player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],510,220);
     try {
-      player1Body.AddNewBody();
+      player1Body.addNewBody();
     } catch (Exception e1) {
-      // TODO Auto-generated catch block
       e1.printStackTrace();
     }
     player1Timeline=new Timeline(new KeyFrame(Duration.millis(200), e->{
       try {
-        player1Body.SnakeMoving(exhibitDir[0][nextDir[0]], new NormalFood());
+        player1Body.SnakeMoving(exhibitDir[0][nextDir[0]]);
         nextDir[0]=(nextDir[0]+1)%8;
       } catch (Exception e1) {
-        // TODO Auto-generated catch block
         e1.printStackTrace();
       }
     }));
@@ -103,19 +101,17 @@ public class ChoseSnakeController{
     player1Timeline.play();
   }
   private void playSnake2() {
-    player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],90,220);
+    player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],70,220);
     try {
-      player2Body.AddNewBody();
+      player2Body.addNewBody();
     } catch (Exception e2) {
-      // TODO Auto-generated catch block
       e2.printStackTrace();
     }
     player2Timeline=new Timeline(new KeyFrame(Duration.millis(200), e->{
       try {
-        player2Body.SnakeMoving(exhibitDir[1][nextDir[1]], new NormalFood());
+        player2Body.SnakeMoving(exhibitDir[1][nextDir[1]]);
         nextDir[1]=(nextDir[1]+1)%8;
       } catch (Exception e1) {
-        // TODO Auto-generated catch block
         e1.printStackTrace();
       }
     }));
@@ -298,9 +294,9 @@ public class ChoseSnakeController{
     if(changedPlayer==1){
       player1Body.clearOnScreen();
       nextDir[0]=0;
-      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],530,220);
+      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],510,220);
       try {
-        player1Body.AddNewBody();
+        player1Body.addNewBody();
       } catch (Exception e1) {
         e1.printStackTrace();
       }
@@ -308,9 +304,9 @@ public class ChoseSnakeController{
     else if(changedPlayer==2){
       player2Body.clearOnScreen();
       nextDir[1]=0;
-      player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],90,220);
+      player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],70,220);
       try {
-        player2Body.AddNewBody();
+        player2Body.addNewBody();
       } catch (Exception e2) {
         e2.printStackTrace();
       }

@@ -1,5 +1,6 @@
 package Application;
 import java.io.IOException;
+import java.util.concurrent.Callable;
 
 import Application.Snake.Snake;
 import javafx.animation.Animation;
@@ -76,6 +77,22 @@ public class GameTwoController{
     move2 = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
       GameOver(SnakeRun2(directionController2.NextDirection()));
     }));
+    Food.addFoodHandler(snake1, new Callable<Void>(){
+      @Override
+      public Void call() throws Exception {
+        foodGenerator.RefreshFood();
+        ChangedScore(1);
+        return null;
+      }
+    });
+    Food.addFoodHandler(snake2, new Callable<Void>(){
+      @Override
+      public Void call() throws Exception {
+        foodGenerator.RefreshFood();
+        ChangedScore(2);
+        return null;
+      }
+    });
   }
 
   // Game flow
@@ -115,13 +132,11 @@ public class GameTwoController{
   }
 
   // moving event
-  public int SnakeRun1(Direction direction) {
+  public int SnakeRun1(Direction direction)  {
     try {
-      if (snake1.SnakeMoving(direction, apple)) {
-        foodGenerator.RefreshFood();
-        ChangedScore(1);
-      }
+      snake1.SnakeMoving(direction);
     } catch (Exception e) {
+      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     return CheckGameOver(snake1,snake2);
@@ -129,11 +144,9 @@ public class GameTwoController{
   
   public int SnakeRun2(Direction direction) {
     try {
-      if (snake2.SnakeMoving(direction, apple)) {
-        foodGenerator.RefreshFood();
-        ChangedScore(2);
-      }
+      snake2.SnakeMoving(direction);
     } catch (Exception e) {
+      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     return CheckGameOver(snake1, snake2);
