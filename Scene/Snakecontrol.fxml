@@ -114,7 +114,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/youtube.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -123,7 +123,7 @@
                         <Pane fx:id="Hover" prefHeight="60.0" prefWidth="60.0" style="-fx-border-color: #3f2a56; -fx-border-width: 5;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Jack.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -131,7 +131,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -139,7 +139,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -147,7 +147,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="3">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -155,7 +155,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -163,7 +163,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -171,7 +171,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -179,7 +179,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -187,7 +187,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -195,7 +195,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -203,7 +203,7 @@
                         </ImageView>
                         <ImageView fitHeight="50.0" fitWidth="50.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <image>
-                              <Image url="@../img/Quetion.png" />
+                              <Image url="@../img/Question.png" />
                            </image>
                            <GridPane.margin>
                               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
