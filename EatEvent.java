@@ -1,7 +1,6 @@
 package Application;
 
 import java.util.concurrent.Callable;
-
 public class EatEvent {
     SnakeBody body;
     private Callable<Void> calledFunction;

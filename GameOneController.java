@@ -132,6 +132,8 @@ public class GameOneController{
   }
   // score chang / rate chang
   public void ChangedScore() {
+    player.StopEat();
+    player.PlayEat();
     score += 10;
     rate = rate+(4-rate)*0.03;
     try {
@@ -147,9 +149,11 @@ public class GameOneController{
   //next game set
   public void GameOver() {
     snake1.clearOnScreen();
+    endGame();
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
+    player.PlayGameOver();
     setAlertText("Game Over\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
     CanPlayNewGame = true;
   }
@@ -190,8 +194,11 @@ public class GameOneController{
       directionController.Direction2(event);
     }
   }
-  
+  private void endGame(){
+    Food.removeFoodHandler(snake1);
+  }
   public void BackToHomePage(KeyEvent e) throws IOException {
+    endGame();
     player.StopBackground1();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
     Parent root = loader.load();

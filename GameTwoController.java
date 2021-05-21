@@ -54,12 +54,16 @@ public class GameTwoController{
   @FXML  private Label Score2;
   @FXML  private Label GamePoint1;
   @FXML  private Label GamePoint2;
+  @FXML  private Label Snake1;
+  @FXML  private Label Snake2; 
   public void init(Snake s1,Snake s2) {
     player.PlayBackground1();
     DrawLine();
     setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     score1 = score2 = 0;
     gamepoint1 = gamepoint2 = 0;
+    Snake1.setText(ChoseSnakeController.getSnake1name());
+    Snake2.setText(ChoseSnakeController.getSnake2name());
     ScoreRefresh(score1, score2);
     GamePointRefresh(gamepoint1 ,gamepoint2);
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
@@ -102,8 +106,30 @@ public class GameTwoController{
     directionController2.init(Direction.DOWN);
     snake1.clearOnScreen();
     snake2.clearOnScreen();
+    NormalFood.removeFoodHandler(snake1);
+    NormalFood.removeFoodHandler(snake2);
     snake1 = new SnakeBody(snake1Instance, 200,200);
     snake2 = new SnakeBody(snake2Instance, 400,400);
+    NormalFood.addFoodHandler(snake1, new Callable<Void>() {
+      @Override
+      public Void call() throws Exception {
+        snake1.addNewBody();
+        foodGenerator.RefreshFood();
+        player.PlayEat();
+        ChangedScore(1);
+        return null;
+      }
+    });
+    NormalFood.addFoodHandler(snake2, new Callable<Void>() {
+      @Override
+      public Void call() throws Exception {
+        snake2.addNewBody();
+        foodGenerator.RefreshFood();
+        player.PlayEat();
+        ChangedScore(2);
+        return null;
+      }
+    });
     foodGenerator.RefreshFood();
     AlertText.setText("");
     rate1 = rate2 = 1.0;
@@ -202,7 +228,6 @@ public class GameTwoController{
     if(w!=0){
       move1.stop();
       move2.stop();
-      
       if(w==3){
         if(score1 == score2){
           setAlertText( "TIE \n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
@@ -228,6 +253,7 @@ public class GameTwoController{
       }
       GameTable.getChildren().remove(apple.GetFoodBody());
       GamePointRefresh(gamepoint1, gamepoint2);
+      player.PlayGameOver();
       CanPlayNewGame = true;
     }
     
@@ -251,12 +277,12 @@ public class GameTwoController{
 
   public void KeyEven(KeyEvent event) throws IOException {
     KeyCode key = event.getCode();
-    if (key == KeyCode.H ){
+    if ( key == KeyCode.H ){
       move1.stop();
       move2.stop();
       BackToHomePage(event);
     }
-    if (key == KeyCode.SPACE && !PauseGame && !CanPlayNewGame){
+    if (key == KeyCode.SPACE && !PauseGame && !CanPlayNewGame ){
       move1.pause();
       move2.pause();
       setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", Color.WHITE);
@@ -276,6 +302,8 @@ public class GameTwoController{
     }
   }
   public void BackToHomePage(KeyEvent e) throws IOException{
+    NormalFood.removeFoodHandler(snake1);
+    NormalFood.removeFoodHandler(snake2);
     player.StopBackground1();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
     Parent root = loader.load();

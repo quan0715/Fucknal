@@ -36,6 +36,8 @@ public class ChoseSnakeController{
   private static Pair<Integer,Integer> select1=new Pair<>(0,2);
   private static Pair<Integer,Integer> select2=new Pair<>(0,3);
   private String[][] name = new String[5][4];
+  private static String Snakename1 = "PythonSnake";
+  private static String Snakename2 = "VscodeSnake";
   private boolean fixed1=false;
   private boolean fixed2=false;
   private Timeline player1Timeline;
@@ -44,6 +46,7 @@ public class ChoseSnakeController{
   private SnakeBody player2Body;
   private Direction[][] exhibitDir=new Direction[2][8];
   private int[] nextDir=new int[2];
+  
   public void BackToHomePage() throws IOException {
     player1Body.clearOnScreen();
     player2Body.clearOnScreen();
@@ -294,7 +297,8 @@ public class ChoseSnakeController{
     if(changedPlayer==1){
       player1Body.clearOnScreen();
       nextDir[0]=0;
-      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],510,220);
+      Snakename1 = name[hover1.getKey()][hover1.getValue()];
+      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],510,220); 
       try {
         player1Body.addNewBody();
       } catch (Exception e1) {
@@ -304,6 +308,7 @@ public class ChoseSnakeController{
     else if(changedPlayer==2){
       player2Body.clearOnScreen();
       nextDir[1]=0;
+      Snakename2 = name[hover2.getKey()][hover2.getValue()];
       player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],70,220);
       try {
         player2Body.addNewBody();
@@ -311,5 +316,11 @@ public class ChoseSnakeController{
         e2.printStackTrace();
       }
     }
+  }
+  public static String getSnake1name(){
+    return Snakename1;
+  }
+  public static String getSnake2name() {
+    return Snakename2;
   }
 }

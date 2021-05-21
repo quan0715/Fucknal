@@ -1,6 +1,7 @@
 package Application;
 
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class NormalFood extends Food{
@@ -8,7 +9,8 @@ public class NormalFood extends Food{
     public void FoodInit() {
       FoodPosition = Point.getrandompointGrid();
       body = new Rectangle(FoodPosition.getX(), FoodPosition.getY(), Point.GridWidth, Point.GridWidth);
-      body.setFill(Color.RED);
+      image = new Image(getClass().getResource("./img/avocado.png").toString());
+      body.setFill(new ImagePattern(image));
       System.out.println(FoodPosition.toString());
     }
 }
