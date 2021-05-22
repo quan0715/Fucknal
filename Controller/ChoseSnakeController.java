@@ -34,10 +34,12 @@ public class ChoseSnakeController{
   @FXML private Label SnakeType2;
   @FXML private AnchorPane GameTable1;
   private Snake[][] snakes = new Snake[5][4];
-  private Pair<Integer,Integer> hover1=new Pair<>(0,0);
-  private Pair<Integer,Integer> hover2=new Pair<>(0,3);
+  private Pair<Integer,Integer> hover1 = new Pair<>(0,2);
+  private Pair<Integer,Integer> hover2 = new Pair<>(0,3);
   private static Pair<Integer,Integer> select1=new Pair<>(0,2);
   private static Pair<Integer,Integer> select2=new Pair<>(0,3);
+  private static String Snake1Name = "PythonSnake";
+  private static String Snake2Name = "VscodeSnake";
   private String[][] name = new String[5][4];
   private boolean fixed1=false;
   private boolean fixed2=false;
@@ -54,8 +56,8 @@ public class ChoseSnakeController{
     player2Timeline.stop();
     if(fixed1)select1=hover1;
     if(fixed2)select2=hover2;
-    HomeController.Player2=snakes[select1.getKey()][select1.getValue()];
-    HomeController.Player1=snakes[select2.getKey()][select2.getValue()];
+    HomeController.Player1 = snakes[select1.getKey()][select1.getValue()];
+    HomeController.Player2 = snakes[select2.getKey()][select2.getValue()];
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/Home.fxml"));
     Parent root = loader.load();
     Scene scene = new Scene(root);
@@ -75,8 +77,10 @@ public class ChoseSnakeController{
     GridPane.setRowIndex(P1Hover, hover1.getKey());
     GridPane.setColumnIndex(P2Hover, hover2.getValue());
     GridPane.setRowIndex(P2Hover, hover2.getKey());
-    SnakeType1.setText(name[hover1.getKey()][hover1.getValue()]);
-    SnakeType2.setText(name[hover2.getKey()][hover2.getValue()]);
+    Snake1Name = name[hover1.getKey()][hover1.getValue()];
+    Snake2Name = name[hover2.getKey()][hover2.getValue()];
+    SnakeType1.setText(Snake1Name);
+    SnakeType2.setText(Snake2Name);
     playSnake1();
     playSnake2();
     table.setOnKeyPressed((e)->{
@@ -86,7 +90,7 @@ public class ChoseSnakeController{
     table.requestFocus();
   }
   private void playSnake1() {
-    player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],530,220);
+    player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],40,220);
     try {
       player1Body.AddNewBody();
     } catch (Exception e1) {
@@ -106,7 +110,7 @@ public class ChoseSnakeController{
     player1Timeline.play();
   }
   private void playSnake2() {
-    player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],90,220);
+    player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],460,220);
     try {
       player2Body.AddNewBody();
     } catch (Exception e2) {
@@ -190,13 +194,13 @@ public class ChoseSnakeController{
     table.getChildren().remove(P1Hover);
     table.getChildren().remove(P2Hover);
     int changedPlayer=0;
-    if(e.getCode()==KeyCode.ENTER){
+    if(e.getCode()==KeyCode.SPACE){
       fixed1=!fixed1;
       if(fixed1&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
         hover2=new Pair<>((hover2.getKey())%5,(hover2.getValue()-1)%4);
       }
     }
-    else if(e.getCode()==KeyCode.SPACE){
+    else if(e.getCode()==KeyCode.ENTER){
       fixed2=!fixed2;
       if(fixed2&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
         hover1=new Pair<>((hover1.getKey())%5,(hover1.getValue()+1)%4);
@@ -204,28 +208,28 @@ public class ChoseSnakeController{
     }
     else{
       if(!fixed1)switch(e.getCode()){
-        case UP:
+        case W:
         changedPlayer=1;
         hover1=new Pair<>((hover1.getKey()+4)%5,(hover1.getValue())%4);
         if(fixed2&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
           hover1=new Pair<>((hover1.getKey()+4)%5,(hover1.getValue())%4);
         }
         break;
-        case DOWN:
+        case S:
         changedPlayer=1;
         hover1=new Pair<>((hover1.getKey()+1)%5,(hover1.getValue())%4);
         if(fixed2&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
           hover1=new Pair<>((hover1.getKey()+1)%5,(hover1.getValue())%4);
         }
         break;
-        case LEFT:
+        case A:
         changedPlayer=1;
         hover1=new Pair<>((hover1.getKey())%5,(hover1.getValue()+3)%4);
         if(fixed2&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
           hover1=new Pair<>((hover1.getKey())%5,(hover1.getValue()+3)%4);
         }
         break;
-        case RIGHT:
+        case D:
         changedPlayer=1;
         hover1=new Pair<>((hover1.getKey())%5,(hover1.getValue()+1)%4);
         if(fixed2&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
@@ -236,28 +240,28 @@ public class ChoseSnakeController{
         break;
         }
       if(!fixed2)switch(e.getCode()){
-        case W:
+        case UP:
         changedPlayer=2;
         hover2=new Pair<>((hover2.getKey()+4)%5,(hover2.getValue())%4);
         if(fixed1&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
           hover2=new Pair<>((hover2.getKey()+4)%5,(hover2.getValue())%4);
         }
         break;
-        case S:
+        case DOWN:
         changedPlayer=2;
         hover2=new Pair<>((hover2.getKey()+1)%5,(hover2.getValue())%4);
         if(fixed1&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
           hover2=new Pair<>((hover2.getKey()+1)%5,(hover2.getValue())%4);
         }
         break;
-        case A:
+        case LEFT:
         changedPlayer=2;
         hover2=new Pair<>((hover2.getKey())%5,(hover2.getValue()+3)%4);
         if(fixed1&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
           hover2=new Pair<>((hover2.getKey())%5,(hover2.getValue()+3)%4);
         }
         break;
-        case D:
+        case RIGHT:
         changedPlayer=2;
         hover2=new Pair<>((hover2.getKey())%5,(hover2.getValue()+1)%4);
         if(fixed1&&hover1.getKey()==hover2.getKey()&&hover1.getValue()==hover2.getValue()){
@@ -296,12 +300,14 @@ public class ChoseSnakeController{
         GridPane.setRowIndex(P2Hover,hover2.getKey());
       }
     }
-    SnakeType1.setText(name[hover1.getKey()][hover1.getValue()]);
-    SnakeType2.setText(name[hover2.getKey()][hover2.getValue()]);
+    Snake1Name = name[hover1.getKey()][hover1.getValue()];
+    Snake2Name = name[hover2.getKey()][hover2.getValue()];
+    SnakeType1.setText(Snake1Name);
+    SnakeType2.setText(Snake2Name);
     if(changedPlayer==1){
       player1Body.clearOnScreen();
       nextDir[0]=0;
-      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],530,220);
+      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],40,220);
       try {
         player1Body.AddNewBody();
       } catch (Exception e1) {
@@ -311,12 +317,18 @@ public class ChoseSnakeController{
     else if(changedPlayer==2){
       player2Body.clearOnScreen();
       nextDir[1]=0;
-      player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],90,220);
+      player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],460,220);
       try {
         player2Body.AddNewBody();
       } catch (Exception e2) {
         e2.printStackTrace();
       }
     }
+  }
+  public static String GetSnake1Name(){
+    return Snake1Name;
+  }
+  public static String GetSnake2Name(){
+    return Snake2Name;
   }
 }

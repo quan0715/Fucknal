@@ -54,7 +54,7 @@ public class GameOneController{
   public void init() {
     MusicController.PlayBackground1();
     DrawLine();
-    setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
+    setAlertText("TAP ENTER TO START NEW GAME","Normal");
     RecordS.setText("Record : ");
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController = new DirectionController();
@@ -112,13 +112,14 @@ public class GameOneController{
     if(snake1.whatPart(apple.GetFoodPosition())==SnakePart.HEAD){
       snake1.AddNewBody();
       foodGenerator.RefreshFood();
+      MusicController.EatFoodPop();
       ChangedScore();
     }
     if(snake1.whatPart(snake1.GetHead())==SnakePart.BODY)return true;
     return false;
   }
   public void CheckScoreRecord(int CurrentScore) throws IOException{
-      File Score = new File("src/Application/RecordScore.txt");
+      File Score = new File("../RecordScore.txt");
       Score.createNewFile();
       FileReader ScoreReader = new FileReader(Score);
       BufferedReader br = new BufferedReader(ScoreReader);
@@ -152,7 +153,8 @@ public class GameOneController{
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
-    setAlertText("Game Over\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
+    setAlertText("Game Over\nTAP ENTER TO START NEW GAME", "Alert");
+    MusicController.GameOverSound();
     CanPlayNewGame = true;
   }
   public void GetPinName(String name){
@@ -162,11 +164,11 @@ public class GameOneController{
     else UserName.setText(DefaultName);
   }
   
-  public void setAlertText(String text, Color color) {
+  public void setAlertText(String text, String Id) {
     GameTable.getChildren().remove(AlertText);
     AlertText.setText(text);
     AlertText.setAlignment(Pos.CENTER);
-    AlertText.setTextFill(color);
+    AlertText.setId(Id);
     GameTable.getChildren().add(AlertText);
   }
 
@@ -177,14 +179,14 @@ public class GameOneController{
       BackToHomePage(event);
     }
     if (key == KeyCode.ENTER && CanPlayNewGame) StartGame();
-      if (key == KeyCode.SPACE && !PauseGame) {
+      if (key == KeyCode.SPACE && !PauseGame && !CanPlayNewGame) {
       move.pause();
-      setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", Color.WHITE);
+      setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", "Normal");
       PauseGame = true;
     } 
-    else if (key == KeyCode.SPACE && PauseGame) {
+    else if (key == KeyCode.SPACE && PauseGame && !CanPlayNewGame) {
       move.play();
-      setAlertText("", Color.BLACK);
+      setAlertText("", "Normal");
       PauseGame = false;
     }
     // snake1

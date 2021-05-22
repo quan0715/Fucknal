@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" style="-fx-background-color: #292929#292929;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" style="-fx-background-color: #292929#292929;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.HomeController">
    <children>
       <ImageView fitHeight="182.0" fitWidth="180.0" layoutX="220.0" layoutY="150.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -20,12 +20,12 @@
             <Font name="JackeyFont" size="70.0" />
          </font>
       </Text>
-      <Button fx:id="ButtonOne" defaultButton="true" layoutX="225.0" layoutY="452.0" mnemonicParsing="false" onAction="#SwitchOneManGame" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb;" styleClass="buttom" text="SINGAL">
+      <Button fx:id="ButtonOne" defaultButton="true" layoutX="225.0" layoutY="452.0" mnemonicParsing="false" onAction="#SwitchOneManGame" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb;" text="SINGAL">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ButtonTwo" defaultButton="true" layoutX="225.0" layoutY="510.0" mnemonicParsing="false" onAction="#SwitchTwoManGame" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb#d5e2cb;" styleClass="buttom" text="DOUBLE">
+      <Button fx:id="ButtonTwo" defaultButton="true" layoutX="225.0" layoutY="510.0" mnemonicParsing="false" onAction="#SwitchTwoManGame" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb#d5e2cb;" text="DOUBLE">
          <font>
             <Font size="18.0" />
          </font>
@@ -34,10 +34,15 @@
          <font>
             <Font name="JackeyFont" size="13.0" />
          </font></TextField>
-      <Button fx:id="SnakeButton" defaultButton="true" layoutX="225.0" layoutY="564.0" mnemonicParsing="false" onAction="#SwitchChoseSnake" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb#d5e2cb;" styleClass="buttom" text="CHOOSE SNAKE">
+      <Button fx:id="SnakeButton" defaultButton="true" layoutX="225.0" layoutY="564.0" mnemonicParsing="false" onAction="#SwitchChoseSnake" prefHeight="37.0" prefWidth="171.0" style="-fx-background-color: #d5e2cb#d5e2cb;" text="CHOOSE SNAKE">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
+      <ImageView fx:id="Sound" fitHeight="37.0" fitWidth="42.0" layoutX="536.0" layoutY="121.0" onMouseClicked="#SetMute" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/sound.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

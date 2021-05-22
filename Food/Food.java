@@ -1,10 +1,12 @@
 package Application.Food;
 
 import Application.Enum.Point;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 public abstract class Food{
+  protected Image image;
   protected Point FoodPosition;
   protected Rectangle body;
   public abstract void FoodInit();

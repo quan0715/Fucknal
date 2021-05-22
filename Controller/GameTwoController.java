@@ -60,14 +60,18 @@ public class GameTwoController{
   @FXML  private Label Score2;
   @FXML  private Label GamePoint1;
   @FXML  private Label GamePoint2;
+  @FXML  private Label SnakeName1;
+  @FXML  private Label SnakeName2;
   public void init() {
     MusicController.PlayBackground1();
     DrawLine();
-    setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
+    setAlertText("TAP ENTER TO START NEW GAME","Normal");
     score1 = score2 = 0;
     gamepoint1 = gamepoint2 = 0;
     ScoreRefresh(score1, score2);
     GamePointRefresh(gamepoint1 ,gamepoint2);
+    SnakeName1.setText(ChoseSnakeController.GetSnake1Name());
+    SnakeName2.setText(ChoseSnakeController.GetSnake2Name());
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
@@ -83,6 +87,10 @@ public class GameTwoController{
 
   // Game flow
   public void StartGame() {
+    if(snake1!= null){
+      snake1.clearOnScreen();
+      snake2.clearOnScreen();
+    }
     snake1 = new SnakeBody(HomeController.Player1, 200,200);
     snake2 = new SnakeBody(HomeController.Player2, 400,400);
     CanPlayNewGame = false;
@@ -123,6 +131,7 @@ public class GameTwoController{
     if (snake1.whatPart(apple.GetFoodPosition())==SnakePart.HEAD) {
       snake1.AddNewBody();
       foodGenerator.RefreshFood();
+      MusicController.EatFoodPop();
       ChangedScore(1);
     }
     return CheckGameOver(snake1,snake2);
@@ -132,6 +141,7 @@ public class GameTwoController{
     snake2.Move(direction);
     if (snake2.whatPart(apple.GetFoodPosition())==SnakePart.HEAD) {
       snake2.AddNewBody();
+      MusicController.EatFoodPop();
       foodGenerator.RefreshFood();
       ChangedScore(2);
     }
@@ -142,8 +152,8 @@ public class GameTwoController{
     Point head1 = snake1.GetHead();
     Point head2 = snake2.GetHead();
     if (head1.getX()==head2.getX()&&head1.getY()==head2.getY())return 3;
-    if(snake2.whatPart(head1)==SnakePart.BODY)return 1; 
-    if(snake1.whatPart(head2)==SnakePart.BODY)return 2;
+    if(snake2.whatPart(head1)==SnakePart.BODY) return 2 ; 
+    if(snake1.whatPart(head2)==SnakePart.BODY) return 1 ;
     return 0;
   }
   // score chang / rate chang
@@ -176,41 +186,40 @@ public class GameTwoController{
     if(w!=0){
       move1.stop();
       move2.stop();
-      
       if(w==3){
         if(score1 == score2){
-          setAlertText( "TIE \n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
+          setAlertText( "TIE \n\nTAP ENTER TO START NEW GAME","Alert");
         }
         else{
           if(score1 > score2){
             gamepoint1 +=1;
-            setAlertText(Username + "1 Win\n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
+            setAlertText(Username + "1 Win\n\nTAP ENTER TO START NEW GAME", "Player1");
           }
           else{
             gamepoint2 += 1;
-            setAlertText(Username + "2 Win\n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
+            setAlertText(Username + "2 Win\n\nTAP ENTER TO START NEW GAME", "Player2");
           }
         }
       }
       if(w==1){
         gamepoint1 += 1;
-        setAlertText(Username + "1 Win\n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
+        setAlertText(Username + "1 Win\n\nTAP ENTER TO START NEW GAME", "Player1");
       }
       if(w==2){
         gamepoint2 += 1;
-        setAlertText(Username + "2 Win\n\nTAP ENTER TO START NEW GAME", Color.web("#d82909"));
+        setAlertText(Username + "2 Win\n\nTAP ENTER TO START NEW GAME","Player2");
       }
       GameTable.getChildren().remove(apple.GetFoodBody());
+      MusicController.GameOverSound();
       GamePointRefresh(gamepoint1, gamepoint2);
       CanPlayNewGame = true;
     }
-    
   }
-  public void setAlertText(String text , Color color){
+  public void setAlertText(String text , String Id){
     GameTable.getChildren().remove(AlertText);
     AlertText.setText(text);
     AlertText.setAlignment(Pos.CENTER);
-    AlertText.setTextFill(color);
+    AlertText.setId(Id);
     GameTable.getChildren().add(AlertText);
   }
 
@@ -230,16 +239,16 @@ public class GameTwoController{
       move2.stop();
       BackToHomePage(event);
     }
-    if (key == KeyCode.SPACE && !PauseGame){
+    if (key == KeyCode.SPACE && !PauseGame && !CanPlayNewGame){
       move1.pause();
       move2.pause();
-      setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", Color.WHITE);
+      setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", "Normal");
       PauseGame = true;
     }
-    else if (key == KeyCode.SPACE && PauseGame) {
+    else if (key == KeyCode.SPACE && PauseGame && !CanPlayNewGame) {
       move1.play();
       move2.play();
-      setAlertText("", Color.BLACK);
+      setAlertText("","Normal");
       PauseGame = false;
     }
     if (key == KeyCode.ENTER &&CanPlayNewGame) StartGame();
