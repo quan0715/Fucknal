@@ -22,8 +22,8 @@ import javafx.scene.input.KeyEvent;
 public class HomeController implements Initializable{
   @FXML Button ButtonOne;
   @FXML public TextField GamePin;
-  public static Snake Player1=new PythonSnake();
-  public static Snake Player2=new VscodeSnake();
+  public static Snake Player1 = new PythonSnake();
+  public static Snake Player2 = new VscodeSnake();
   
   public void SwitchOneManGame() throws IOException{
     FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table.fxml"));
