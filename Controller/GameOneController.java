@@ -1,11 +1,20 @@
-package Application;
+package Application.Controller;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import Application.Snake.Snake;
+import Application.App;
+import Application.Enum.Direction;
+import Application.Enum.SnakePart;
+import Application.Food.Food;
+import Application.Food.NormalFood;
+import Application.Singleton.FoodGenerator;
+import Application.Singleton.GameCurrentChildrenArray;
+import Application.Singleton.MusicController;
+import Application.Snake.DirectionController;
+import Application.Snake.SnakeBody;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -36,22 +45,18 @@ public class GameOneController{
   private FoodGenerator foodGenerator;
   private DirectionController directionController;
   private SnakeBody snake1;
-  private Snake snakeInstance;
-  private MusicController player = HomeController.player;
   private int record;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
   @FXML private Label AlertText;
   @FXML private Label UserName;
   @FXML private Label RecordS;
-  public void init(Snake instance) {
-    snakeInstance=instance;
-    player.PlayBackground1();
+  public void init() {
+    MusicController.PlayBackground1();
     DrawLine();
     setAlertText("TAP ENTER TO START NEW GAME", Color.WHITE);
     RecordS.setText("Record : ");
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
-    snake1 = new SnakeBody(instance);
     directionController = new DirectionController();
     apple = new NormalFood();
     foodGenerator = new FoodGenerator((NormalFood)apple);
@@ -77,7 +82,7 @@ public class GameOneController{
   }
   // Game flow
   public void StartGame(){
-    snake1 = new SnakeBody(snakeInstance);
+    snake1 = new SnakeBody(HomeController.Player1, 300, 300);
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     foodGenerator.RefreshFood();
@@ -102,12 +107,15 @@ public class GameOneController{
   }
 
   //moving event
-  public boolean SnakeRun(Direction direction) throws Exception {
-    if (snake1.SnakeMoving(direction,apple)) {
+  public boolean SnakeRun(Direction direction){
+    snake1.Move(direction);
+    if(snake1.whatPart(apple.GetFoodPosition())==SnakePart.HEAD){
+      snake1.AddNewBody();
       foodGenerator.RefreshFood();
       ChangedScore();
     }
-    return snake1.CheckGameOver();
+    if(snake1.whatPart(snake1.GetHead())==SnakePart.BODY)return true;
+    return false;
   }
   public void CheckScoreRecord(int CurrentScore) throws IOException{
       File Score = new File("src/Application/RecordScore.txt");
@@ -186,8 +194,8 @@ public class GameOneController{
   }
   
   public void BackToHomePage(KeyEvent e) throws IOException {
-    player.StopBackground1();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
+    MusicController.StopBackground1();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/Home.fxml"));
     Parent root = loader.load();
     App.stage.setScene(new Scene(root));
   }

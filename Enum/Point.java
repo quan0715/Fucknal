@@ -1,4 +1,4 @@
-package Application;
+package Application.Enum;
 
 import java.util.Random;
 

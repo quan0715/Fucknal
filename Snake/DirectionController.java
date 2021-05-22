@@ -1,8 +1,9 @@
-package Application;
+package Application.Snake;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
+import Application.Enum.Direction;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 

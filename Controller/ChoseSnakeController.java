@@ -1,7 +1,10 @@
-package Application;
+package Application.Controller;
 
 import java.io.IOException;
 
+import Application.App;
+import Application.Enum.Direction;
+import Application.Singleton.GameCurrentChildrenArray;
 import Application.Snake.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -53,7 +56,7 @@ public class ChoseSnakeController{
     if(fixed2)select2=hover2;
     HomeController.Player2=snakes[select1.getKey()][select1.getValue()];
     HomeController.Player1=snakes[select2.getKey()][select2.getValue()];
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/Home.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/Home.fxml"));
     Parent root = loader.load();
     Scene scene = new Scene(root);
     scene.setRoot(root);
@@ -92,7 +95,7 @@ public class ChoseSnakeController{
     }
     player1Timeline=new Timeline(new KeyFrame(Duration.millis(200), e->{
       try {
-        player1Body.SnakeMoving(exhibitDir[0][nextDir[0]], new NormalFood());
+        player1Body.Move(exhibitDir[0][nextDir[0]]);
         nextDir[0]=(nextDir[0]+1)%8;
       } catch (Exception e1) {
         // TODO Auto-generated catch block
@@ -112,7 +115,7 @@ public class ChoseSnakeController{
     }
     player2Timeline=new Timeline(new KeyFrame(Duration.millis(200), e->{
       try {
-        player2Body.SnakeMoving(exhibitDir[1][nextDir[1]], new NormalFood());
+        player2Body.Move(exhibitDir[1][nextDir[1]]);
         nextDir[1]=(nextDir[1]+1)%8;
       } catch (Exception e1) {
         // TODO Auto-generated catch block

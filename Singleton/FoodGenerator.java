@@ -1,4 +1,8 @@
-package Application;
+package Application.Singleton;
+
+import Application.Food.Food;
+import Application.Food.NormalFood;
+
 public class FoodGenerator{
   private Food food;
   //private Class currentClass;

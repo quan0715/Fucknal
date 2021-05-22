@@ -1,9 +1,11 @@
-package Application;
+package Application.Controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Application.App;
+import Application.Singleton.MusicController;
 import Application.Snake.PythonSnake;
 import Application.Snake.Snake;
 import Application.Snake.VscodeSnake;
@@ -24,22 +26,16 @@ public class HomeController implements Initializable{
   @FXML public TextField GamePin;
   public static Snake Player1=new PythonSnake();
   public static Snake Player2=new VscodeSnake();
-<<<<<<< HEAD
-  private static Scene controllerScene=null;
-  
-=======
-  public static MusicController player = new MusicController();
->>>>>>> aad5e4c5be447a432fb1a89e9ad711eb07a7d16d
   public void SwitchOneManGame() throws IOException{
-    player.StopBackground2();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table.fxml"));
+    MusicController.StopBackground2();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/table.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
     Scene scene = new Scene(root);
     App.stage.setScene(scene);
     GameOneController controller = loader.getController();
-    controller.init(Player1);
+    controller.init();
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
       @Override
@@ -47,7 +43,6 @@ public class HomeController implements Initializable{
         try {
           controller.KeyEven(event);
         } catch (IOException e) {
-          // TODO Auto-generated catch block
           e.printStackTrace();
         }
       }
@@ -55,8 +50,7 @@ public class HomeController implements Initializable{
   }
   
   public void SwitchChoseSnake() throws IOException {
-    //player.StopBackground2();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/SnakeControl.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/SnakeControl.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
@@ -66,15 +60,15 @@ public class HomeController implements Initializable{
     App.stage.setScene(scene);
   }
   public void SwitchTwoManGame(ActionEvent event) throws IOException {
-    player.StopBackground2();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("./Scene/table2.fxml"));
+    MusicController.StopBackground2();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/table2.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
     Parent root = loader.load();
     Scene scene = new Scene(root);
     App.stage.setScene(scene);
     GameTwoController controller = loader.getController();
-    controller.init(Player1, Player2);
+    controller.init();
     controller.GetPinName(PinName);
     scene.setOnKeyPressed(new javafx.event.EventHandler<KeyEvent>() {
       @Override
@@ -91,7 +85,7 @@ public class HomeController implements Initializable{
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    player.PlayBackground2();
+    MusicController.PlayBackground2();
     ButtonOne.getScene();
     ButtonOne.setOnKeyPressed((e) -> {
       if(e.getCode() == KeyCode.ENTER){

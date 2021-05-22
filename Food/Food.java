@@ -1,5 +1,6 @@
-package Application;
+package Application.Food;
 
+import Application.Enum.Point;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
