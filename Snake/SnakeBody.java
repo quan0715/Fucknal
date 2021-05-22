@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import Application.Enum.*;
 import Application.Singleton.GameCurrentChildrenArray;
+import Application.Singleton.GameEntityCenter;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
@@ -22,6 +23,7 @@ public class SnakeBody {
     Body = new ArrayList<Snake>();
     snakeInstance=instance;
     for(int i=0;i<3;i++)AddNewBody();
+    GameEntityCenter.addSnakeBody(this);
   }
   public void Move(Direction direction){
     currentDirection=direction;
