@@ -153,7 +153,7 @@ public class GameOneController{
     rate = 1.0;
     move.setRate(rate);
     GameTable.getChildren().remove(apple.GetFoodBody());
-    setAlertText("Game Over\nTAP ENTER TO START NEW GAME", "Alert");
+    setAlertText("Game Over\n\nTAP ENTER TO START NEW GAME", "Alert");
     MusicController.GameOverSound();
     CanPlayNewGame = true;
   }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import Application.App;
 import Application.Enum.Direction;
 import Application.Singleton.GameCurrentChildrenArray;
+import Application.Singleton.MusicController;
 import Application.Snake.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -50,6 +51,7 @@ public class ChoseSnakeController{
   private Direction[][] exhibitDir=new Direction[2][8];
   private int[] nextDir=new int[2];
   public void BackToHomePage() throws IOException {
+    MusicController.ButtonClickSound();
     player1Body.clearOnScreen();
     player2Body.clearOnScreen();
     player1Timeline.stop();

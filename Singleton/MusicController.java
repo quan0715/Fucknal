@@ -11,11 +11,13 @@ public class MusicController {
   private MediaPlayer BackGround2MediaPlayer;
   private MediaPlayer EatFood;
   private MediaPlayer GameOver;
+  private MediaPlayer Click;
   private MusicController(){
-    BackGround1MediaPlayer = new MediaPlayer(new Media(getClass().getResource("../Music/tok.mp3").toExternalForm()));
-    BackGround2MediaPlayer = new MediaPlayer(new Media(getClass().getResource("../Music/happymusic.mp3").toExternalForm()));
+    BackGround1MediaPlayer = new MediaPlayer(new Media(getClass().getResource("../Music/background2.mp3").toExternalForm()));
+    BackGround2MediaPlayer = new MediaPlayer(new Media(getClass().getResource("../Music/background1.mp3").toExternalForm()));
     EatFood = new MediaPlayer(new Media(getClass().getResource("../Music/Pop.mp3").toExternalForm()));
     GameOver = new MediaPlayer(new Media(getClass().getResource("../Music/GameOver.mp3").toExternalForm()));
+    Click = new MediaPlayer(new Media(getClass().getResource("../Music/Click.mp3").toExternalForm()));
     BackGround1MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     BackGround2MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
   }
@@ -38,6 +40,11 @@ public class MusicController {
   public static void GameOverSound() {
     instance.GameOver.seek(Duration.millis(0));
     instance.GameOver.play();
+  }
+  
+  public static void ButtonClickSound() {
+    instance.Click.seek(Duration.millis(400) );
+    instance.Click.play();
   }
   public static void SetMute(boolean SoundOff){
       instance.BackGround1MediaPlayer.setMute(SoundOff);

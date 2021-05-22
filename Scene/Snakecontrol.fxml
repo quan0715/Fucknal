@@ -229,6 +229,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="ButtonBack" layoutX="232.0" layoutY="588.0" mnemonicParsing="false" onAction="#BackToHomePage" prefHeight="38.0" prefWidth="159.0" text="SAVE CHANG" />
+      <Button fx:id="ButtonBack" layoutX="232.0" layoutY="588.0" mnemonicParsing="false" onAction="#BackToHomePage" prefHeight="38.0" prefWidth="159.0" text="SAVE CHANGE" />
    </children>
 </AnchorPane>
