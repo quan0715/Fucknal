@@ -2,20 +2,13 @@ package Application.Controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Random;
 import java.util.ResourceBundle;
 
 import Application.App;
-import Application.Enum.Direction;
-import Application.Singleton.GameCurrentChildrenArray;
 import Application.Singleton.MusicController;
 import Application.Snake.PythonSnake;
 import Application.Snake.Snake;
-import Application.Snake.SnakeBody;
 import Application.Snake.VscodeSnake;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +22,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Duration;
 
 
 public class HomeController implements Initializable{
