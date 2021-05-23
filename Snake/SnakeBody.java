@@ -84,7 +84,7 @@ public class SnakeBody {
   }
   public void showOnScreen() {
     ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
-    for (Snake snake : Body) children.add(snake.GetBody());
+    for (Snake snake : Body) if(!children.contains(snake.GetBody()))children.add(snake.GetBody());
   }
   public SnakePart whatPart(Point p){
     for(int i=1;i<Body.size();i++)

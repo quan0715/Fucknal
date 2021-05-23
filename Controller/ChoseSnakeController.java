@@ -5,6 +5,7 @@ import java.io.IOException;
 import Application.App;
 import Application.Enum.Direction;
 import Application.Singleton.GameCurrentChildrenArray;
+import Application.Singleton.MusicController;
 import Application.Snake.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -50,6 +51,7 @@ public class ChoseSnakeController{
   private Direction[][] exhibitDir=new Direction[2][8];
   private int[] nextDir=new int[2];
   public void BackToHomePage() throws IOException {
+    MusicController.ButtonClickSound();
     player1Body.clearOnScreen();
     player2Body.clearOnScreen();
     player1Timeline.stop();
@@ -174,18 +176,18 @@ public class ChoseSnakeController{
     name[1][1] = "KobeSnake";
     name[1][2] = "RainbowSnake";
     name[1][3] = "AppleSnake";
-    name[2][0] = "YoutubeSnake";
-    name[2][1] = "JackSnake";
-    name[2][2] = "QuestionSnake";
-    name[2][3] = "QuestionSnake";
-    name[3][0] = "QuestionSnake";
-    name[3][1] = "QuestionSnake";
-    name[3][2] = "QuestionSnake";
-    name[3][3] = "QuestionSnake";
-    name[4][0] = "QuestionSnake";
-    name[4][1] = "QuestionSnake";
-    name[4][2] = "QuestionSnake";
-    name[4][3] = "QuestionSnake";
+    name[2][0] = "ClassicSnake";
+    name[2][1] = "ClassicSnake";
+    name[2][2] = "ClassicSnake";
+    name[2][3] = "ClassicSnake";
+    name[3][0] = "ClassicSnake";
+    name[3][1] = "ClassicSnake";
+    name[3][2] = "ClassicSnake";
+    name[3][3] = "ClassicSnake";
+    name[4][0] = "ClassicSnake";
+    name[4][1] = "ClassicSnake";
+    name[4][2] = "ClassicSnake";
+    name[4][3] = "ClassicSnake";
   }
   private void handle(KeyEvent e) {
     table.getChildren().remove(P1select);

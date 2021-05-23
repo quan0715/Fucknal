@@ -33,8 +33,6 @@
 -->
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -68,11 +66,6 @@
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="282.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/vscode.png" />
-         </image>
-      </ImageView>
       <Label fx:id="GamePoint1" alignment="TOP_CENTER" layoutX="40.0" layoutY="14.0" prefHeight="27.0" prefWidth="60.0" text="0" textAlignment="CENTER" textFill="#e2ffc6">
          <font>
             <Font name="System Bold Italic" size="30.0" />
@@ -91,6 +84,11 @@
       <Label id="Snake2" fx:id="SnakeName2" alignment="CENTER" layoutX="338.0" layoutY="26.0" prefHeight="27.0" prefWidth="120.0" text="Snake2" textAlignment="CENTER" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="282.0" layoutY="8.0" text="VS" textFill="#e2ffc6">
+         <font>
+            <Font size="35.0" />
          </font>
       </Label>
    </children>

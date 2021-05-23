@@ -112,7 +112,7 @@ public class GameOneController{
     return false;
   }
   public void CheckScoreRecord(int CurrentScore) throws IOException{
-      File Score = new File("../RecordScore.txt");
+      File Score = new File("C:/Users/Albert/OneDrive/文件/java/finalProject/src/Application/RecordScore.txt");
       Score.createNewFile();
       FileReader ScoreReader = new FileReader(Score);
       BufferedReader br = new BufferedReader(ScoreReader);
@@ -146,7 +146,8 @@ public class GameOneController{
     FoodGenerator.getFood().clearOnScreen();
     rate = 1.0;
     move.setRate(rate);
-    setAlertText("Game Over\nTAP ENTER TO START NEW GAME", "Alert");
+    FoodGenerator.getFood().clearOnScreen();
+    setAlertText("Game Over\n\nTAP ENTER TO START NEW GAME", "Alert");
     MusicController.GameOverSound();
     CanPlayNewGame = true;
   }

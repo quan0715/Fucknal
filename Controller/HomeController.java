@@ -34,6 +34,7 @@ public class HomeController implements Initializable{
   public static Snake Player2=new VscodeSnake();
   public void SwitchOneManGame() throws IOException{
     MusicController.StopBackground2();
+    MusicController.ButtonClickSound();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/table.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
@@ -56,6 +57,7 @@ public class HomeController implements Initializable{
   }
   
   public void SwitchChoseSnake() throws IOException {
+    MusicController.ButtonClickSound();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/SnakeControl.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
@@ -67,6 +69,7 @@ public class HomeController implements Initializable{
   }
   public void SwitchTwoManGame(ActionEvent event) throws IOException {
     MusicController.StopBackground2();
+    MusicController.ButtonClickSound();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/table2.fxml"));
     String PinName = GamePin.getText();
     System.out.println(PinName);
