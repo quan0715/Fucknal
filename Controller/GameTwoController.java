@@ -5,8 +5,6 @@ import Application.App;
 import Application.Enum.Direction;
 import Application.Enum.Point;
 import Application.Enum.SnakePart;
-import Application.Food.Food;
-import Application.Food.NormalFood;
 import Application.Singleton.FoodGenerator;
 import Application.Singleton.GameCurrentChildrenArray;
 import Application.Singleton.MusicController;
@@ -48,8 +46,6 @@ public class GameTwoController{
   private SnakeBody snake2;
   DirectionController directionController1;
   DirectionController directionController2;
-  private Food apple;
-  private FoodGenerator foodGenerator;
   
   @FXML  private AnchorPane GameTable;
   @FXML  private Label ScoreText;
@@ -75,8 +71,6 @@ public class GameTwoController{
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
-    apple = new NormalFood();
-    foodGenerator = new FoodGenerator((NormalFood)apple);
     move1 = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
       GameOver(SnakeRun1(directionController1.NextDirection()));
     }));
@@ -94,11 +88,9 @@ public class GameTwoController{
     snake1 = new SnakeBody(HomeController.Player1, 200,200);
     snake2 = new SnakeBody(HomeController.Player2, 400,400);
     CanPlayNewGame = false;
-    directionController1.init(Direction.UP);
-    directionController2.init(Direction.DOWN);
     snake1.clearOnScreen();
     snake2.clearOnScreen();
-    foodGenerator.RefreshFood();
+    FoodGenerator.RefreshFood();
     AlertText.setText("");
     rate1 = rate2 = 1.0;
     move1.setRate(rate1);
@@ -106,6 +98,8 @@ public class GameTwoController{
     score1 = score2 = 0;
     ScoreRefresh(score1,score2);
     GamePointRefresh(gamepoint1, gamepoint2);
+    directionController1.init(Direction.UP);
+    directionController2.init(Direction.DOWN);
     move1.setCycleCount(Animation.INDEFINITE);
     move2.setCycleCount(Animation.INDEFINITE);
     move1.play();
@@ -128,9 +122,9 @@ public class GameTwoController{
   // moving event
   public int SnakeRun1(Direction direction) {
     snake1.Move(direction);
-    if (snake1.whatPart(apple.GetFoodPosition())==SnakePart.HEAD) {
+    if (snake1.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD) {
       snake1.AddNewBody();
-      foodGenerator.RefreshFood();
+      FoodGenerator.RefreshFood();
       MusicController.EatFoodPop();
       ChangedScore(1);
     }
@@ -139,10 +133,10 @@ public class GameTwoController{
   
   public int SnakeRun2(Direction direction) {
     snake2.Move(direction);
-    if (snake2.whatPart(apple.GetFoodPosition())==SnakePart.HEAD) {
+    if (snake2.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD) {
       snake2.AddNewBody();
       MusicController.EatFoodPop();
-      foodGenerator.RefreshFood();
+      FoodGenerator.RefreshFood();
       ChangedScore(2);
     }
     return CheckGameOver(snake1,snake2);
@@ -209,9 +203,9 @@ public class GameTwoController{
         gamepoint2 += 1;
         setAlertText(Username + "2 Win\n\nTAP ENTER TO START NEW GAME","Player2");
       }
-      GameTable.getChildren().remove(apple.GetFoodBody());
       MusicController.GameOverSound();
       GamePointRefresh(gamepoint1, gamepoint2);
+      FoodGenerator.getFood().clearOnScreen();
       CanPlayNewGame = true;
     }
   }

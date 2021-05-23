@@ -8,8 +8,6 @@ import java.io.IOException;
 import Application.App;
 import Application.Enum.Direction;
 import Application.Enum.SnakePart;
-import Application.Food.Food;
-import Application.Food.NormalFood;
 import Application.Singleton.FoodGenerator;
 import Application.Singleton.GameCurrentChildrenArray;
 import Application.Singleton.MusicController;
@@ -38,11 +36,9 @@ public class GameOneController{
   private Timeline move;
   private double rate = 1.0;
   private String Username;
-  private Food apple;
   private int score = 0;
   private boolean CanPlayNewGame = true;
   private boolean PauseGame = false;
-  private FoodGenerator foodGenerator;
   private DirectionController directionController;
   private SnakeBody snake1;
   private int record;
@@ -58,8 +54,6 @@ public class GameOneController{
     RecordS.setText("Record : ");
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController = new DirectionController();
-    apple = new NormalFood();
-    foodGenerator = new FoodGenerator((NormalFood)apple);
     DrawLine();
     RecordS.setText("Record : ");
     try {
@@ -85,7 +79,6 @@ public class GameOneController{
     snake1 = new SnakeBody(HomeController.Player1, 300, 300);
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
-    foodGenerator.RefreshFood();
     AlertText.setText("");
     score = 0;
     ScoreText.setText("Score : " + score);
@@ -109,9 +102,9 @@ public class GameOneController{
   //moving event
   public boolean SnakeRun(Direction direction){
     snake1.Move(direction);
-    if(snake1.whatPart(apple.GetFoodPosition())==SnakePart.HEAD){
+    if(snake1.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD){
       snake1.AddNewBody();
-      foodGenerator.RefreshFood();
+      FoodGenerator.RefreshFood();
       MusicController.EatFoodPop();
       ChangedScore();
     }
@@ -119,7 +112,7 @@ public class GameOneController{
     return false;
   }
   public void CheckScoreRecord(int CurrentScore) throws IOException{
-      File Score = new File("../RecordScore.txt");
+      File Score = new File("C:/Users/Albert/OneDrive/文件/java/finalProject/src/Application/RecordScore.txt");
       Score.createNewFile();
       FileReader ScoreReader = new FileReader(Score);
       BufferedReader br = new BufferedReader(ScoreReader);
@@ -150,9 +143,10 @@ public class GameOneController{
   //next game set
   public void GameOver() {
     snake1.clearOnScreen();
+    FoodGenerator.getFood().clearOnScreen();
     rate = 1.0;
     move.setRate(rate);
-    GameTable.getChildren().remove(apple.GetFoodBody());
+    FoodGenerator.getFood().clearOnScreen();
     setAlertText("Game Over\n\nTAP ENTER TO START NEW GAME", "Alert");
     MusicController.GameOverSound();
     CanPlayNewGame = true;
