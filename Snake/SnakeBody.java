@@ -16,6 +16,7 @@ public class SnakeBody {
   private final int HeightLimit = 600;
   private final int WidthLimit = 600;
   private Direction currentDirection;
+  public int speed;
   public SnakeBody(Snake instance,int x,int y) {
     HeadX = x;
     HeadY = y;
@@ -26,7 +27,7 @@ public class SnakeBody {
     GameEntityCenter.addSnakeBody(this);
   }
   public void Move(Direction direction){
-    currentDirection=direction;
+    if(direction!=null)currentDirection=direction;
     clearOnScreen();
     switch (currentDirection) {
       case UP :
@@ -78,6 +79,7 @@ public class SnakeBody {
   public Point GetHead(){
     return new Point(HeadX,HeadY);
   }
+  public void SetSpeed(int s){speed=s;}
   public void clearOnScreen() {
     ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
     for (Snake snake : Body) children.remove(snake.GetBody());

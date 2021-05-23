@@ -1,5 +1,6 @@
 package Application.Controller;
 import java.io.IOException;
+import java.util.concurrent.Callable;
 
 import Application.App;
 import Application.Enum.Direction;
@@ -10,9 +11,7 @@ import Application.Singleton.GameCurrentChildrenArray;
 import Application.Singleton.MusicController;
 import Application.Snake.DirectionController;
 import Application.Snake.SnakeBody;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import Application.Snake.SnakeBodyPlayer;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -24,15 +23,12 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.util.Duration;
 
 public class GameTwoController{
   private int windowWidth = 600;
   private int GridWidth = 20;
 
-  private int time = 150;
-  private Timeline move1;
-  private Timeline move2;
+  private final int time = 150;
   private double rate1 = 1.0;
   private double rate2= 1.0;
   private String Username;
@@ -42,8 +38,8 @@ public class GameTwoController{
   private int gamepoint2 = 0;
   private boolean PauseGame = false;
   private boolean CanPlayNewGame = true;
-  private SnakeBody snake1;
-  private SnakeBody snake2;
+  private SnakeBodyPlayer snakePlayer1;
+  private SnakeBodyPlayer snakePlayer2;
   DirectionController directionController1;
   DirectionController directionController2;
   
@@ -71,39 +67,64 @@ public class GameTwoController{
     GameCurrentChildrenArray.Instance.set(GameTable.getChildren());
     directionController1 = new DirectionController();
     directionController2 = new DirectionController();
-    move1 = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
-      GameOver(SnakeRun1(directionController1.NextDirection()));
-    }));
-    move2 = new Timeline(new KeyFrame(Duration.millis(time), (e) -> {
-      GameOver(SnakeRun2(directionController2.NextDirection()));
-    }));
+    snakePlayer1=new SnakeBodyPlayer(
+      directionController1,
+      time,
+      new Callable<Boolean>(){
+        @Override
+        public Boolean call() throws Exception {
+          SnakeBody snake1=snakePlayer1.getSnakeBody();
+          SnakeBody snake2=snakePlayer2.getSnakeBody();
+          if (snake1.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD) {
+            snake1.AddNewBody();
+            FoodGenerator.RefreshFood();
+            MusicController.EatFoodPop();
+            ChangedScore(1);
+          }
+          int t=CheckGameOver(snake1,snake2);
+          if(t!=0)GameOver(t);
+          else return false;
+          return true;
+        }
+      }
+    );
+    snakePlayer2=new SnakeBodyPlayer(
+      directionController2, time,
+      new Callable<Boolean>(){
+        @Override
+        public Boolean call() throws Exception {
+          SnakeBody snake1=snakePlayer1.getSnakeBody();
+          SnakeBody snake2=snakePlayer2.getSnakeBody();
+          if (snake2.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD) {
+            snake2.AddNewBody();
+            FoodGenerator.RefreshFood();
+            MusicController.EatFoodPop();
+            ChangedScore(2);
+          }
+          int t=CheckGameOver(snake1,snake2);
+          if(t!=0)GameOver(t);
+          else return false;
+          return true;
+        }
+      }
+    );
   }
 
   // Game flow
   public void StartGame() {
-    if(snake1!= null){
-      snake1.clearOnScreen();
-      snake2.clearOnScreen();
-    }
-    snake1 = new SnakeBody(HomeController.Player1, 200,200);
-    snake2 = new SnakeBody(HomeController.Player2, 400,400);
+    snakePlayer1.SetSnakeBody(new SnakeBody(HomeController.Player1, 200,200));
+    snakePlayer2.SetSnakeBody(new SnakeBody(HomeController.Player2, 400,400));
     CanPlayNewGame = false;
-    snake1.clearOnScreen();
-    snake2.clearOnScreen();
     FoodGenerator.RefreshFood();
     AlertText.setText("");
     rate1 = rate2 = 1.0;
-    move1.setRate(rate1);
-    move2.setRate(rate2);
+    snakePlayer1.setSpeed((int)(time/rate1));
+    snakePlayer2.setSpeed((int)(time/rate1));
     score1 = score2 = 0;
     ScoreRefresh(score1,score2);
     GamePointRefresh(gamepoint1, gamepoint2);
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
-    move1.setCycleCount(Animation.INDEFINITE);
-    move2.setCycleCount(Animation.INDEFINITE);
-    move1.play();
-    move2.play();
   }
   /// initializable method
   public void DrawLine() {
@@ -118,30 +139,6 @@ public class GameTwoController{
       GameTable.getChildren().add(cols);
     }
   }
-
-  // moving event
-  public int SnakeRun1(Direction direction) {
-    snake1.Move(direction);
-    if (snake1.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD) {
-      snake1.AddNewBody();
-      FoodGenerator.RefreshFood();
-      MusicController.EatFoodPop();
-      ChangedScore(1);
-    }
-    return CheckGameOver(snake1,snake2);
-  }
-  
-  public int SnakeRun2(Direction direction) {
-    snake2.Move(direction);
-    if (snake2.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD) {
-      snake2.AddNewBody();
-      MusicController.EatFoodPop();
-      FoodGenerator.RefreshFood();
-      ChangedScore(2);
-    }
-    return CheckGameOver(snake1,snake2);
-  }
-
   public int CheckGameOver(SnakeBody snake1,SnakeBody snake2){
     Point head1 = snake1.GetHead();
     Point head2 = snake2.GetHead();
@@ -156,12 +153,12 @@ public class GameTwoController{
     if(id==1) {
       score1+=10;
       rate1 = rate1 + (4 - rate1) * 0.025;
-      move1.setRate(rate1);
+      snakePlayer1.setSpeed((int)(time/rate1));
     }
     else {
       score2 += 10;
       rate2 = rate2 + (4 - rate2) * 0.025;
-      move2.setRate(rate2);
+      snakePlayer2.setSpeed((int)(time/rate2));
     } 
     ScoreRefresh(score1, score2);
   }
@@ -178,8 +175,8 @@ public class GameTwoController{
   // next game set
   public void GameOver(int w) {
     if(w!=0){
-      move1.stop();
-      move2.stop();
+      snakePlayer1.stop();
+      snakePlayer2.stop();
       if(w==3){
         if(score1 == score2){
           setAlertText( "TIE \n\nTAP ENTER TO START NEW GAME","Alert");
@@ -229,19 +226,19 @@ public class GameTwoController{
   public void KeyEven(KeyEvent event) throws IOException {
     KeyCode key = event.getCode();
     if (key == KeyCode.H ){
-      move1.stop();
-      move2.stop();
+      snakePlayer1.stop();
+      snakePlayer2.stop();
       BackToHomePage(event);
     }
     if (key == KeyCode.SPACE && !PauseGame && !CanPlayNewGame){
-      move1.pause();
-      move2.pause();
+      snakePlayer1.pause();
+      snakePlayer2.pause();
       setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", "Normal");
       PauseGame = true;
     }
     else if (key == KeyCode.SPACE && PauseGame && !CanPlayNewGame) {
-      move1.play();
-      move2.play();
+      snakePlayer1.play();
+      snakePlayer2.play();
       setAlertText("","Normal");
       PauseGame = false;
     }
