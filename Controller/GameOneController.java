@@ -106,7 +106,7 @@ public class GameOneController{
     }
   }
   public void CheckScoreRecord(int CurrentScore) throws IOException{
-      File Score = new File("../RecordScore.txt");
+      File Score = new File("src/Application/RecordScore.txt");
       Score.createNewFile();
       FileReader ScoreReader = new FileReader(Score);
       BufferedReader br = new BufferedReader(ScoreReader);
