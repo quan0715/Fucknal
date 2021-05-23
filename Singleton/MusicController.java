@@ -34,7 +34,7 @@ public class MusicController {
     instance.BackGround2MediaPlayer.stop();
   }
   public static void EatFoodPop(){
-    instance.EatFood.seek(Duration.millis(0));
+    instance.EatFood.seek(Duration.millis(100));
     instance.EatFood.play();
   }
   public static void GameOverSound() {
