@@ -85,6 +85,7 @@ public class GameOneController{
   // Game flow
   public void StartGame(){
     snakeBodyPlayer1.SetSnakeBody(new SnakeBody(HomeController.Player1, 300, 300));
+    snakeBodyPlayer1.setSpeed(time);
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     AlertText.setText("");
@@ -106,7 +107,7 @@ public class GameOneController{
     }
   }
   public void CheckScoreRecord(int CurrentScore) throws IOException{
-      File Score = new File("C:/Users/Albert/OneDrive/文件/java/finalProject/src/Application/RecordScore.txt");
+      File Score = new File("src/Application/RecordScore.txt");
       Score.createNewFile();
       FileReader ScoreReader = new FileReader(Score);
       BufferedReader br = new BufferedReader(ScoreReader);
