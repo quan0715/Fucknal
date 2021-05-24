@@ -77,12 +77,6 @@ public class GameTwoController{
         public Boolean call() throws Exception {
           SnakeBody snake1=snakePlayer1.getSnakeBody();
           SnakeBody snake2=snakePlayer2.getSnakeBody();
-          if (snake1.whatPart(FoodGenerator.getFood().GetFoodPosition()).contains(SnakePart.HEAD)) {
-            snake1.AddNewBody();
-            FoodGenerator.RefreshFood();
-            MusicController.EatFoodPop();
-            ChangedScore(1);
-          }
           int t=CheckGameOver(snake1,snake2);
           if(t!=0)GameOver(t);
           else return false;
@@ -97,12 +91,6 @@ public class GameTwoController{
         public Boolean call() throws Exception {
           SnakeBody snake1=snakePlayer1.getSnakeBody();
           SnakeBody snake2=snakePlayer2.getSnakeBody();
-          if (snake2.whatPart(FoodGenerator.getFood().GetFoodPosition()).contains(SnakePart.HEAD)) {
-            snake2.AddNewBody();
-            FoodGenerator.RefreshFood();
-            MusicController.EatFoodPop();
-            ChangedScore(2);
-          }
           int t=CheckGameOver(snake1,snake2);
           if(t!=0)GameOver(t);
           else return false;
@@ -125,8 +113,10 @@ public class GameTwoController{
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
     checkScoreTimeline=new Timeline(new KeyFrame(Duration.millis(10),e->{
-      if(score1!=snakePlayer1.getSnakeBody().score)ChangedScore(1);
-      if(score2!=snakePlayer2.getSnakeBody().score)ChangedScore(2);
+      if(score1!=snakePlayer1.getSnakeBody().score)
+        ChangedScore(1);
+      if(score2!=snakePlayer2.getSnakeBody().score)
+        ChangedScore(2);
     }));
     checkScoreTimeline.setCycleCount(Timeline.INDEFINITE);
     checkScoreTimeline.play();
