@@ -92,7 +92,8 @@ public class ChoseSnakeController{
     table.requestFocus();
   }
   private void playSnake1() {
-    player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],40,220);
+    //start speed useless if SnakeBodyPlayer not used
+    player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],0, 40,220);
     try {
       player1Body.AddNewBody();
     } catch (Exception e1) {
@@ -112,7 +113,7 @@ public class ChoseSnakeController{
     player1Timeline.play();
   }
   private void playSnake2() {
-    player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],460,220);
+    player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],0,460,220);
     try {
       player2Body.AddNewBody();
     } catch (Exception e2) {
@@ -309,7 +310,7 @@ public class ChoseSnakeController{
     if(changedPlayer==1){
       player1Body.clearOnScreen();
       nextDir[0]=0;
-      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],40,220);
+      player1Body=new SnakeBody(snakes[hover1.getKey()][hover1.getValue()],0,40,220);
       try {
         player1Body.AddNewBody();
       } catch (Exception e1) {
@@ -319,7 +320,7 @@ public class ChoseSnakeController{
     else if(changedPlayer==2){
       player2Body.clearOnScreen();
       nextDir[1]=0;
-      player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],460,220);
+      player2Body=new SnakeBody(snakes[hover2.getKey()][hover2.getValue()],0,460,220);
       try {
         player2Body.AddNewBody();
       } catch (Exception e2) {
