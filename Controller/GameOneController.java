@@ -33,7 +33,7 @@ public class GameOneController{
   private int windowWidth = 600;
   //private int windowHeight = 600;
   private int GridWidth = 20;
-  private int time = 150;
+  private int time = 170;
   private double rate = 1.0;
   private String Username;
   private int score = 0;

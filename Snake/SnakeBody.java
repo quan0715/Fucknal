@@ -24,7 +24,7 @@ public class SnakeBody {
   public SnakeBody(Snake instance,int startSpeed, int x,int y) {
     HeadX = x;
     HeadY = y;
-    rate=1;
+    rate = 1;
     speed=this.startSpeed=startSpeed;
     currentDirection=Direction.RIGHT;
     Body = new ArrayList<Snake>();

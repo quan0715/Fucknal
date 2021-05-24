@@ -30,7 +30,6 @@ public abstract class Food{
         Ontouch(b);
       }
     });
-    FoodEventCenter.addFoodEvent(m_event);
   }
   public Point GetFoodPosition(){
     return FoodPosition;

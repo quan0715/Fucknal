@@ -31,7 +31,7 @@ public class GameTwoController{
   private int windowWidth = 600;
   private int GridWidth = 20;
 
-  private final int time = 150;
+  private final int time = 170;
   private String Username;
   private int score1 = 0;
   private int score2 = 0;
@@ -136,7 +136,7 @@ public class GameTwoController{
   }
   public int CheckGameOver(SnakeBody snake1,SnakeBody snake2){
     List<SnakePart> s1=snake1.whatPart(snake2.GetHead());
-    List<SnakePart> s2=snake2.whatPart(snake2.GetHead());
+    List<SnakePart> s2=snake2.whatPart(snake1.GetHead());
     if (s1.contains(SnakePart.HEAD)&&s2.contains(SnakePart.HEAD))return 3;
     if (s2.contains(SnakePart.BODY)) return 2 ; 
     if (s1.contains(SnakePart.BODY)) return 1 ;
@@ -163,6 +163,7 @@ public class GameTwoController{
     GamePoint2.setText(Integer.toString(score2));
   }
   // next game set
+  
   public void GameOver(int w) {
     if(w!=0){
       snakePlayer1.stop();
