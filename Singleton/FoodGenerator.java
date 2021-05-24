@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import Application.Food.Food;
+import Application.Food.IceFood;
 import Application.Food.JackFood;
 import Application.Food.NormalFood;
 
@@ -31,10 +32,10 @@ public class FoodGenerator{
         instance.foods.set(0, new JackFood());
         break;
       case 2:
-        instance.foods.set(0, new NormalFood());
+        instance.foods.set(0, new IceFood());
         break;
       case 3:
-        instance.foods.set(0, new JackFood());
+        instance.foods.set(0, new IceFood());
         break;
       case 4:
         instance.foods.set(0, new NormalFood());
