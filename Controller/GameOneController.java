@@ -15,6 +15,8 @@ import Application.Singleton.MusicController;
 import Application.Snake.DirectionController;
 import Application.Snake.SnakeBody;
 import Application.Snake.SnakeBodyPlayer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -26,6 +28,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.util.Duration;
 public class GameOneController{
   private int windowWidth = 600;
   //private int windowHeight = 600;
@@ -38,6 +41,7 @@ public class GameOneController{
   private boolean PauseGame = false;
   private SnakeBodyPlayer snakeBodyPlayer1;
   private DirectionController directionController;
+  private Timeline checkScoreTimeline;
   private int record;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
@@ -67,13 +71,7 @@ public class GameOneController{
         @Override
         public Boolean call() throws Exception {
           SnakeBody tem=snakeBodyPlayer1.getSnakeBody();
-          if(tem.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD){
-            tem.AddNewBody();
-            FoodGenerator.RefreshFood();
-            MusicController.EatFoodPop();
-            ChangedScore();
-          }
-          if(tem.whatPart(tem.GetHead())==SnakePart.BODY){
+          if(tem.whatPart(tem.GetHead()).contains(SnakePart.BODY)){
             GameOver();
             return true;
           }
@@ -81,11 +79,15 @@ public class GameOneController{
         }
       }
     );
+    checkScoreTimeline=new Timeline(new KeyFrame(Duration.millis(10),e->{
+      if(score!=snakeBodyPlayer1.getSnakeBody().score)ChangedScore();
+    }));
+    checkScoreTimeline.setCycleCount(Timeline.INDEFINITE);
+    checkScoreTimeline.play();
   }
   // Game flow
   public void StartGame(){
-    snakeBodyPlayer1.SetSnakeBody(new SnakeBody(HomeController.Player1, 300, 300));
-    snakeBodyPlayer1.setSpeed(time);
+    snakeBodyPlayer1.SetSnakeBody(new SnakeBody(HomeController.Player1, time, 300, 300));
     directionController.init(Direction.RIGHT);
     CanPlayNewGame = false;
     AlertText.setText("");
@@ -123,14 +125,12 @@ public class GameOneController{
   }
   // score chang / rate chang
   public void ChangedScore() {
-    score += 10;
-    rate = rate+(4-rate)*0.03;
+    score=snakeBodyPlayer1.getSnakeBody().score;
     try {
       CheckScoreRecord(score);
     } catch (IOException e) {
       e.printStackTrace();
     }
-    snakeBodyPlayer1.setSpeed((int)(time/rate));
     System.out.println(score / 10 + " " + rate);
     ScoreText.setText("Score : " + score);
     RecordS.setText("Record : "+ record);
@@ -138,9 +138,7 @@ public class GameOneController{
   //next game set
   public void GameOver() {
     snakeBodyPlayer1.getSnakeBody().clearOnScreen();
-    FoodGenerator.getFood().clearOnScreen();
     rate = 1.0;
-    snakeBodyPlayer1.setSpeed((int)(time/rate));
     FoodGenerator.getFood().clearOnScreen();
     setAlertText("Game Over\n\nTAP ENTER TO START NEW GAME", "Alert");
     MusicController.GameOverSound();

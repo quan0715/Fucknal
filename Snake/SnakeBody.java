@@ -1,6 +1,7 @@
 package Application.Snake;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Application.Enum.*;
 import Application.Singleton.GameCurrentChildrenArray;
@@ -16,10 +17,15 @@ public class SnakeBody {
   private final int HeightLimit = 600;
   private final int WidthLimit = 600;
   private Direction currentDirection;
-  public int speed;
-  public SnakeBody(Snake instance,int x,int y) {
+  private int startSpeed;
+  private int speed;
+  private double rate;
+  public int score;
+  public SnakeBody(Snake instance,int startSpeed, int x,int y) {
     HeadX = x;
     HeadY = y;
+    rate=1;
+    speed=this.startSpeed=startSpeed;
     currentDirection=Direction.RIGHT;
     Body = new ArrayList<Snake>();
     snakeInstance=instance;
@@ -79,7 +85,14 @@ public class SnakeBody {
   public Point GetHead(){
     return new Point(HeadX,HeadY);
   }
-  public void SetSpeed(int s){speed=s;}
+  public void SetRate(double rate){
+    this.rate=rate;
+    speed=(int)(startSpeed/rate);
+  }
+  public double GetRate(){
+    return rate;
+  }
+  public int GetSpeed(){return speed;}
   public void clearOnScreen() {
     ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
     for (Snake snake : Body) children.remove(snake.GetBody());
@@ -88,10 +101,14 @@ public class SnakeBody {
     ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
     for (Snake snake : Body) if(!children.contains(snake.GetBody()))children.add(snake.GetBody());
   }
-  public SnakePart whatPart(Point p){
+  public List<SnakePart> whatPart(Point p){
+    List<SnakePart> returnedList=new ArrayList<>();
     for(int i=1;i<Body.size();i++)
-      if(p.getX()==GetBodyPosition(i).getX()&&p.getY()==GetBodyPosition(i).getY())return SnakePart.BODY;
-    if(p.getX()==HeadX&&p.getY()==HeadY)return SnakePart.HEAD;
-    return SnakePart.NONE;
+      if(p.getX()==GetBodyPosition(i).getX()&&p.getY()==GetBodyPosition(i).getY()){
+        returnedList.add(SnakePart.BODY);
+        break;
+      }
+    if(p.getX()==HeadX&&p.getY()==HeadY)returnedList.add(SnakePart.HEAD);
+    return returnedList;
   }
 }

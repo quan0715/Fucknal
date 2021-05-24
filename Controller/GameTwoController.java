@@ -1,10 +1,10 @@
 package Application.Controller;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.Callable;
 
 import Application.App;
 import Application.Enum.Direction;
-import Application.Enum.Point;
 import Application.Enum.SnakePart;
 import Application.Singleton.FoodGenerator;
 import Application.Singleton.GameCurrentChildrenArray;
@@ -12,6 +12,8 @@ import Application.Singleton.MusicController;
 import Application.Snake.DirectionController;
 import Application.Snake.SnakeBody;
 import Application.Snake.SnakeBodyPlayer;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -23,14 +25,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.util.Duration;
 
 public class GameTwoController{
   private int windowWidth = 600;
   private int GridWidth = 20;
 
   private final int time = 150;
-  private double rate1 = 1.0;
-  private double rate2= 1.0;
   private String Username;
   private int score1 = 0;
   private int score2 = 0;
@@ -54,6 +55,7 @@ public class GameTwoController{
   @FXML  private Label GamePoint2;
   @FXML  private Label SnakeName1;
   @FXML  private Label SnakeName2;
+  private Timeline checkScoreTimeline;
   public void init() {
     MusicController.PlayBackground1();
     DrawLine();
@@ -75,7 +77,7 @@ public class GameTwoController{
         public Boolean call() throws Exception {
           SnakeBody snake1=snakePlayer1.getSnakeBody();
           SnakeBody snake2=snakePlayer2.getSnakeBody();
-          if (snake1.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD) {
+          if (snake1.whatPart(FoodGenerator.getFood().GetFoodPosition()).contains(SnakePart.HEAD)) {
             snake1.AddNewBody();
             FoodGenerator.RefreshFood();
             MusicController.EatFoodPop();
@@ -95,7 +97,7 @@ public class GameTwoController{
         public Boolean call() throws Exception {
           SnakeBody snake1=snakePlayer1.getSnakeBody();
           SnakeBody snake2=snakePlayer2.getSnakeBody();
-          if (snake2.whatPart(FoodGenerator.getFood().GetFoodPosition())==SnakePart.HEAD) {
+          if (snake2.whatPart(FoodGenerator.getFood().GetFoodPosition()).contains(SnakePart.HEAD)) {
             snake2.AddNewBody();
             FoodGenerator.RefreshFood();
             MusicController.EatFoodPop();
@@ -112,19 +114,22 @@ public class GameTwoController{
 
   // Game flow
   public void StartGame() {
-    snakePlayer1.SetSnakeBody(new SnakeBody(HomeController.Player1, 200,200));
-    snakePlayer2.SetSnakeBody(new SnakeBody(HomeController.Player2, 400,400));
+    snakePlayer1.SetSnakeBody(new SnakeBody(HomeController.Player1, time, 200,200));
+    snakePlayer2.SetSnakeBody(new SnakeBody(HomeController.Player2, time, 400,400));
     CanPlayNewGame = false;
     FoodGenerator.RefreshFood();
     AlertText.setText("");
-    rate1 = rate2 = 1.0;
-    snakePlayer1.setSpeed((int)(time/rate1));
-    snakePlayer2.setSpeed((int)(time/rate1));
     score1 = score2 = 0;
     ScoreRefresh(score1,score2);
     GamePointRefresh(gamepoint1, gamepoint2);
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
+    checkScoreTimeline=new Timeline(new KeyFrame(Duration.millis(10),e->{
+      if(score1!=snakePlayer1.getSnakeBody().score)ChangedScore(1);
+      if(score2!=snakePlayer2.getSnakeBody().score)ChangedScore(2);
+    }));
+    checkScoreTimeline.setCycleCount(Timeline.INDEFINITE);
+    checkScoreTimeline.play();
   }
   /// initializable method
   public void DrawLine() {
@@ -140,25 +145,20 @@ public class GameTwoController{
     }
   }
   public int CheckGameOver(SnakeBody snake1,SnakeBody snake2){
-    Point head1 = snake1.GetHead();
-    Point head2 = snake2.GetHead();
-    if (head1.getX()==head2.getX()&&head1.getY()==head2.getY())return 3;
-    if(snake2.whatPart(head1)==SnakePart.BODY) return 2 ; 
-    if(snake1.whatPart(head2)==SnakePart.BODY) return 1 ;
+    List<SnakePart> s1=snake1.whatPart(snake2.GetHead());
+    List<SnakePart> s2=snake2.whatPart(snake2.GetHead());
+    if (s1.contains(SnakePart.HEAD)&&s2.contains(SnakePart.HEAD))return 3;
+    if (s2.contains(SnakePart.BODY)) return 2 ; 
+    if (s1.contains(SnakePart.BODY)) return 1 ;
     return 0;
   }
   // score chang / rate chang
   public void ChangedScore(int id) {
-    //score += 10;
     if(id==1) {
-      score1+=10;
-      rate1 = rate1 + (4 - rate1) * 0.025;
-      snakePlayer1.setSpeed((int)(time/rate1));
+      score1=snakePlayer1.getSnakeBody().score;
     }
     else {
-      score2 += 10;
-      rate2 = rate2 + (4 - rate2) * 0.025;
-      snakePlayer2.setSpeed((int)(time/rate2));
+      score2=snakePlayer2.getSnakeBody().score;
     } 
     ScoreRefresh(score1, score2);
   }
