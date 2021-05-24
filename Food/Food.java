@@ -3,7 +3,6 @@ package Application.Food;
 import java.util.List;
 
 import Application.Enum.Point;
-import Application.Singleton.FoodEventCenter;
 import Application.Singleton.GameCurrentChildrenArray;
 import Application.Singleton.GameEntityCenter;
 import Application.Snake.SnakeBody;

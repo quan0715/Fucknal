@@ -1,7 +1,5 @@
 package Application.Food;
 
-import java.util.concurrent.Delayed;
-import java.util.concurrent.TimeUnit;
 
 import Application.Singleton.FoodGenerator;
 import Application.Singleton.MusicController;
