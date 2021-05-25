@@ -26,11 +26,15 @@ public class FoodEventCenter {
         listeners.play();
     };
     public static boolean find(FoodEvent e){return instance.foodEvents.contains(e);}
-    public static boolean addFoodEvent(FoodEvent e){
+    static void clear(){
+        instance.foodEvents.clear();
+        instance.removeList.clear();
+    }
+    static boolean addFoodEvent(FoodEvent e){
         if(instance.foodEvents.contains(e))return false;
         else {try {return instance.foodEvents.add(e);}catch (Exception err){return false;}}
     }
-    public static boolean removeFoodEvent(FoodEvent e){
+    static boolean removeFoodEvent(FoodEvent e){
         if(!instance.foodEvents.contains(e))return false;
         else {try {return instance.removeList.add(e);}catch (Exception err){return false;}}
     }

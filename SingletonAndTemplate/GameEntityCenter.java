@@ -63,5 +63,6 @@ public class GameEntityCenter {
         for(Food f:instance.foods) RemoveListFood.add(f);
         for (SnakeBody b : RemoveListSnake) instance.snakes.remove(b);
         for (Food f : RemoveListFood)  instance.foods.remove(f);
+        FoodEventCenter.clear();
     }
 }
