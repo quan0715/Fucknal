@@ -31,7 +31,6 @@ public class FoodGenerator{
   public static void RefreshFood(){
     GameEntityCenter.removeFood(instance.foods.get(0));
     GetRandomFood(random.nextInt(100));
-    GameEntityCenter.addFood(instance.foods.get(0));
   }
   public static void GetRandomFood(int c){
     if(c < FoodRate.get(0)){
