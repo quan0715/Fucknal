@@ -18,9 +18,9 @@ public class JackFood extends Food {
   private Lighting l;
   @Override
   protected void FoodInit() {
-    light = new Distant(0, 45, Color.web("#000000"));
+    light = new Distant(45, 45, Color.web("#000000"));
     l = new Lighting();
-    l.setDiffuseConstant(1.04);
+    l.setDiffuseConstant(0.2);
     image = new Image(getClass().getResource("../img/Jack.png").toString());
     body.setFill(new ImagePattern(image));
   }

@@ -18,10 +18,10 @@ public class IceFood extends Food {
   private Lighting l;
   @Override
   protected void FoodInit() {
-    light = new Distant(0, 45, Color.web("#00ccff"));
+    light = new Distant(45, 45, Color.web("#00ccff"));
     l = new Lighting();
     l.setLight(light);
-    l.setDiffuseConstant(2.0);
+    l.setDiffuseConstant(1.5);
     image = new Image(getClass().getResource("../img/ice.png").toString());
     body.setFill(new ImagePattern(image));
   }
@@ -39,9 +39,8 @@ public class IceFood extends Food {
     s.SetRate(currentRate * SpeedUp);
     s.SnakeEffect(l);
     Timeline speedup = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
-      s.SetRate(s.GetRate() / SpeedUp);
       s.SnakeEffect(null);
-
+      s.SetRate(s.GetRate() / SpeedUp);
     }));
     speedup.setCycleCount(1);
     speedup.play();

@@ -12,7 +12,9 @@ public class SnakeBody {
   private ArrayList<Snake> Body;
   private Snake snakeInstance;
   private int HeadX;
-  private int HeadY;
+  private int HeadY; 
+  private Lighting l;
+  private int EffectCount = 0;
   private final int HeightLimit = 600;
   private final int WidthLimit = 600;
   private Direction currentDirection;
@@ -24,6 +26,7 @@ public class SnakeBody {
     HeadX = x;
     HeadY = y;
     rate = 1;
+    EffectCount = 0;
     speed=this.startSpeed=startSpeed;
     currentDirection=Direction.RIGHT;
     Body = new ArrayList<Snake>();
@@ -73,6 +76,7 @@ public class SnakeBody {
     try{
       Snake bod=snakeInstance.getClass().getDeclaredConstructor().newInstance();
       bod.InitialSnakeBody(new Point(x, y));
+      bod.SnakeEffect(l);
       Body.add(bod);}
     catch(Exception e){
       System.out.println("fail adding new body");
@@ -111,8 +115,21 @@ public class SnakeBody {
     return returnedList;
   }
   public void SnakeEffect(Lighting l){
-    for(Snake s : Body){
-      s.SnakeEffect(l);
+    if(l == null ){
+      this.l = null;
+      EffectCount--;
+      if(EffectCount==0){
+        for (Snake s : Body) {
+          s.SnakeEffect(l);
+        }
+      }
+    }
+    else{
+      EffectCount++;
+      this.l = l;
+      for (Snake s : Body) {
+        s.SnakeEffect(l);
+      }
     }
   }
 }

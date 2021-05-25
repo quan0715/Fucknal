@@ -9,7 +9,7 @@ public abstract class Snake{
   public static final int SnakeWidth = Point.GridWidth;
   protected Rectangle body ;
   protected Point position ; 
-  protected Image image;
+  protected Image image ;
   public abstract void InitialSnakeBody(Point position);
   public void ChangPosition(Point newPosition){
     this.position.setX(newPosition.getX());
