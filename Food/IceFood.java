@@ -1,6 +1,7 @@
 package Application.Food;
 
 import Application.Singleton.FoodGenerator;
+import Application.Singleton.GameEntityCenter;
 import Application.Singleton.MusicController;
 import Application.Snake.SnakeBody;
 import javafx.animation.KeyFrame;
@@ -21,15 +22,15 @@ public class IceFood extends Food {
 
   @Override
   protected void Ontouch(SnakeBody s) {
-    currentRate = s.GetRate();
-    s.SetRate(currentRate * SpeedUp);
+    SnakeBody o = GameEntityCenter.GetAnotherSnake(s);
+    currentRate = o.GetRate();
+    o.SetRate(currentRate * SpeedUp);
     Timeline speedup = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
-      s.SetRate(s.GetRate() / SpeedUp);
+      o.SetRate(o.GetRate() / SpeedUp);
     }));
+    o.AddNewBody();
     speedup.setCycleCount(1);
     speedup.play();
-    s.AddNewBody();
-    s.score += 10;
     //s.SetRate(0.12 + s.GetRate() * 0.97);
     MusicController.EatFoodPop();
     FoodGenerator.RefreshFood();

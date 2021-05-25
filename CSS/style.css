@@ -36,3 +36,6 @@
     -fx-font-family: 'JackeyFont';
      -fx-text-fill :#AA0000;
 }
+.ImageStatus{
+    -fx-opacity : 0.1;
+}

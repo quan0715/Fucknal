@@ -33,12 +33,14 @@
 -->
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" style="-fx-background-color: #292929#292929 #292929#292929;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.GameTwoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="620.0" style="-fx-background-color: #292929#292929 #292929#292929;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.GameTwoController">
    <children>
-      <AnchorPane fx:id="GameTable" layoutX="7.0" layoutY="48.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #333f48;">
+      <AnchorPane fx:id="GameTable" layoutY="53.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #333f48;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>
             <Label fx:id="AlertText" alignment="CENTER" layoutY="201.0" prefHeight="158.0" prefWidth="606.0" text="TAP ENTER TO START NEW GAME" textAlignment="CENTER" textFill="#fffcfb">
                <font>
@@ -46,50 +48,110 @@
                </font>
             </Label>
          </children></AnchorPane>
-      <Label id="Player1" fx:id="UserName1" alignment="CENTER" layoutX="150.0" layoutY="2.0" prefHeight="27.0" prefWidth="120.0" text="Player1" textAlignment="CENTER" textFill="#90716a">
+      <Label id="Player1" fx:id="UserName1" alignment="CENTER" layoutX="170.0" layoutY="3.0" prefHeight="27.0" prefWidth="120.0" text="Player1" textAlignment="CENTER" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Label id="Player2" fx:id="UserName2" alignment="CENTER" layoutX="338.0" layoutY="2.0" prefHeight="27.0" prefWidth="120.0" text="Player2" textAlignment="CENTER" textFill="#90716a">
+      <Label id="Player2" fx:id="UserName2" alignment="CENTER" layoutX="330.0" layoutY="4.0" prefHeight="27.0" prefWidth="120.0" text="Player2" textAlignment="CENTER" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="Score1" alignment="CENTER" layoutX="90.0" layoutY="12.0" prefHeight="27.0" prefWidth="60.0" text="0" textAlignment="CENTER" textFill="#90716a">
+      <Label fx:id="Score1" alignment="CENTER" layoutX="100.0" layoutY="15.0" prefHeight="27.0" prefWidth="40.0" text="0" textAlignment="CENTER" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="Score2" alignment="CENTER" layoutX="458.0" layoutY="12.0" prefHeight="27.0" prefWidth="60.0" text="0" textAlignment="CENTER" textFill="#90716a">
+      <Label fx:id="Score2" alignment="CENTER" layoutX="480.0" layoutY="18.0" prefHeight="27.0" prefWidth="40.0" text="0" textAlignment="CENTER" textFill="#90716a">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="GamePoint1" alignment="TOP_CENTER" layoutX="40.0" layoutY="14.0" prefHeight="27.0" prefWidth="60.0" text="0" textAlignment="CENTER" textFill="#e2ffc6">
+      <Label fx:id="GamePoint1" alignment="TOP_CENTER" layoutX="140.0" layoutY="15.0" prefHeight="27.0" prefWidth="40.0" text="0" textAlignment="CENTER" textFill="#e2ffc6">
          <font>
             <Font name="System Bold Italic" size="30.0" />
          </font>
       </Label>
-      <Label fx:id="GamePoint2" alignment="TOP_CENTER" layoutX="512.0" layoutY="10.0" prefHeight="27.0" prefWidth="60.0" text="0" textAlignment="CENTER" textFill="#e2ffc6">
+      <Label fx:id="GamePoint2" alignment="TOP_CENTER" layoutX="440.0" layoutY="17.0" prefHeight="27.0" prefWidth="40.0" text="0" textAlignment="CENTER" textFill="#e2ffc6">
          <font>
             <Font name="System Bold Italic" size="30.0" />
          </font>
       </Label>
-      <Label id="Snake1" fx:id="SnakeName1" alignment="CENTER" layoutX="150.0" layoutY="26.0" prefHeight="27.0" prefWidth="120.0" styleClass="Snake1" text="Snake1" textAlignment="CENTER" textFill="#90716a">
+      <Label id="Snake1" fx:id="SnakeName1" alignment="CENTER" layoutX="170.0" layoutY="32.0" prefHeight="27.0" prefWidth="120.0" styleClass="Snake1" text="Snake1" textAlignment="CENTER" textFill="#90716a">
          <font>
-            <Font name="System Bold Italic" size="16.0" />
+            <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label id="Snake2" fx:id="SnakeName2" alignment="CENTER" layoutX="338.0" layoutY="26.0" prefHeight="27.0" prefWidth="120.0" text="Snake2" textAlignment="CENTER" textFill="#90716a">
+      <Label id="Snake2" fx:id="SnakeName2" alignment="CENTER" layoutX="330.0" layoutY="32.0" prefHeight="27.0" prefWidth="120.0" text="Snake2" textAlignment="CENTER" textFill="#90716a">
          <font>
-            <Font name="System Bold Italic" size="16.0" />
+            <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="282.0" layoutY="8.0" text="VS" textFill="#e2ffc6">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="287.0" layoutY="13.0" prefHeight="34.0" prefWidth="50.0" text="Vs" textFill="#e2ffc6">
          <font>
-            <Font size="35.0" />
+            <Font size="32.0" />
          </font>
       </Label>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/avocado.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/Jack.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="60.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/ice.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="60.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/bomb.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/fire.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="540.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/avocado.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="560.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/Jack.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="580.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/ice.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="580.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/star.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="560.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/bomb.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="540.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
+         <image>
+            <Image url="@../img/fire.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
