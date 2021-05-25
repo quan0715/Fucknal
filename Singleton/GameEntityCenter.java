@@ -13,6 +13,14 @@ public class GameEntityCenter {
     public List<Food> foods=new ArrayList<>();
     public static boolean contain(SnakeBody s){return instance.snakes.contains(s);}
     public static boolean contain(Food f){return instance.foods.contains(f);}
+    public static SnakeBody GetAnotherSnake(SnakeBody s){
+        for (SnakeBody b : instance.snakes){
+            if(b!=s){
+                return b;
+            }
+        }
+        return s;
+    }
     public static boolean addSnakeBody(SnakeBody s){
         if(instance.snakes.contains(s))return false;
         else try {
