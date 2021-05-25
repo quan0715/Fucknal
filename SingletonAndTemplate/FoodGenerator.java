@@ -35,7 +35,7 @@ public class FoodGenerator{
   }
   public static void GetRandomFood(int c){
     if(c < FoodRate.get(0)){
-      instance.foods.set(0, new IceFood());
+      instance.foods.set(0, new JackFood());
     }
     else if (c < FoodRate.get(1)) {
       instance.foods.set(0, new BombFood());

@@ -14,4 +14,5 @@ public class JackSnake extends Snake{
     this.image = new Image(getClass().getResource("../img/jack.png").toString());
     this.body.setFill(new ImagePattern(image));
   }
+  
 }
