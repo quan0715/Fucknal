@@ -116,9 +116,10 @@ public class SnakeBody {
   }
   public void SnakeEffect(Lighting l){
     if(l == null ){
-      this.l = null;
+      
       EffectCount--;
       if(EffectCount==0){
+        this.l = null;
         for (Snake s : Body) {
           s.SnakeEffect(l);
         }
