@@ -1,8 +1,8 @@
 package Application.Food;
 
-import Application.Singleton.FoodGenerator;
-import Application.Singleton.MusicController;
-import Application.Snake.SnakeBody;
+import Application.SingletonAndTemplate.*;
+import Application.SingletonAndTemplate.Food;
+import Application.SingletonAndTemplate.SnakeBody;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 
@@ -20,5 +20,8 @@ public class FireFood extends Food {
     s.SetRate(0.12 + s.GetRate() * 0.97);
     MusicController.EatFoodPop();
     FoodGenerator.RefreshFood();
+  }
+  @Override
+  protected void Cast(SnakeBody s) {  
   }
 }

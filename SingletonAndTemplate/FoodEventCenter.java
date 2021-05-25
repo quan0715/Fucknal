@@ -1,10 +1,8 @@
-package Application.Singleton;
+package Application.SingletonAndTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Application.Snake.SnakeBody;
-import Application.Template.FoodEvent;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;

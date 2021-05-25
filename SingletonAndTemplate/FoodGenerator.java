@@ -1,4 +1,4 @@
-package Application.Singleton;
+package Application.SingletonAndTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.Random;
 
 import Application.Food.BombFood;
 import Application.Food.FireFood;
-import Application.Food.Food;
 import Application.Food.IceFood;
 import Application.Food.JackFood;
 import Application.Food.NormalFood;

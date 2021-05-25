@@ -1,8 +1,7 @@
 package Application.Food;
 
-import Application.Singleton.FoodGenerator;
-import Application.Singleton.MusicController;
-import Application.Snake.SnakeBody;
+
+import Application.SingletonAndTemplate.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.image.Image;
@@ -31,5 +30,8 @@ public class JackFood extends Food {
     //s.SetRate(0.12 + s.GetRate() * 0.97);
     MusicController.EatFoodPop();
     FoodGenerator.RefreshFood();
+  }
+  @Override
+  protected void Cast(SnakeBody s) {  
   }
 }

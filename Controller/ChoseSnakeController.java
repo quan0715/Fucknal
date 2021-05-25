@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import Application.App;
 import Application.Enum.Direction;
-import Application.Singleton.GameCurrentChildrenArray;
-import Application.Singleton.MusicController;
+import Application.SingletonAndTemplate.*;
 import Application.Snake.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -177,8 +176,8 @@ public class ChoseSnakeController{
     name[1][1] = "KobeSnake";
     name[1][2] = "RainbowSnake";
     name[1][3] = "AppleSnake";
-    name[2][0] = "ClassicSnake";
-    name[2][1] = "ClassicSnake";
+    name[2][0] = "YoutubeSnake";
+    name[2][1] = "JackSnake";
     name[2][2] = "ClassicSnake";
     name[2][3] = "ClassicSnake";
     name[3][0] = "ClassicSnake";
