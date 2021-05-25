@@ -1,6 +1,7 @@
 package Application.Snake;
 
 import Application.Enum.Point;
+import Application.SingletonAndTemplate.Snake;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;

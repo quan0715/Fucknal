@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import Application.App;
 import Application.Enum.Direction;
-import Application.Singleton.GameCurrentChildrenArray;
-import Application.Singleton.MusicController;
+import Application.SingletonAndTemplate.*;
 import Application.Snake.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;

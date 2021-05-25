@@ -1,24 +1,25 @@
-package Application.Template;
+package Application.SingletonAndTemplate;
 
 
 import Application.Enum.SnakePart;
-import Application.Food.Food;
-import Application.Singleton.FoodEventCenter;
-import Application.Singleton.GameEntityCenter;
-import Application.Snake.SnakeBody;
 
 public class FoodEvent {
     private Food food;
-    private MyCallable onTouch;
-    public FoodEvent(Food f, MyCallable m){
+    private MyCallable OnTouch;
+    private MyCallable Cast;
+    public FoodEvent(Food f, MyCallable ontouch, MyCallable cast){
         food=f;
-        onTouch=m;
+        OnTouch=ontouch;
+        Cast=cast;
         FoodEventCenter.addFoodEvent(this);
     }
     public void listen(SnakeBody b){
         try{
             if(b.whatPart(food.GetFoodPosition()).contains(SnakePart.HEAD)){
-                onTouch.call(b);
+                OnTouch.call(b);
+                for(SnakeBody s:GameEntityCenter.GetOtherSnakes(b)){
+                    Cast.call(s);
+                }
                 GameEntityCenter.removeFood(food);
             }
         }

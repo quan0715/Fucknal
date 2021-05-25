@@ -5,9 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Application.App;
-import Application.Singleton.MusicController;
+import Application.SingletonAndTemplate.*;
 import Application.Snake.PythonSnake;
-import Application.Snake.Snake;
 import Application.Snake.VscodeSnake;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

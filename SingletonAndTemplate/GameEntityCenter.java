@@ -1,10 +1,7 @@
-package Application.Singleton;
+package Application.SingletonAndTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import Application.Food.Food;
-import Application.Snake.SnakeBody;
 
 public class GameEntityCenter {
     static GameEntityCenter instance=new GameEntityCenter();
@@ -13,15 +10,16 @@ public class GameEntityCenter {
     public List<Food> foods=new ArrayList<>();
     public static boolean contain(SnakeBody s){return instance.snakes.contains(s);}
     public static boolean contain(Food f){return instance.foods.contains(f);}
-    public static SnakeBody GetAnotherSnake(SnakeBody s){
+    static List<SnakeBody> GetOtherSnakes(SnakeBody s){
+        List<SnakeBody> returnedList=new ArrayList<>();
         for (SnakeBody b : instance.snakes){
             if(b!=s){
-                return b;
+                returnedList.add(b);
             }
         }
-        return s;
+        return returnedList;
     }
-    public static boolean addSnakeBody(SnakeBody s){
+    static boolean addSnakeBody(SnakeBody s){
         if(instance.snakes.contains(s))return false;
         else try {
             instance.snakes.add(s);
@@ -30,7 +28,7 @@ public class GameEntityCenter {
         }
         catch(Exception e){e.printStackTrace();return false;}
     }
-    public static boolean removeSnakeBody(SnakeBody s){
+    static boolean removeSnakeBody(SnakeBody s){
         if(!instance.snakes.contains(s))return false;
         else try {
             s.clearOnScreen();
@@ -39,7 +37,7 @@ public class GameEntityCenter {
         }
         catch(Exception e){e.printStackTrace();return false;}
     }
-    public static boolean addFood(Food f){
+    static boolean addFood(Food f){
         if(instance.foods.contains(f))return false;
         else try {
             instance.foods.add(f);
@@ -48,7 +46,7 @@ public class GameEntityCenter {
         }
         catch(Exception e){e.printStackTrace();return false;}
     }
-    public static boolean removeFood(Food f){
+    static boolean removeFood(Food f){
         if(!instance.foods.contains(f))return false;
         else try {
            instance.foods.remove(f);
@@ -58,7 +56,7 @@ public class GameEntityCenter {
         }
         catch(Exception e){e.printStackTrace();return false;}
     }
-    public static void clearAll(){
+    static void clearAll(){
         for(SnakeBody b:instance.snakes)removeSnakeBody(b);
         for(Food f:instance.foods)removeFood(f);
     }

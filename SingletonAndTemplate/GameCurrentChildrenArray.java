@@ -1,4 +1,4 @@
-package Application.Singleton;
+package Application.SingletonAndTemplate;
 
 import javafx.collections.ObservableList;
 import javafx.scene.Node;

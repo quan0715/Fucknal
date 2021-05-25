@@ -2,6 +2,7 @@ package Application.Snake;
 
 
 import Application.Enum.Point;
+import Application.SingletonAndTemplate.Snake;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

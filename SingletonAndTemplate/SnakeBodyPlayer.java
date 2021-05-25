@@ -1,9 +1,9 @@
-package Application.Snake;
+package Application.SingletonAndTemplate;
 
 import java.util.concurrent.Callable;
 
 import Application.Controller.HomeController;
-import Application.Singleton.GameEntityCenter;
+import Application.Snake.DirectionController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;

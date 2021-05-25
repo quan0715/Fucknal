@@ -1,4 +1,4 @@
-package Application.Snake;
+package Application.SingletonAndTemplate;
 import Application.Enum.Point;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;

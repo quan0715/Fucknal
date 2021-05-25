@@ -6,12 +6,8 @@ import java.util.concurrent.Callable;
 import Application.App;
 import Application.Enum.Direction;
 import Application.Enum.SnakePart;
-import Application.Singleton.FoodGenerator;
-import Application.Singleton.GameCurrentChildrenArray;
-import Application.Singleton.MusicController;
+import Application.SingletonAndTemplate.*;
 import Application.Snake.DirectionController;
-import Application.Snake.SnakeBody;
-import Application.Snake.SnakeBodyPlayer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -85,7 +81,8 @@ public class GameTwoController{
       }
     );
     snakePlayer2=new SnakeBodyPlayer(
-      directionController2, time,
+      directionController2, 
+      time,
       new Callable<Boolean>(){
         @Override
         public Boolean call() throws Exception {

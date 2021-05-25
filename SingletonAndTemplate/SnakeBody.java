@@ -1,11 +1,9 @@
-package Application.Snake;
+package Application.SingletonAndTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Application.Enum.*;
-import Application.Singleton.GameCurrentChildrenArray;
-import Application.Singleton.GameEntityCenter;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 
