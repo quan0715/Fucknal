@@ -8,6 +8,7 @@ import Application.Singleton.GameCurrentChildrenArray;
 import Application.Singleton.GameEntityCenter;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.effect.Lighting;
 
 public class SnakeBody {
   private ArrayList<Snake> Body;
@@ -110,5 +111,10 @@ public class SnakeBody {
       }
     if(p.getX()==HeadX&&p.getY()==HeadY)returnedList.add(SnakePart.HEAD);
     return returnedList;
+  }
+  public void SnakeEffect(Lighting l){
+    for(Snake s : Body){
+      s.SnakeEffect(l);
+    }
   }
 }

@@ -15,39 +15,43 @@ import Application.Food.StarFood;
 public class FoodGenerator{
   private static FoodGenerator instance=new FoodGenerator();
   private List<Food> foods;
+  private static List<Integer> FoodRate;
   private static Random random = new Random();
   private FoodGenerator(){
     foods=new ArrayList<>();
+    FoodRate = new ArrayList<>();
+    FoodRate.add(54); //n 54
+    FoodRate.add(62); //b 8
+    FoodRate.add(70); //f 8
+    FoodRate.add(83); //i 13
+    FoodRate.add(97); //j 14
+    FoodRate.add(100); //s 3 
     foods.add(new NormalFood());
   }
   public static Food getFood(){return instance.foods.get(0);}
   public static void RefreshFood(){
     GameEntityCenter.removeFood(instance.foods.get(0));
-    GetRandomFood(random.nextInt(6));
+    GetRandomFood(random.nextInt(100));
     GameEntityCenter.addFood(instance.foods.get(0));
   }
   public static void GetRandomFood(int c){
-    switch(c){
-      case 0:
-        instance.foods.set(0, new NormalFood());
-        break;
-      case 1:
-        instance.foods.set(0, new JackFood());
-        break;
-      case 2:
-        instance.foods.set(0, new IceFood());
-        break;
-      case 3:
-        instance.foods.set(0, new StarFood());
-        break;
-      case 4:
-        instance.foods.set(0, new BombFood());
-        break;
-      case 5:
-        instance.foods.set(0, new FireFood());
-        break;
-      default:
-        break;
+    if(c < FoodRate.get(0)){
+      instance.foods.set(0, new IceFood());
+    }
+    else if (c < FoodRate.get(1)) {
+      instance.foods.set(0, new BombFood());
+    }
+    else if (c <= FoodRate.get(2)) {
+      instance.foods.set(0, new FireFood());
+    }
+    else if(c < FoodRate.get(3)){
+      instance.foods.set(0, new IceFood());
+    }
+    else if (c < FoodRate.get(4)) {
+      instance.foods.set(0, new JackFood());
+    }
+    else if (c < FoodRate.get(5)) {
+      instance.foods.set(0, new StarFood());
     }
   }
 }

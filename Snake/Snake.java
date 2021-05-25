@@ -1,5 +1,6 @@
 package Application.Snake;
 import Application.Enum.Point;
+import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -24,5 +25,8 @@ public abstract class Snake{
   }
   public Rectangle GetBody(){
     return this.body;
+  }
+  public void SnakeEffect(Lighting l) {
+    body.setEffect(l);
   }
 }
