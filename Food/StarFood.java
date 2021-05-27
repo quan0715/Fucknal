@@ -32,9 +32,11 @@ public class StarFood extends Food {
     s.SetRate(0.12 + s.GetRate() * 0.97);
     s.RateBuff(SpeedUp);
     s.SnakeEffect(l);
+    s.woody++;
     Timeline speedup = new Timeline(new KeyFrame(Duration.millis(5000), e -> {
       s.SnakeEffect(null);
       s.RateNuff(SpeedUp);
+      s.woody--;
     }));
     speedup.setCycleCount(1);
     speedup.play();
