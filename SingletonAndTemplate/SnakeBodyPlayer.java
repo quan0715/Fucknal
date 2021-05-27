@@ -36,7 +36,7 @@ public class SnakeBodyPlayer {
     private void controll() {
         if(!stop){
             counter++;
-            if(counter >= snake.GetSpeed()){
+            if(counter >= snake.GetSpeed()*snake.GetFoodBuff()){
                 counter=0;
                 snake.Move(directionController.NextDirection());
             }

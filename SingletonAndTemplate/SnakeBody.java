@@ -21,12 +21,14 @@ public class SnakeBody {
   private int startSpeed;
   private int speed;
   private double rate;
+  private double FoodBuff;
   public int score;
   public SnakeBody(Snake instance,int startSpeed, int x,int y) {
     HeadX = x;
     HeadY = y;
     rate = 1;
     EffectCount = 0;
+    FoodBuff = 1 ;
     speed=this.startSpeed=startSpeed;
     currentDirection=Direction.RIGHT;
     Body = new ArrayList<Snake>();
@@ -116,12 +118,11 @@ public class SnakeBody {
   }
   public void SnakeEffect(Lighting l){
     if(l == null ){
-      
       EffectCount--;
       if(EffectCount==0){
         this.l = null;
         for (Snake s : Body) {
-          s.SnakeEffect(l);
+          s.SnakeEffect(this.l);
         }
       }
     }
@@ -132,5 +133,14 @@ public class SnakeBody {
         s.SnakeEffect(l);
       }
     }
+  }
+  public double GetFoodBuff(){
+    return FoodBuff;
+  }
+  public void RateBuff(double buff){
+    FoodBuff /= buff;
+  }
+  public void RateNuff(double buff) {
+    FoodBuff *= buff;
   }
 }
