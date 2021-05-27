@@ -12,8 +12,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
 
 public class IceFood extends Food {
-  private double SpeedUp = 0.5;
-  private double currentRate;
+  private double SlowDown = 0.5;
   private Distant light ;
   private Lighting l;
   @Override
@@ -21,6 +20,8 @@ public class IceFood extends Food {
     light = new Distant(45, 45, Color.web("#00ccff"));
     l = new Lighting();
     l.setLight(light);
+    l.setSurfaceScale(0.0);
+    l.setSpecularConstant(0.4);
     l.setDiffuseConstant(1.5);
     image = new Image(getClass().getResource("../img/ice.png").toString());
     body.setFill(new ImagePattern(image));
@@ -36,14 +37,13 @@ public class IceFood extends Food {
   }
   @Override
   protected void Cast(SnakeBody s) {
-    currentRate = s.GetRate();
-    s.SetRate(currentRate * SpeedUp);
+    s.RateBuff(SlowDown);
     s.SnakeEffect(l);
-    Timeline speedup = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
+    Timeline slowdown = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
+      s.RateNuff(SlowDown);
       s.SnakeEffect(null);
-      s.SetRate(s.GetRate() / SpeedUp);
     }));
-    speedup.setCycleCount(1);
-    speedup.play();
+    slowdown.setCycleCount(1);
+    slowdown.play();
   }
 }

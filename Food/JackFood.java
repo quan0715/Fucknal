@@ -13,25 +13,26 @@ import javafx.util.Duration;
 
 public class JackFood extends Food {
   private double SpeedUp = 2; 
-  private double currentRate;
   private Distant light;
   private Lighting l;
   @Override
   protected void FoodInit() {
-    light = new Distant(45, 45, Color.web("#000000"));
+    light = new Distant(45, 45, Color.web("#575757"));
     l = new Lighting();
-    l.setDiffuseConstant(0.2);
+    l.setLight(light);
+    l.setSpecularConstant(0.4);
+    l.setSurfaceScale(0.0);
+    l.setDiffuseConstant(1.5);
     image = new Image(getClass().getResource("../img/Jack.png").toString());
     body.setFill(new ImagePattern(image));
   }
   @Override
   protected void Ontouch(SnakeBody s) {
-    currentRate = s.GetRate();
-    s.SetRate(currentRate * SpeedUp);
+    s.RateBuff(SpeedUp);
     s.SnakeEffect(l);
     Timeline speedup = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
       s.SnakeEffect(null);
-      s.SetRate(s.GetRate()/SpeedUp);
+      s.RateNuff(SpeedUp);
     }));
     speedup.setCycleCount(1);
     speedup.play();
