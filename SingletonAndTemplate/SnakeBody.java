@@ -23,9 +23,11 @@ public class SnakeBody {
   private double rate;
   private double FoodBuff;
   public int score;
+  public int woody=0;
   public SnakeBody(Snake instance,int startSpeed, int x,int y) {
     HeadX = x;
     HeadY = y;
+    woody=0;
     rate = 1;
     EffectCount = 0;
     FoodBuff = 1 ;

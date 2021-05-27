@@ -67,6 +67,7 @@ public class GameOneController{
         @Override
         public Boolean call() throws Exception {
           SnakeBody tem=snakeBodyPlayer1.getSnakeBody();
+          if(tem.woody!=0)return false;
           if(tem.whatPart(tem.GetHead()).contains(SnakePart.BODY)){
             GameOver();
             return true;

@@ -97,6 +97,25 @@ public class GameTwoController{
     );
   }
 
+  public int CheckGameOver(SnakeBody snake1,SnakeBody snake2){
+    if(snake1.woody!=0&&snake2.woody!=0)return 0;
+    List<SnakePart> s1=snake1.whatPart(snake2.GetHead());
+    List<SnakePart> s2=snake2.whatPart(snake1.GetHead());
+    if (s1.contains(SnakePart.HEAD)&&s2.contains(SnakePart.HEAD)){
+      if(snake1.woody!=0)return 1;
+      if(snake2.woody!=0)return 2;
+      return 3;
+    }
+    if (s2.contains(SnakePart.BODY)) {
+      if(snake1.woody!=0)return 0;
+      return 2 ; 
+    }
+    if (s1.contains(SnakePart.BODY)) {
+      if(snake2.woody!=0)return 0;
+      return 1 ; 
+    }
+    return 0;
+  }
   // Game flow
   public void StartGame() {
     snakePlayer1.SetSnakeBody(new SnakeBody(HomeController.Player1, time, 200,200));
@@ -130,14 +149,6 @@ public class GameTwoController{
       GameTable.getChildren().add(rows);
       GameTable.getChildren().add(cols);
     }
-  }
-  public int CheckGameOver(SnakeBody snake1,SnakeBody snake2){
-    List<SnakePart> s1=snake1.whatPart(snake2.GetHead());
-    List<SnakePart> s2=snake2.whatPart(snake1.GetHead());
-    if (s1.contains(SnakePart.HEAD)&&s2.contains(SnakePart.HEAD))return 3;
-    if (s2.contains(SnakePart.BODY)) return 2 ; 
-    if (s1.contains(SnakePart.BODY)) return 1 ;
-    return 0;
   }
   // score chang / rate chang
   public void ChangedScore(int id) {
