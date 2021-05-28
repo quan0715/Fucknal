@@ -20,9 +20,9 @@ public class JackFood extends Food {
     light = new Distant(45, 45, Color.web("#575757"));
     l = new Lighting();
     l.setLight(light);
-    l.setSpecularConstant(0.4);
+    l.setSpecularConstant(0.0);
     l.setSurfaceScale(0.0);
-    l.setDiffuseConstant(1.5);
+    l.setDiffuseConstant(0.4);
     image = new Image(getClass().getResource("../img/Jack.png").toString());
     body.setFill(new ImagePattern(image));
   }

@@ -11,14 +11,18 @@ import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
 
 public class StarFood extends Food {
-  private Distant light;
+  private Distant lightY;
+  private Distant lightG;
+  private Distant lightB;
   private Lighting l;
+  private int spark = 0;
   private double SpeedUp = 1.5;
   @Override
   protected void FoodInit() {
-    light = new Distant(45, 45, Color.web("#ffee00"));
+    lightY = new Distant(45, 45, Color.web("#ffee00"));
+    lightG = new Distant(45, 45, Color.web("#0fff6e"));
+    lightB = new Distant(45, 45, Color.web("#0fc2ff"));
     l = new Lighting();
-    l.setLight(light);
     l.setSpecularConstant(1.5);
     l.setDiffuseConstant(1.5);
     l.setSurfaceScale(0.0);
@@ -31,16 +35,42 @@ public class StarFood extends Food {
     s.score += 10;
     s.SetRate(0.12 + s.GetRate() * 0.97);
     s.RateBuff(SpeedUp);
-    s.SnakeEffect(l);
     s.woody++;
-    Timeline speedup = new Timeline(new KeyFrame(Duration.millis(5000), e -> {
+    
+    Timeline SparkTimeline = new Timeline( new KeyFrame(Duration.millis(50),e ->{
+      switch(spark){
+        case 0:
+          s.SnakeEffect(null);
+          l.setLight(lightY);
+          s.SnakeEffect(l);
+          break;
+        case 1:
+          s.SnakeEffect(null);
+          l.setLight(lightB);
+          s.SnakeEffect(l);
+          break;
+        case 2:
+          s.SnakeEffect(null);
+          l.setLight(lightG);
+          s.SnakeEffect(l);
+          break;
+        case 3:
+          s.SnakeEffect(null);
+          break;
+      }
+      spark = (spark+1) % 4;
+    }));
+    Timeline speedup = new Timeline(new KeyFrame(Duration.millis(4000), e -> {
       s.SnakeEffect(null);
       s.RateNuff(SpeedUp);
+      MusicController.SuperStarFood(false);
       s.woody--;
     }));
+    SparkTimeline.setCycleCount(80);
+    SparkTimeline.play();
     speedup.setCycleCount(1);
     speedup.play();
-    MusicController.EatFoodPop();
+    MusicController.SuperStarFood(true);
     FoodGenerator.RefreshFood();
   }
   @Override
