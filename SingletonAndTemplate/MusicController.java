@@ -20,7 +20,7 @@ public class MusicController {
     EatFood = new MediaPlayer(new Media(getClass().getResource("../Music/Pop.mp3").toExternalForm()));
     GameOver = new MediaPlayer(new Media(getClass().getResource("../Music/GameOver.mp3").toExternalForm()));
     Click = new MediaPlayer(new Media(getClass().getResource("../Music/Click.mp3").toExternalForm()));
-    SuperStar = new MediaPlayer(new Media(getClass().getResource("../Music/star.m4a").toExternalForm()));
+    SuperStar = new MediaPlayer(new Media(getClass().getResource("../Music/star.mp3").toExternalForm()));
     BackGround1MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     BackGround2MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
   }
