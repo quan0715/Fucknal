@@ -1,6 +1,7 @@
 package Application.Food;
 
 
+import Application.Enum.Point;
 import Application.SingletonAndTemplate.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,6 +13,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
 
 public class IceFood extends Food {
+  public IceFood(Point p) {
+    super(p);
+  }
   private double SlowDown = 0.5;
   private Distant light ;
   private Lighting l;
@@ -28,7 +32,7 @@ public class IceFood extends Food {
   }
 
   @Override
-  protected void Ontouch(SnakeBody s) {
+  protected void OnSnakeHeadTouch(SnakeBody s) {
     s.AddNewBody();
     s.score+=10;
     s.SetRate(0.12 + s.GetRate() * 0.97);
@@ -45,5 +49,11 @@ public class IceFood extends Food {
     }));
     slowdown.setCycleCount(1);
     slowdown.play();
+  }
+
+  @Override
+  protected void OnSnakeBodyTouch(SnakeBody s) {
+    // TODO Auto-generated method stub
+    
   }
 }

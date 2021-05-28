@@ -1,6 +1,7 @@
 package Application.Food;
 
 
+import Application.Enum.Point;
 import Application.SingletonAndTemplate.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -12,6 +13,9 @@ import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
 
 public class JackFood extends Food {
+  public JackFood(Point p) {
+    super(p);
+  }
   private double SpeedUp = 2; 
   private Distant light;
   private Lighting l;
@@ -27,7 +31,7 @@ public class JackFood extends Food {
     body.setFill(new ImagePattern(image));
   }
   @Override
-  protected void Ontouch(SnakeBody s) {
+  protected void OnSnakeHeadTouch(SnakeBody s) {
     s.RateBuff(SpeedUp);
     s.SnakeEffect(l);
     Timeline speedup = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
@@ -44,5 +48,9 @@ public class JackFood extends Food {
   }
   @Override
   protected void Cast(SnakeBody s) {  
+  }
+  @Override
+  protected void OnSnakeBodyTouch(SnakeBody s) {
+    
   }
 }

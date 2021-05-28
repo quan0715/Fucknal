@@ -86,6 +86,9 @@ public class SnakeBody {
       System.out.println("fail adding new body");
     }
   }
+  public Direction GetDirection() {
+    return currentDirection;
+  }
   public Point GetBodyPosition(int id){
     return Body.get(id).GetPosition();
   }

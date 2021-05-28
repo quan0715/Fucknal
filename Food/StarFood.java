@@ -1,5 +1,6 @@
 package Application.Food;
 
+import Application.Enum.Point;
 import Application.SingletonAndTemplate.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,6 +18,9 @@ public class StarFood extends Food {
   private Lighting l;
   private int spark = 0;
   private double SpeedUp = 1.5;
+  public StarFood(Point p) {
+    super(p);
+  }
   @Override
   protected void FoodInit() {
     lightY = new Distant(45, 45, Color.web("#ffee00"));
@@ -30,7 +34,7 @@ public class StarFood extends Food {
     body.setFill(new ImagePattern(image));
   }
   @Override
-  protected void Ontouch(SnakeBody s) {
+  protected void OnSnakeHeadTouch(SnakeBody s) {
     s.AddNewBody();
     s.score += 10;
     s.SetRate(0.12 + s.GetRate() * 0.97);
@@ -75,5 +79,10 @@ public class StarFood extends Food {
   }
   @Override
   protected void Cast(SnakeBody s) {  
+  }
+  @Override
+  protected void OnSnakeBodyTouch(SnakeBody s) {
+    // TODO Auto-generated method stub
+    
   }
 }
