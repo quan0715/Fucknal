@@ -17,18 +17,23 @@ import javafx.scene.paint.ImagePattern;
 import javafx.util.Duration;
 
 public class FireFood extends Food {
-  private Distant light;
+  private Distant lightO;
+  private Distant lightY;
+  private Distant lightO1;
+  private Distant lightY1;
   private Lighting l;
-  
+  private double spark = 0;
   public FireFood(Point p) {
     super(p);
   }
 
   @Override
   protected void FoodInit() {
-    light = new Distant(45, 45, Color.web("#ff7700"));
+    lightO = new Distant(45, 25, Color.web("#ff9700"));
+    //lightY = new Distant(45, 45, Color.web("#f58b1a"));
+    //lightO1 = new Distant(45, 45, Color.web("#f28f2c"));
+    //lightY1 = new Distant(45, 45, Color.web("#e19b55"));
     l = new Lighting();
-    l.setLight(light);
     l.setSurfaceScale(0.0);
     l.setSpecularExponent(0.0);
     l.setSpecularConstant(2.0);
@@ -42,7 +47,6 @@ public class FireFood extends Food {
     s.AddNewBody();
     s.score += 10;
     s.SetRate(0.12 + s.GetRate() * 0.97);
-    s.SnakeEffect(l);
     FoodGenerator.RefreshFood();
     MusicController.EatFoodPop();
     s.setSkill(-1, new Callable<Void>(){
@@ -55,10 +59,19 @@ public class FireFood extends Food {
         return null;
       }
     });
+    spark = 25;
+    s.SnakeEffect(l);
+    Timeline SparkTimeline = new Timeline(new KeyFrame(Duration.millis(1), e -> {
+      lightO = new Distant(45, spark, Color.web("#ff9700"));
+      l.setLight(lightO);
+      spark = (spark - 25 + 0.075) % 100 + 25;
+    }));
     Timeline cancelTimeline=new Timeline(new KeyFrame(Duration.millis(5000), e->{
       s.SnakeEffect(null);
       s.setSkill(0, null);
     }));
+    SparkTimeline.setCycleCount(5000);
+    SparkTimeline.play();
     cancelTimeline.setCycleCount(1);
     cancelTimeline.play();
   }
