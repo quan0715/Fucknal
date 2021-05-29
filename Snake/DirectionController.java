@@ -10,6 +10,7 @@ import javafx.scene.input.KeyEvent;
 public class DirectionController {
   private Direction lastDirection;
   private Queue<Direction> direct;
+  private boolean CanFire;
   public DirectionController (){
     lastDirection = Direction.LEFT;
     this.direct = new LinkedList<Direction>();
@@ -20,6 +21,7 @@ public class DirectionController {
     }
     lastDirection = direction;
     direct.offer(direction);
+    CanFire = false;
   }
   public Direction NextDirection(){
     return direct.size() == 1 ? direct.peek() : direct.poll();
@@ -67,6 +69,12 @@ public class DirectionController {
       lastDirection = Direction.RIGHT;
       direct.offer(Direction.RIGHT);
     }
+  }
+  public void setCanFire(boolean t){
+    CanFire = t;
+  }
+  public boolean GetCanFire() {
+    return CanFire;
   }
 }
 

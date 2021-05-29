@@ -82,7 +82,6 @@ public class StarFood extends Food {
   }
   @Override
   protected void OnSnakeBodyTouch(SnakeBody s) {
-    // TODO Auto-generated method stub
-    
+    FoodGenerator.RefreshFood();
   }
 }

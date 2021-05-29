@@ -39,6 +39,6 @@ public class TripleFood extends Food {
   }
   @Override
   protected void OnSnakeBodyTouch(SnakeBody s) {
-    
+    FoodGenerator.RefreshFood();
   }
 }

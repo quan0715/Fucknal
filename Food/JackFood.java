@@ -51,6 +51,6 @@ public class JackFood extends Food {
   }
   @Override
   protected void OnSnakeBodyTouch(SnakeBody s) {
-    
+    FoodGenerator.RefreshFood();
   }
 }

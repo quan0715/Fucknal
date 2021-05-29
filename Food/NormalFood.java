@@ -30,6 +30,6 @@ public class NormalFood extends Food{
 
     @Override
     protected void OnSnakeBodyTouch(SnakeBody s) {
-      
+      FoodGenerator.RefreshFood();
     }
 }

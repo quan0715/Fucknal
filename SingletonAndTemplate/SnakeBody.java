@@ -151,7 +151,7 @@ public class SnakeBody {
   public void RateNuff(double buff) {
     FoodBuff *= buff;
   }
-  public void setSkill(Callable<Void> skill){
-    m_player.setSkill(skill);
+  public void setSkill(int count, Callable<Void> skill){
+    m_player.setSkill(count, skill);
   }
 }

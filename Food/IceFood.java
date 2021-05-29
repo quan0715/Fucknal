@@ -21,12 +21,13 @@ public class IceFood extends Food {
   private Lighting l;
   @Override
   protected void FoodInit() {
-    light = new Distant(45, 45, Color.web("#00ccff"));
+    light = new Distant(45, 45, Color.web("#009aff"));
     l = new Lighting();
     l.setLight(light);
     l.setSurfaceScale(0.0);
-    l.setSpecularConstant(0.4);
-    l.setDiffuseConstant(1.5);
+    l.setSpecularExponent(0.0);
+    l.setSpecularConstant(2.0);
+    l.setDiffuseConstant(2.0);
     image = new Image(getClass().getResource("../img/ice.png").toString());
     body.setFill(new ImagePattern(image));
   }
@@ -53,7 +54,6 @@ public class IceFood extends Food {
 
   @Override
   protected void OnSnakeBodyTouch(SnakeBody s) {
-    // TODO Auto-generated method stub
-    
+    FoodGenerator.RefreshFood();
   }
 }

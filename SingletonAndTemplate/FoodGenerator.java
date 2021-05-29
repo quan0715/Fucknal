@@ -77,7 +77,7 @@ public class FoodGenerator{
         break;
     }
     bullet.ChangeFoodPosition(new Point(X, Y));
-    Timeline move = new Timeline(new KeyFrame(Duration.millis(speed*0.5),e ->{
+    Timeline move = new Timeline(new KeyFrame(Duration.millis(speed*0.4),e ->{
       int x = bullet.GetFoodPosition().getX();
       int y = bullet.GetFoodPosition().getY();
       switch (d) {
@@ -96,7 +96,7 @@ public class FoodGenerator{
       }
       bullet.ChangeFoodPosition(new Point(x,y));
     }));
-    Timeline remove = new Timeline(new KeyFrame(Duration.millis(speed*0.5*31),e -> {
+    Timeline remove = new Timeline(new KeyFrame(Duration.millis(speed*0.4*31),e -> {
        GameEntityCenter.removeFood(bullet);
     }));
     move.setCycleCount(30);
