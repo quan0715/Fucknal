@@ -3,21 +3,15 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import Application.App;
 import Application.Enum.Direction;
 import Application.Enum.SnakePart;
 import Application.SingletonAndTemplate.*;
 import Application.Snake.DirectionController;
-import Application.Snake.InputController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -104,6 +98,8 @@ public class GameTwoController{
 
   public int CheckGameOver(SnakeBody snake1,SnakeBody snake2){
     if(snake1.woody!=0&&snake2.woody!=0)return 0;
+    if(snake1.getSize()==0)return 2;
+    if(snake2.getSize()==0)return 1;
     List<SnakePart> s1=snake1.whatPart(snake2.GetHead());
     List<SnakePart> s2=snake2.whatPart(snake1.GetHead());
     if (s1.contains(SnakePart.HEAD)&&s2.contains(SnakePart.HEAD)){

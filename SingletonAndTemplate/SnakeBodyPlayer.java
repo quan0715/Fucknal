@@ -17,6 +17,7 @@ public class SnakeBodyPlayer {
     private boolean stop=false;
     private Callable<Boolean> shouldStop;
     private Callable<Void> skill=null;
+    private int skillAmount=0;
     private int skillCount=0;
     public SnakeBodyPlayer(DirectionController d, int sp, Callable<Boolean> f){
         startSpeed=sp;
@@ -80,7 +81,14 @@ public class SnakeBodyPlayer {
         stop=false;
     }
     void setSkill(int count, Callable<Void> m_skill){
+        if(m_skill==null){
+            skillAmount--;
+            if(skillAmount==0)
+                skill=null;
+            return;
+        }
         skill=m_skill;
         skillCount=count;
+        skillAmount++;
     }
 }

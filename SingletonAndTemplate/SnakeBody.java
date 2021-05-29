@@ -65,6 +65,12 @@ public class SnakeBody {
     Body.get(0).ChangPosition(new Point(HeadX,HeadY));
     showOnScreen();
   }
+  public void RemoveBody(){
+    if(Body.size()>0&&woody==0){
+      GameCurrentChildrenArray.Instance.get().remove(Body.get(Body.size()-1).GetBody());
+      Body.remove(Body.get(Body.size()-1));
+    }
+  }
   public void AddNewBody(){
     if(Body.size()==0){
       try{
@@ -154,4 +160,5 @@ public class SnakeBody {
   public void setSkill(int count, Callable<Void> skill){
     m_player.setSkill(count, skill);
   }
+  public int getSize(){return Body.size();}
 }

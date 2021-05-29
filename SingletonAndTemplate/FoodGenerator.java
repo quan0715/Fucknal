@@ -82,26 +82,24 @@ public class FoodGenerator{
       int y = bullet.GetFoodPosition().getY();
       switch (d) {
         case UP:
-          y = (y + 580) % 600;
+          y -= 20;
           break;
         case DOWN:
-          y = (y + 20) % 600;
+          y += 20;
           break;
         case RIGHT:
-          x = (x + 20) % 600;
+          x += 20;
           break;
         case LEFT:
-          x = (x + 580) % 600;
+          x -= 20;
           break;
+      }
+      if(x<0||x>=600||y<0||y>=600){
+        GameEntityCenter.removeFood(bullet);
       }
       bullet.ChangeFoodPosition(new Point(x,y));
     }));
-    Timeline remove = new Timeline(new KeyFrame(Duration.millis(speed*0.4*31),e -> {
-       GameEntityCenter.removeFood(bullet);
-    }));
     move.setCycleCount(30);
     move.play();
-    remove.setCycleCount(1);
-    remove.play();
   }
 }
