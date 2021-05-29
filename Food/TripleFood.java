@@ -4,8 +4,11 @@ import Application.Enum.Point;
 import Application.SingletonAndTemplate.*;
 import Application.SingletonAndTemplate.Food;
 import Application.SingletonAndTemplate.SnakeBody;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
+import javafx.util.Duration;
 
 public class TripleFood extends Food {
   public TripleFood(Point p) {
@@ -19,14 +22,15 @@ public class TripleFood extends Food {
 
   @Override
   protected void OnSnakeHeadTouch(SnakeBody s) {
-    s.SetRate(0.12 + s.GetRate() * 0.97);
-    s.AddNewBody();
-    s.SetRate(0.12 + s.GetRate() * 0.97);
-    s.AddNewBody();
-    s.SetRate(0.12 + s.GetRate() * 0.97);
-    s.AddNewBody();
-    s.score += 30;
-    MusicController.EatFoodPop();
+    Timeline add = new Timeline( new KeyFrame(Duration.millis(500) , e -> {
+      s.SetRate(0.12 + s.GetRate() * 0.97);
+      MusicController.EatFoodPop();
+      s.AddNewBody();
+      s.score += 10;
+    }));
+    add.setCycleCount(3);
+    add.play();
+    //MusicController.EatFoodPop();
     FoodGenerator.RefreshFood();
   }
 

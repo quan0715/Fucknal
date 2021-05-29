@@ -20,7 +20,8 @@ public class SnakeBodyPlayer {
         startSpeed=sp;
         snake=new SnakeBody(HomeController.Player1, startSpeed, 300, 300);
         snake.clearOnScreen();
-        directionController=d;shouldStop=f;
+        directionController=d;
+        shouldStop=f;
         snakeTimeline=new Timeline(new KeyFrame(Duration.millis(1),e->{controll();}));
         snakeTimeline.setCycleCount(Timeline.INDEFINITE);
     }
