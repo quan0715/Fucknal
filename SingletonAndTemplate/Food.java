@@ -22,23 +22,10 @@ public abstract class Food{
     GameEntityCenter.addFood(this);
     FoodInit();
     m_event=new FoodEvent(
-      this, 
-      new MyCallable(){
-        @Override public void call(SnakeBody b){
-          OnSnakeHeadTouch(b);
-        }
-      }, new MyCallable() {
-          @Override
-          public void call(SnakeBody b) {
-            OnSnakeBodyTouch(b);
-          }
-        },
-      new MyCallable(){
-        @Override public void call(SnakeBody b){
-          Cast(b);
-        }
-      }
-    );
+      this,
+      (b)->{OnSnakeHeadTouch(b);},
+      (b)->{OnSnakeBodyTouch(b);},
+      (b)->{Cast(b);});
   }
   protected void ChangeFoodPosition(Point point){
     FoodPosition = point;

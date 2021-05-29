@@ -1,5 +1,7 @@
 package Application.Food;
 
+import java.util.concurrent.Callable;
+
 import Application.Enum.Direction;
 import Application.Enum.Point;
 import Application.SingletonAndTemplate.*;
@@ -15,7 +17,6 @@ public class FireFood extends Food {
 
   @Override
   protected void FoodInit() {
-    
     image = new Image(getClass().getResource("../img/fire.png").toString());
     body.setFill(new ImagePattern(image));
   }
@@ -25,12 +26,18 @@ public class FireFood extends Food {
     s.AddNewBody();
     s.score += 10;
     s.SetRate(0.12 + s.GetRate() * 0.97);
-    Direction d = s.GetDirection();
-    Point p = s.GetHead();
-    int sp = (int)(s.GetSpeed() * s.GetFoodBuff());
-    FoodGenerator.NewBullet(d, p, sp);
-    MusicController.EatFoodPop();
-    FoodGenerator.RefreshFood();
+    s.setSkill(new Callable<Void>(){
+      @Override
+      public Void call() throws Exception {
+        Direction d = s.GetDirection();
+        Point p = s.GetHead();
+        int sp = (int)(s.GetSpeed() * s.GetFoodBuff());
+        FoodGenerator.NewBullet(d, p, sp);
+        MusicController.EatFoodPop();
+        FoodGenerator.RefreshFood();
+        return null;
+      }
+    });
   }
   @Override
   protected void Cast(SnakeBody s) {  
