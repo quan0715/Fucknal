@@ -2,6 +2,7 @@ package Application.SingletonAndTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import Application.Enum.*;
 import javafx.collections.ObservableList;
@@ -9,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.effect.Lighting;
 
 public class SnakeBody {
+  SnakeBodyPlayer m_player;
   private ArrayList<Snake> Body;
   private Snake snakeInstance;
   private int HeadX;
@@ -148,5 +150,8 @@ public class SnakeBody {
   }
   public void RateNuff(double buff) {
     FoodBuff *= buff;
+  }
+  public void setSkill(Callable<Void> skill){
+    m_player.setSkill(skill);
   }
 }
