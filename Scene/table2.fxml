@@ -33,8 +33,6 @@
 -->
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -58,12 +56,12 @@
             <Font name="System Bold Italic" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="Score1" alignment="CENTER" layoutX="100.0" layoutY="15.0" prefHeight="27.0" prefWidth="40.0" text="0" textAlignment="CENTER" textFill="#90716a">
+      <Label fx:id="Score1" alignment="CENTER" layoutX="100.0" layoutY="15.0" prefHeight="27.0" prefWidth="40.0" text="0" textAlignment="CENTER" textFill="#90716a" AnchorPane.leftAnchor="100.0">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="Score2" alignment="CENTER" layoutX="480.0" layoutY="18.0" prefHeight="27.0" prefWidth="40.0" text="0" textAlignment="CENTER" textFill="#90716a">
+      <Label fx:id="Score2" alignment="CENTER" layoutX="480.0" layoutY="18.0" prefHeight="27.0" prefWidth="40.0" text="0" textAlignment="CENTER" textFill="#90716a" AnchorPane.rightAnchor="100.0">
          <font>
             <Font name="System Bold Italic" size="20.0" />
          </font>
@@ -93,65 +91,15 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/avocado.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/Jack.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="60.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/ice.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="60.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/star.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="40.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/bomb.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/fire.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="540.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/avocado.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="560.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/Jack.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="580.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 0.1;" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/ice.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="580.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/star.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="560.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/bomb.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="540.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" styleClass="ImageStatus">
-         <image>
-            <Image url="@../img/fire.png" />
-         </image>
-      </ImageView>
+      <Label fx:id="Skill1" alignment="CENTER" layoutX="15.0" layoutY="18.0" prefHeight="22.0" prefWidth="80.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="Skill2" alignment="CENTER" layoutX="525.0" layoutY="18.0" prefHeight="22.0" prefWidth="80.0">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

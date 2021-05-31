@@ -70,5 +70,6 @@ public class MusicController {
   public static void SetMute(boolean SoundOff){
     instance.BackGround1MediaPlayer.setMute(SoundOff);
     instance.BackGround2MediaPlayer.setMute(SoundOff);
+    instance.SuperStar.setMute(SoundOff);
   }
 }

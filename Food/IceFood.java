@@ -44,9 +44,12 @@ public class IceFood extends Food {
   protected void Cast(SnakeBody s) {
     s.RateBuff(SlowDown);
     s.SnakeEffect(l);
+    s.SkillText("Frozen", "Ice");
     Timeline slowdown = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
       s.RateNuff(SlowDown);
       s.SnakeEffect(null);
+      s.SkillText(null, "");
+
     }));
     slowdown.setCycleCount(1);
     slowdown.play();

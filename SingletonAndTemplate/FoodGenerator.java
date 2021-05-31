@@ -40,7 +40,7 @@ public class FoodGenerator{
   }
   public static void GetRandomFood(int c){
     if(c < FoodRate.get(0)){
-      instance.foods.set(0, new FireFood(Point.getrandompointGrid()));
+      instance.foods.set(0, new NormalFood(Point.getrandompointGrid()));
     }
     else if (c < FoodRate.get(1)) {
       instance.foods.set(0, new TripleFood(Point.getrandompointGrid()));

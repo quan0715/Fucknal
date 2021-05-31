@@ -34,9 +34,11 @@ public class JackFood extends Food {
   protected void OnSnakeHeadTouch(SnakeBody s) {
     s.RateBuff(SpeedUp);
     s.SnakeEffect(l);
+    s.SkillText("Angry", "Normal");
     Timeline speedup = new Timeline(new KeyFrame(Duration.millis(3000), e -> {
       s.SnakeEffect(null);
       s.RateNuff(SpeedUp);
+      s.SkillText(null, "");
     }));
     speedup.setCycleCount(1);
     speedup.play();

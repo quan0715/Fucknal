@@ -9,8 +9,10 @@ import Application.SingletonAndTemplate.*;
 import Application.Snake.DirectionController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -43,7 +45,10 @@ public class GameTwoController{
   @FXML  private Label GamePoint2;
   @FXML  private Label SnakeName1;
   @FXML  private Label SnakeName2;
+  @FXML  private Label Skill1;
+  @FXML  private Label Skill2;
   private Timeline checkScoreTimeline;
+  private Timeline SkillTextRefresh;
   public void init() {
     MusicController.PlayBackground1();
     DrawLine();
@@ -129,6 +134,9 @@ public class GameTwoController{
     GamePointRefresh(gamepoint1, gamepoint2);
     directionController1.init(Direction.UP);
     directionController2.init(Direction.DOWN);
+    SkillTextRefresh = new Timeline(new KeyFrame(Duration.millis(10), e -> {
+      SkillRefresh();
+    }));
     checkScoreTimeline=new Timeline(new KeyFrame(Duration.millis(10),e->{
       if(score1!=snakePlayer1.getSnakeBody().score)
         ChangedScore(1);
@@ -137,6 +145,8 @@ public class GameTwoController{
     }));
     checkScoreTimeline.setCycleCount(Timeline.INDEFINITE);
     checkScoreTimeline.play();
+    SkillTextRefresh.setCycleCount(Timeline.INDEFINITE);
+    SkillTextRefresh.play();
   }
   /// initializable method
   public void DrawLine() {
@@ -161,7 +171,12 @@ public class GameTwoController{
     } 
     ScoreRefresh(score1, score2);
   }
-  
+  public void SkillRefresh(){
+    Skill1.setText(snakePlayer1.getSnakeBody().getSkillText());
+    Skill1.setId(snakePlayer1.getSnakeBody().getSkillTextId());
+    Skill2.setText(snakePlayer2.getSnakeBody().getSkillText());
+    Skill2.setId(snakePlayer2.getSnakeBody().getSkillTextId());
+  }
   public void ScoreRefresh(int score1 ,int score2){
     Score1.setText(Integer.toString(score1));
     Score2.setText(Integer.toString(score2));
@@ -207,11 +222,12 @@ public class GameTwoController{
     }
   }
   public void setAlertText(String text , String Id){
-    GameTable.getChildren().remove(AlertText);
+    ObservableList<Node> children = GameCurrentChildrenArray.Instance.get();
+    children.remove(AlertText);
     AlertText.setText(text);
     AlertText.setAlignment(Pos.CENTER);
     AlertText.setId(Id);
-    GameTable.getChildren().add(AlertText);
+    children.add(AlertText);
   }
 
   public void GetPinName(String name) {
