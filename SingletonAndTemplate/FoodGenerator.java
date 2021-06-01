@@ -102,4 +102,6 @@ public class FoodGenerator{
     move.setCycleCount(30);
     move.play();
   }
+  public static void NewBomb(Point getHead) {
+  }
 }

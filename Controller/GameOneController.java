@@ -10,7 +10,6 @@ import Application.App;
 import Application.Enum.Direction;
 import Application.Enum.SnakePart;
 import Application.SingletonAndTemplate.*;
-import Application.Snake.DirectionController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -30,7 +29,6 @@ public class GameOneController{
   //private int windowHeight = 600;
   private int GridWidth = 20;
   private int time = 170;
-  private double rate = 1.0;
   private String Username;
   private int score = 0;
   private boolean CanPlayNewGame = true;
@@ -128,14 +126,12 @@ public class GameOneController{
     } catch (IOException e) {
       e.printStackTrace();
     }
-    System.out.println(score / 10 + " " + rate);
     ScoreText.setText("Score : " + score);
     RecordS.setText("Record : "+ record);
   }
   //next game set
   public void GameOver() {
     snakeBodyPlayer1.getSnakeBody().clearOnScreen();
-    rate = 1.0;
     FoodGenerator.getFood().clearOnScreen();
     setAlertText("Game Over\n\nTAP ENTER TO START NEW GAME", "Alert");
     MusicController.GameOverSound();

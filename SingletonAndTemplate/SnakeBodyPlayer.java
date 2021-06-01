@@ -3,7 +3,6 @@ package Application.SingletonAndTemplate;
 import java.util.concurrent.Callable;
 
 import Application.Controller.HomeController;
-import Application.Snake.DirectionController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;

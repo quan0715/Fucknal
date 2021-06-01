@@ -1,4 +1,4 @@
-package Application.Snake;
+package Application.SingletonAndTemplate;
 
 import java.util.LinkedList;
 import java.util.Queue;

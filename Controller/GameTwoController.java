@@ -6,7 +6,6 @@ import java.util.concurrent.Callable;
 import Application.Enum.Direction;
 import Application.Enum.SnakePart;
 import Application.SingletonAndTemplate.*;
-import Application.Snake.DirectionController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;

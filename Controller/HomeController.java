@@ -38,7 +38,6 @@ public class HomeController implements Initializable{
     MusicController.ButtonClickSound();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/table.fxml"));
     String PinName = GamePin.getText();
-    System.out.println(PinName);
     Parent root = loader.load();
     Scene scene = new Scene(root);
     App.stage.setScene(scene);
@@ -60,8 +59,6 @@ public class HomeController implements Initializable{
   public void SwitchChoseSnake() throws IOException {
     MusicController.ButtonClickSound();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/SnakeControl.fxml"));
-    String PinName = GamePin.getText();
-    System.out.println(PinName);
     Parent root = loader.load();
     Scene scene = new Scene(root);
     ChoseSnakeController controller=loader.getController();
@@ -73,7 +70,6 @@ public class HomeController implements Initializable{
     MusicController.ButtonClickSound();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/table2.fxml"));
     String PinName = GamePin.getText();
-    System.out.println(PinName);
     Parent root = loader.load();
     Scene scene = new Scene(root);
     App.stage.setScene(scene);
