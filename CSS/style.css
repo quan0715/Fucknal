@@ -36,6 +36,15 @@
     -fx-font-family: 'JackeyFont';
      -fx-text-fill :#AA0000;
 }
+#Ice{
+    -fx-text-fill : #62c0ff;
+}
+#Fire{
+    -fx-text-fill : #ff9700;
+}
+#Star{
+    -fx-text-fill : #ffee00;
+}
 .ImageStatus{
     -fx-opacity : 0.1;
 }

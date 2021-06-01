@@ -41,6 +41,7 @@ public class FireFood extends Food {
     s.AddNewBody();
     s.score += 10;
     s.SetRate(0.12 + s.GetRate() * 0.97);
+    s.SkillText("On Fire!", "Fire");
     FoodGenerator.RefreshFood();
     MusicController.EatFoodPop();
     s.setSkill(-1, new Callable<Void>(){
@@ -56,6 +57,7 @@ public class FireFood extends Food {
     Timeline cancelTimeline=new Timeline(new KeyFrame(Duration.millis(5000), e->{
       s.SnakeEffect(null);
       s.setSkill(0, null);
+      s.SkillText(null, "");
     }));
     cancelTimeline.setCycleCount(1);
     cancelTimeline.play();

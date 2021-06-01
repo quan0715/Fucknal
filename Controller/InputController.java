@@ -45,7 +45,6 @@ public class InputController{
   public void init(){
     GamePause = false;
     NewGame = true;
-   
   }
   public boolean GameTwoFlow(KeyEvent event) throws IOException{
     KeyCode key = event.getCode();
@@ -73,18 +72,46 @@ public class InputController{
        //StartGame();
     }
     if (GameContinue()) {
-      d1.Direction1(event);
-      d2.Direction2(event);
+      d1.Direction1(key);
+      d2.Direction2(key);
     }
     if(key == KeyCode.Q){
       d1.setCanFire(true);
     }
-    if (key == KeyCode.CONTROL) {
+    if (key == KeyCode.P) {
       d2.setCanFire(true);
     }
     return false;
   }
 
+  public boolean GameOneFlow(KeyEvent event) throws IOException {
+    KeyCode key = event.getCode();
+    if (key == KeyCode.H) {
+      s1.stop();
+      BackToHomePage();
+    }
+    if (key == KeyCode.SPACE) {
+      if (GameContinue()) {
+        s1.pause();
+        setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", "Normal");
+        GamePause = true;
+      } else if (GameIsPause()) {
+        s1.play();
+        setAlertText("", "Normal");
+        GamePause = false;
+      }
+    }
+    if (key == KeyCode.ENTER && NewGame) {
+      return true;
+    }
+    if (GameContinue()) {
+      d1.Direction3(key);
+    }
+    if (key == KeyCode.Q) {
+      d1.setCanFire(true);
+    }
+    return false;
+  }
   private boolean GameContinue(){
     return !NewGame && !GamePause ;
   }

@@ -6,19 +6,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
-import Application.App;
 import Application.Enum.Direction;
 import Application.Enum.SnakePart;
 import Application.SingletonAndTemplate.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -31,11 +26,10 @@ public class GameOneController{
   private int time = 170;
   private String Username;
   private int score = 0;
-  private boolean CanPlayNewGame = true;
-  private boolean PauseGame = false;
   private SnakeBodyPlayer snakeBodyPlayer1;
   private DirectionController directionController;
   private Timeline checkScoreTimeline;
+  private InputController input;
   private int record;
   @FXML private AnchorPane GameTable;
   @FXML private Label ScoreText;
@@ -79,12 +73,13 @@ public class GameOneController{
     }));
     checkScoreTimeline.setCycleCount(Timeline.INDEFINITE);
     checkScoreTimeline.play();
+    input = new InputController(AlertText,snakeBodyPlayer1,directionController);
   }
   // Game flow
   public void StartGame(){
     snakeBodyPlayer1.SetSnakeBody(new SnakeBody(HomeController.Player1, time, 300, 300));
     directionController.init(Direction.RIGHT);
-    CanPlayNewGame = false;
+    input.SetNewGame(false);
     AlertText.setText("");
     score = 0;
     ScoreText.setText("Score : " + score);
@@ -135,7 +130,8 @@ public class GameOneController{
     FoodGenerator.getFood().clearOnScreen();
     setAlertText("Game Over\n\nTAP ENTER TO START NEW GAME", "Alert");
     MusicController.GameOverSound();
-    CanPlayNewGame = true;
+    input.SetNewGame(true);
+
   }
   public void GetPinName(String name){
     String DefaultName = "JACK";
@@ -153,32 +149,8 @@ public class GameOneController{
   }
 
   public void KeyEven(KeyEvent event) throws IOException{
-    KeyCode key = event.getCode();
-    if (key == KeyCode.H) {
-      snakeBodyPlayer1.stop();
-      BackToHomePage(event);
+    if(input.GameOneFlow(event)){
+      StartGame();
     }
-    if (key == KeyCode.ENTER && CanPlayNewGame) StartGame();
-      if (key == KeyCode.SPACE && !PauseGame && !CanPlayNewGame) {
-      snakeBodyPlayer1.pause();
-      setAlertText("TAP SPACE --> CONTINUE THE GAME\n\nTAP H --> RETURN HOME PAGE", "Normal");
-      PauseGame = true;
-    } 
-    else if (key == KeyCode.SPACE && PauseGame && !CanPlayNewGame) {
-      snakeBodyPlayer1.play();
-      setAlertText("", "Normal");
-      PauseGame = false;
-    }
-    // snake1
-    if (!CanPlayNewGame && !PauseGame) {
-      directionController.Direction2(event);
-    }
-  }
-  
-  public void BackToHomePage(KeyEvent e) throws IOException {
-    MusicController.StopBackground1();
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/Home.fxml"));
-    Parent root = loader.load();
-    App.stage.setScene(new Scene(root));
   }
 }

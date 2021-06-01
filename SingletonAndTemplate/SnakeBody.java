@@ -24,6 +24,9 @@ public class SnakeBody {
   private int speed;
   private double rate;
   private double FoodBuff;
+  private int TextCount = 0;
+  private String Skill = "";
+  private String Id = "";
   public int score;
   public int woody=0;
   public SnakeBody(Snake instance,int startSpeed, int x,int y) {
@@ -32,6 +35,7 @@ public class SnakeBody {
     woody=0;
     rate = 1;
     EffectCount = 0;
+    TextCount = 0;
     FoodBuff = 1 ;
     speed=this.startSpeed=startSpeed;
     currentDirection=Direction.RIGHT;
@@ -161,4 +165,25 @@ public class SnakeBody {
     m_player.setSkill(count, skill);
   }
   public int getSize(){return Body.size();}
+  public void SkillText(String text,String Id) {
+    if(text == null){
+      TextCount--;
+      if(TextCount <= 0){
+        TextCount = 0;
+        this.Skill = "";
+        this.Id = "";
+      }
+    }
+    else{
+      TextCount++;
+      this.Skill = text;
+      this.Id = Id;
+    }
+  }
+  public String getSkillText(){
+    return Skill;
+  }
+  public String getSkillTextId() {
+    return Id;
+  }
 }

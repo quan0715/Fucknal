@@ -40,7 +40,7 @@ public class StarFood extends Food {
     s.SetRate(0.12 + s.GetRate() * 0.97);
     s.RateBuff(SpeedUp);
     s.woody++;
-    
+    s.SkillText("SUPER", "Star");
     Timeline SparkTimeline = new Timeline( new KeyFrame(Duration.millis(50),e ->{
       switch(spark){
         case 0:
@@ -68,6 +68,7 @@ public class StarFood extends Food {
       s.SnakeEffect(null);
       s.RateNuff(SpeedUp);
       MusicController.SuperStarFood(false);
+      s.SkillText(null,"");
       s.woody--;
     }));
     SparkTimeline.setCycleCount(80);
