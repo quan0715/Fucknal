@@ -2,6 +2,7 @@ package Application.Food;
 
 import Application.Enum.Point;
 import Application.SingletonAndTemplate.Food;
+import Application.SingletonAndTemplate.MusicController;
 import Application.SingletonAndTemplate.SnakeBody;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
@@ -12,8 +13,9 @@ public class Bomb extends Food {
     }
     @Override
     protected void FoodInit() {
-    //   image = new Image(getClass().getResource("../img/FireBullet.png").toString());
-    //   body.setFill(new ImagePattern(image));
+      image = new Image(getClass().getResource("../img/TNT.png").toString());
+      body.setFill(new ImagePattern(image));
+      MusicController.Boom();
     }
   
     @Override

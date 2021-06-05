@@ -22,9 +22,9 @@ public class TripleFood extends Food {
   @Override
   protected void OnSnakeHeadTouch(SnakeBody s) {
     s.SkillText("BIG", "Normal");
+    MusicController.GrowingUp();
     Timeline add = new Timeline( new KeyFrame(Duration.millis(500) , e -> {
       s.SetRate(0.12 + s.GetRate() * 0.97);
-      MusicController.EatFoodPop();
       s.AddNewBody();
       s.score += 10;
     }));

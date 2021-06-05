@@ -19,8 +19,8 @@ public class BombFood extends Food {
     }
     @Override
     protected void FoodInit() {
-        //   image = new Image(getClass().getResource("../img/FireBullet.png").toString());
-        //   body.setFill(new ImagePattern(image));
+        image = new Image(getClass().getResource("../img/Bomb.png").toString());
+        body.setFill(new ImagePattern(image));
     }
   
     @Override
