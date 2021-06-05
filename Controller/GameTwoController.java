@@ -216,6 +216,7 @@ public class GameTwoController{
       }
       MusicController.GameOverSound();
       GamePointRefresh(gamepoint1, gamepoint2);
+      FoodGenerator.RemoveAllFood();
       FoodGenerator.getFood().clearOnScreen();
       input.SetNewGame(true);
     }

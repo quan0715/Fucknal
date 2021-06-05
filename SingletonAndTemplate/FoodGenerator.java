@@ -1,5 +1,6 @@
 package Application.SingletonAndTemplate;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -36,6 +37,12 @@ public class FoodGenerator{
     foods.add(new NormalFood(Point.getrandompointGrid()));
   }
   public static Food getFood(){return instance.foods.get(0);}
+  public static void RemoveAllFood(){
+    for(Food f:instance.foods)GameEntityCenter.removeFood(f);
+    Food one=instance.foods.get(0);
+    instance.foods.clear();
+    instance.foods.add(one);
+  }
   public static void RefreshFood(){
     GameEntityCenter.removeFood(instance.foods.get(0));
     GetRandomFood(random.nextInt(100));
@@ -62,6 +69,7 @@ public class FoodGenerator{
   }
   public static void NewBullet(Direction d,Point p,int speed){
     final FireBullet bullet = new FireBullet(p);
+    instance.foods.add(bullet);
     int X = p.getX();
     int Y = p.getY();
     switch (d) {
@@ -97,6 +105,7 @@ public class FoodGenerator{
           break;
       }
       if(x<0||x>=600||y<0||y>=600){
+        instance.foods.remove(bullet);
         GameEntityCenter.removeFood(bullet);
       }
       bullet.ChangeFoodPosition(new Point(x,y));
@@ -124,7 +133,7 @@ public class FoodGenerator{
       }
       p.setX((600+p.getX()+x)%600);
       p.setY((600+p.getY()+y)%600);
-      new Bomb(p);
+      instance.foods.add(new Bomb(p));
     }
   }
 }
