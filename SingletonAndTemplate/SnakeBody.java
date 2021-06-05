@@ -107,10 +107,7 @@ public class SnakeBody {
   public Point GetHead(){
     return new Point(HeadX,HeadY);
   }
-  public double GetRate(){
-    return rate;
-  }
-  public int GetSpeed(){return (int)(startSpeed*rate*FoodBuff);}
+  public int GetSpeed(){return (int)(startSpeed/FoodBuff/rate);}
   public void clearOnScreen() {
     ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
     for (Snake snake : Body) children.remove(snake.GetBody());
@@ -149,10 +146,10 @@ public class SnakeBody {
     }
   }
   public void RateBuff(double buff){
-    FoodBuff /= buff;
+    FoodBuff *= buff;
   }
   public void RateNuff(double buff) {
-    FoodBuff *= buff;
+    FoodBuff /= buff;
   }
   public void ScoreUp(){
     score+=10;
