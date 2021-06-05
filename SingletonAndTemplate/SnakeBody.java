@@ -66,7 +66,7 @@ public class SnakeBody {
       Body.get(i).ChangPosition(GetBodyPosition(i - 1));
     }
     Body.get(0).ChangPosition(new Point(HeadX,HeadY));
-    showOnScreen();
+    if(GameEntityCenter.contain(this))showOnScreen();
   }
   public void RemoveBody(){
     if(Body.size()>0&&woody==0){
@@ -92,7 +92,8 @@ public class SnakeBody {
       Snake bod=snakeInstance.getClass().getDeclaredConstructor().newInstance();
       bod.InitialSnakeBody(new Point(x, y));
       bod.SnakeEffect(l);
-      Body.add(bod);}
+      Body.add(bod);
+    }
     catch(Exception e){
       System.out.println("fail adding new body");
     }

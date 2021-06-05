@@ -27,7 +27,7 @@ public class Bomb extends Food {
     protected void OnSnakeBodyTouch(SnakeBody s) {
       for(int i=0;i<3;i++){
         s.RemoveBody();
-        s.ScoreUp();
+        s.ScoreDown();
       }
     }
   }
