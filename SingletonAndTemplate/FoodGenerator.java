@@ -37,7 +37,7 @@ public class FoodGenerator{
     foods.add(new NormalFood(Point.getrandompointGrid()));
   }
   public static Food getFood(){return instance.foods.get(0);}
-  public static void RemoveAllFood(){
+  public static void RemoveAllExtraFood(){
     for(Food f:instance.foods)GameEntityCenter.removeFood(f);
     Food one=instance.foods.get(0);
     instance.foods.clear();

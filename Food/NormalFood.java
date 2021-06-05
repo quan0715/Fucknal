@@ -22,8 +22,7 @@ public class NormalFood extends Food{
     @Override
     protected void OnSnakeHeadTouch(SnakeBody s) {
       s.AddNewBody();
-      s.score+=10;
-      s.SetRate(0.12+s.GetRate()*0.97);
+      s.ScoreUp();
       s.SkillText("JACK","Normal");
       Timeline text = new Timeline(new KeyFrame(Duration.millis(2000), e -> {
         s.SkillText(null,null);

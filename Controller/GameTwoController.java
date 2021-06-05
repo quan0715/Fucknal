@@ -137,9 +137,9 @@ public class GameTwoController{
       SkillRefresh();
     }));
     checkScoreTimeline=new Timeline(new KeyFrame(Duration.millis(10),e->{
-      if(score1!=snakePlayer1.getSnakeBody().score)
+      if(score1!=snakePlayer1.getSnakeBody().GetScore())
         ChangedScore(1);
-      if(score2!=snakePlayer2.getSnakeBody().score)
+      if(score2!=snakePlayer2.getSnakeBody().GetScore())
         ChangedScore(2);
     }));
     checkScoreTimeline.setCycleCount(Timeline.INDEFINITE);
@@ -163,10 +163,10 @@ public class GameTwoController{
   // score chang / rate chang
   public void ChangedScore(int id) {
     if(id==1) {
-      score1=snakePlayer1.getSnakeBody().score;
+      score1=snakePlayer1.getSnakeBody().GetScore();
     }
     else {
-      score2=snakePlayer2.getSnakeBody().score;
+      score2=snakePlayer2.getSnakeBody().GetScore();
     } 
     ScoreRefresh(score1, score2);
   }
@@ -216,7 +216,7 @@ public class GameTwoController{
       }
       MusicController.GameOverSound();
       GamePointRefresh(gamepoint1, gamepoint2);
-      FoodGenerator.RemoveAllFood();
+      FoodGenerator.RemoveAllExtraFood();
       FoodGenerator.getFood().clearOnScreen();
       input.SetNewGame(true);
     }

@@ -69,7 +69,7 @@ public class GameOneController{
       }
     );
     checkScoreTimeline=new Timeline(new KeyFrame(Duration.millis(10),e->{
-      if(score!=snakeBodyPlayer1.getSnakeBody().score)ChangedScore();
+      if(score!=snakeBodyPlayer1.getSnakeBody().GetScore())ChangedScore();
     }));
     checkScoreTimeline.setCycleCount(Timeline.INDEFINITE);
     checkScoreTimeline.play();
@@ -115,7 +115,7 @@ public class GameOneController{
   }
   // score chang / rate chang
   public void ChangedScore() {
-    score=snakeBodyPlayer1.getSnakeBody().score;
+    score=snakeBodyPlayer1.getSnakeBody().GetScore();
     try {
       CheckScoreRecord(score);
     } catch (IOException e) {
