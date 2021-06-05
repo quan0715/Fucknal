@@ -13,6 +13,7 @@ public class MusicController {
   private MediaPlayer GameOver;
   private MediaPlayer Click;
   private MediaPlayer Growing;
+  private MediaPlayer Throwing;
   private Media TNT;
   private MediaPlayer SuperStar;
   private static int woody = 0;
@@ -25,18 +26,24 @@ public class MusicController {
     SuperStar = new MediaPlayer(new Media(getClass().getResource("../Music/star.mp3").toExternalForm()));
     Growing = new MediaPlayer(new Media(getClass().getResource("../Music/ban.mp3").toExternalForm()));
     TNT = new Media(getClass().getResource("../Music/TnT.mp3").toExternalForm());
-
+    Throwing = new MediaPlayer(new Media(getClass().getResource("../Music/Fireballs.mp3").toExternalForm()));
     BackGround1MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     BackGround2MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
   }
+  public static void FireTrowing(){
+    instance.Throwing.seek(Duration.millis(350));
+    instance.Throwing.play();
+  }
+  public static void boomSoundPlay(MediaPlayer q) {
+    q.seek(Duration.millis(100));
+    q.play();
+  }
   
-  public static void Boom() {
-    MediaPlayer t = new MediaPlayer(instance.TNT);
-    t.seek(Duration.millis(0));
-    t.play();
+  public static void boom(MediaPlayer q) {
+    q.seek(Duration.millis(4100));
   }
   public static void GrowingUp(){
-    instance.Growing.seek(Duration.millis(300));
+    instance.Growing.seek(Duration.millis(700));
     instance.Growing.play();
   }
   public static void PlayBackground1(){

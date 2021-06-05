@@ -69,6 +69,7 @@ public class FoodGenerator{
   public static void NewBullet(Direction d,Point p,int speed){
     final FireBullet bullet = new FireBullet(p);
     instance.foods.add(bullet);
+    MusicController.FireTrowing();
     int X = p.getX();
     int Y = p.getY();
     switch (d) {
@@ -134,7 +135,8 @@ public class FoodGenerator{
       p.setY((600+p.getY()+y)%600);
       Bomb m_bomb=new Bomb(p);
       instance.foods.add(m_bomb);
-      Timeline cancelTimeline=new Timeline(new KeyFrame(Duration.millis(7000),ev -> {
+      
+      Timeline cancelTimeline=new Timeline(new KeyFrame(Duration.millis(4600),ev -> {
         if(instance.foods.contains(m_bomb))instance.foods.remove(m_bomb);
         GameEntityCenter.removeFood(m_bomb);
       }));
