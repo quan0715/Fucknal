@@ -5,6 +5,7 @@ import java.util.concurrent.Callable;
 import Application.Enum.Point;
 import Application.SingletonAndTemplate.Food;
 import Application.SingletonAndTemplate.FoodGenerator;
+import Application.SingletonAndTemplate.MusicController;
 import Application.SingletonAndTemplate.SnakeBody;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -27,10 +28,15 @@ public class BombFood extends Food {
     }
     @Override
     protected void OnSnakeHeadTouch(SnakeBody s) {
+        s.AddNewBody();
+        s.score+=10;
+        s.SetRate(0.12 + s.GetRate() * 0.97);
+        MusicController.EatFoodPop();
+        FoodGenerator.RefreshFood();
         s.setSkill(3, new Callable<Void>(){
             @Override
             public Void call() throws Exception {
-                FoodGenerator.NewBomb(s.GetHead());
+                FoodGenerator.NewBomb(s);
                 return null;
             }
         });

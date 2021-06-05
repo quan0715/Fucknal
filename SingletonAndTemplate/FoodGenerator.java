@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import Application.Enum.Direction;
 import Application.Enum.Point;
+import Application.Food.BombFood;
 import Application.Food.FireBullet;
 import Application.Food.FireFood;
 import Application.Food.IceFood;
@@ -40,7 +41,7 @@ public class FoodGenerator{
   }
   public static void GetRandomFood(int c){
     if(c < FoodRate.get(0)){
-      instance.foods.set(0, new NormalFood(Point.getrandompointGrid()));
+      instance.foods.set(0, new BombFood(Point.getrandompointGrid()));
     }
     else if (c < FoodRate.get(1)) {
       instance.foods.set(0, new TripleFood(Point.getrandompointGrid()));
@@ -102,6 +103,6 @@ public class FoodGenerator{
     move.setCycleCount(30);
     move.play();
   }
-  public static void NewBomb(Point getHead) {
+  public static void NewBomb(SnakeBody snake) {
   }
 }
