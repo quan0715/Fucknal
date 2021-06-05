@@ -26,7 +26,6 @@ public class FireBullet extends Food {
   @Override
   protected void OnSnakeBodyTouch(SnakeBody s) {
     s.RemoveBody();
-    s.score-=10;
-    s.SetRate((s.GetRate() - 0.12) / 0.97);
+    s.ScoreDown();
   }
 }

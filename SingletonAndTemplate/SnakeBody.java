@@ -21,13 +21,12 @@ public class SnakeBody {
   private final int WidthLimit = 600;
   private Direction currentDirection;
   private int startSpeed;
-  private int speed;
   private double rate;
   private double FoodBuff;
   private int TextCount = 0;
   private String Skill = "";
   private String Id = "";
-  public int score;
+  private int score;
   public int woody=0;
   public SnakeBody(Snake instance,int startSpeed, int x,int y) {
     HeadX = x;
@@ -37,7 +36,7 @@ public class SnakeBody {
     EffectCount = 0;
     TextCount = 0;
     FoodBuff = 1 ;
-    speed=this.startSpeed=startSpeed;
+    this.startSpeed=startSpeed;
     currentDirection=Direction.RIGHT;
     Body = new ArrayList<Snake>();
     snakeInstance=instance;
@@ -67,7 +66,7 @@ public class SnakeBody {
       Body.get(i).ChangPosition(GetBodyPosition(i - 1));
     }
     Body.get(0).ChangPosition(new Point(HeadX,HeadY));
-    showOnScreen();
+    if(GameEntityCenter.contain(this))showOnScreen();
   }
   public void RemoveBody(){
     if(Body.size()>0&&woody==0){
@@ -93,7 +92,8 @@ public class SnakeBody {
       Snake bod=snakeInstance.getClass().getDeclaredConstructor().newInstance();
       bod.InitialSnakeBody(new Point(x, y));
       bod.SnakeEffect(l);
-      Body.add(bod);}
+      Body.add(bod);
+    }
     catch(Exception e){
       System.out.println("fail adding new body");
     }
@@ -107,14 +107,10 @@ public class SnakeBody {
   public Point GetHead(){
     return new Point(HeadX,HeadY);
   }
-  public void SetRate(double rate){
-    this.rate=rate;
-    speed=(int)(startSpeed/rate);
-  }
   public double GetRate(){
     return rate;
   }
-  public int GetSpeed(){return speed;}
+  public int GetSpeed(){return (int)(startSpeed*rate*FoodBuff);}
   public void clearOnScreen() {
     ObservableList<Node> children=GameCurrentChildrenArray.Instance.get();
     for (Snake snake : Body) children.remove(snake.GetBody());
@@ -152,14 +148,22 @@ public class SnakeBody {
       }
     }
   }
-  public double GetFoodBuff(){
-    return FoodBuff;
-  }
   public void RateBuff(double buff){
     FoodBuff /= buff;
   }
   public void RateNuff(double buff) {
     FoodBuff *= buff;
+  }
+  public void ScoreUp(){
+    score+=10;
+    rate=0.12 + rate * 0.97;
+  }
+  public void ScoreDown(){
+    score-=10;
+    rate=(rate - 0.12) / 0.97;
+  }
+  public int GetScore(){
+    return score;
   }
   public void setSkill(int count, Callable<Void> skill){
     m_player.setSkill(count, skill);

@@ -39,8 +39,7 @@ public class FireFood extends Food {
   @Override
   protected void OnSnakeHeadTouch(SnakeBody s) {
     s.AddNewBody();
-    s.score += 10;
-    s.SetRate(0.12 + s.GetRate() * 0.97);
+    s.ScoreUp();
     s.SkillText("On Fire!", "Fire");
     FoodGenerator.RefreshFood();
     MusicController.EatFoodPop();
@@ -49,7 +48,7 @@ public class FireFood extends Food {
       public Void call() throws Exception {
         Direction d = s.GetDirection();
         Point p = s.GetHead();
-        int sp = (int)(s.GetSpeed() * s.GetFoodBuff());
+        int sp = s.GetSpeed();
         FoodGenerator.NewBullet(d, p, sp);
         return null;
       }
