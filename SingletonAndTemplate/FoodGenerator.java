@@ -48,10 +48,10 @@ public class FoodGenerator{
   }
   public static void GetRandomFood(int c){
     if(c < FoodRate.get(0)){
-      instance.foods.set(0, new BombFood(Point.getrandompointGrid()));
+      instance.foods.set(0, new TripleFood(Point.getrandompointGrid()));
     }
     else if (c < FoodRate.get(1)) {
-      instance.foods.set(0, new TripleFood(Point.getrandompointGrid()));
+      instance.foods.set(0, new BombFood(Point.getrandompointGrid()));
     }
     else if (c <= FoodRate.get(2)) {
       instance.foods.set(0, new FireFood(Point.getrandompointGrid()));
@@ -104,7 +104,7 @@ public class FoodGenerator{
           break;
       }
       if(x<0||x>=600||y<0||y>=600){
-        instance.foods.remove(bullet);
+        if(instance.foods.contains(bullet))instance.foods.remove(bullet);
         GameEntityCenter.removeFood(bullet);
       }
       bullet.ChangeFoodPosition(new Point(x,y));
@@ -132,7 +132,14 @@ public class FoodGenerator{
       }
       p.setX((600+p.getX()+x)%600);
       p.setY((600+p.getY()+y)%600);
-      instance.foods.add(new Bomb(p));
+      Bomb m_bomb=new Bomb(p);
+      instance.foods.add(m_bomb);
+      Timeline cancelTimeline=new Timeline(new KeyFrame(Duration.millis(7000),ev -> {
+        if(instance.foods.contains(m_bomb))instance.foods.remove(m_bomb);
+        GameEntityCenter.removeFood(m_bomb);
+      }));
+      cancelTimeline.setCycleCount(1);
+      cancelTimeline.play();
     }
   }
 }
