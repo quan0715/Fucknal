@@ -10,6 +10,7 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 import Application.Enum.Direction;
 import Application.Enum.Point;
+import Application.Food.Bomb;
 import Application.Food.BombFood;
 import Application.Food.FireBullet;
 import Application.Food.FireFood;
@@ -104,5 +105,26 @@ public class FoodGenerator{
     move.play();
   }
   public static void NewBomb(SnakeBody snake) {
+    for(SnakeBody s:GameEntityCenter.GetOtherSnakes(snake)){
+      Direction d = s.GetDirection();
+      Point p=new Point(s.GetHead().getX(),s.GetHead().getY());
+      int x=0,y=0;
+      switch(d){
+        case UP:
+          y = -80;
+          break;
+        case DOWN:
+          y = 80;
+          break;
+        case RIGHT:
+          x = 80;
+          break;
+        case LEFT:
+          x = -80;
+      }
+      p.setX((600+p.getX()+x)%600);
+      p.setY((600+p.getY()+y)%600);
+      new Bomb(p);
+    }
   }
 }
