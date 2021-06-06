@@ -2,6 +2,7 @@ package Application.Food;
 
 import Application.Enum.Point;
 import Application.SingletonAndTemplate.Food;
+import Application.SingletonAndTemplate.GameEntityCenter;
 import Application.SingletonAndTemplate.MusicController;
 import Application.SingletonAndTemplate.SnakeBody;
 import Application.SingletonAndTemplate.boomPlayer;
@@ -18,7 +19,6 @@ public class Bomb extends Food {
   private Distant lightW;
   private Lighting l;
   private Timeline ef;
-  private int Case = 0;
   private int count = 0;
   private int speed = 400;
   private boomPlayer m_boomPlayer;
@@ -33,7 +33,6 @@ public class Bomb extends Food {
     lightW = new Distant(45,45,Color.WHITE);
     image = new Image(getClass().getResource("../img/TNT.png").toString());
     body.setFill(new ImagePattern(image));
-    Case = 0;
     count = 0;
     l = new Lighting(lightW);
     l.setSurfaceScale(0.0);
@@ -43,6 +42,7 @@ public class Bomb extends Food {
     body.setEffect(l);
     m_boomPlayer=MusicController.newboom();
     ef = new Timeline(new KeyFrame(Duration.millis(1),e ->{
+      if(!GameEntityCenter.contain(this))ef.stop();
       count++;
       lifeCounter++;
       if(count>=speed*0.4)l.setSpecularExponent(40);
