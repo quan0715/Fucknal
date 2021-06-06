@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import Application.Food.TripleFood;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -48,7 +47,7 @@ public class FoodGenerator{
   }
   public static void GetRandomFood(int c){
     if(c < FoodRate.get(0)){
-      instance.foods.set(0, new TripleFood(Point.getrandompointGrid()));
+      instance.foods.set(0, new BombFood(Point.getrandompointGrid()));
     }
     else if (c < FoodRate.get(1)) {
       instance.foods.set(0, new BombFood(Point.getrandompointGrid()));
@@ -114,6 +113,7 @@ public class FoodGenerator{
     move.play();
   }
   public static void NewBomb(SnakeBody snake) {
+    double duration=4600;
     for(SnakeBody s:GameEntityCenter.GetOtherSnakes(snake)){
       Direction d = s.GetDirection();
       Point p=new Point(s.GetHead().getX(),s.GetHead().getY());
@@ -133,10 +133,10 @@ public class FoodGenerator{
       }
       p.setX((600+p.getX()+x)%600);
       p.setY((600+p.getY()+y)%600);
-      Bomb m_bomb=new Bomb(p);
+      Bomb m_bomb=new Bomb(p,duration);
       instance.foods.add(m_bomb);
       
-      Timeline cancelTimeline=new Timeline(new KeyFrame(Duration.millis(4600),ev -> {
+      Timeline cancelTimeline=new Timeline(new KeyFrame(Duration.millis(duration),ev -> {
         if(instance.foods.contains(m_bomb))instance.foods.remove(m_bomb);
         GameEntityCenter.removeFood(m_bomb);
       }));

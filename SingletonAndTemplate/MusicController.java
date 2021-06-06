@@ -34,14 +34,10 @@ public class MusicController {
     instance.Throwing.seek(Duration.millis(350));
     instance.Throwing.play();
   }
-  public static void boomSoundPlay(MediaPlayer q) {
-    q.seek(Duration.millis(100));
-    q.play();
+  public static boomPlayer newboom() {
+    return new boomPlayer(instance.TNT);
   }
   
-  public static void boom(MediaPlayer q) {
-    q.seek(Duration.millis(4100));
-  }
   public static void GrowingUp(){
     instance.Growing.seek(Duration.millis(700));
     instance.Growing.play();
@@ -59,7 +55,7 @@ public class MusicController {
     instance.BackGround2MediaPlayer.stop();
   }
   public static void EatFoodPop(){
-    instance.EatFood.seek(Duration.millis(100));
+    instance.EatFood.seek(Duration.millis(210));
     instance.EatFood.play();
   }
   public static void GameOverSound() {
