@@ -44,7 +44,7 @@
             <Image url="@../img/snake3.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="531.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="45.0" fitWidth="45.0" layoutX="531.0" layoutY="285.0" onMouseClicked="#SwitchToGameGuide" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../img/books.png" />
          </image>
