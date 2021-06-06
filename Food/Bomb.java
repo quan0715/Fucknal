@@ -48,7 +48,7 @@ public class Bomb extends Food {
       if(count>=speed*0.4)l.setSpecularExponent(40);
       if(count >= speed && lifeCounter <= duration){
         l.setSpecularExponent(0);
-        MusicController.EatFoodPop();
+        
         speed*=0.9;
         if(speed<=60) speed = 60;
         count = 0;

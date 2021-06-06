@@ -29,6 +29,7 @@ public class MusicController {
     Throwing = new MediaPlayer(new Media(getClass().getResource("../Music/Fireballs.mp3").toExternalForm()));
     BackGround1MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     BackGround2MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+    BackGround2MediaPlayer.setVolume(0.6);
     Growing.setVolume(0.4);
   }
   public static void FireTrowing(){
