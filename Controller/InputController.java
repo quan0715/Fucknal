@@ -78,7 +78,7 @@ public class InputController{
     if(key == KeyCode.Q){
       d1.setCanFire(true);
     }
-    if (key == KeyCode.P) {
+    if (key == KeyCode.SHIFT) {
       d2.setCanFire(true);
     }
     return false;

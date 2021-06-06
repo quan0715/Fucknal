@@ -29,6 +29,7 @@ public class MusicController {
     Throwing = new MediaPlayer(new Media(getClass().getResource("../Music/Fireballs.mp3").toExternalForm()));
     BackGround1MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
     BackGround2MediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+    Growing.setVolume(0.4);
   }
   public static void FireTrowing(){
     instance.Throwing.seek(Duration.millis(350));
@@ -88,5 +89,8 @@ public class MusicController {
     instance.BackGround1MediaPlayer.setMute(SoundOff);
     instance.BackGround2MediaPlayer.setMute(SoundOff);
     instance.SuperStar.setMute(SoundOff);
+  }
+  public static void GameOver(){
+    instance.SuperStar.stop();
   }
 }

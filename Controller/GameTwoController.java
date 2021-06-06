@@ -188,6 +188,7 @@ public class GameTwoController{
   // next game set
   
   public void GameOver(int w) {
+    MusicController.GameOver();
     if(w!=0){
       snakePlayer1.stop();
       snakePlayer2.stop();
