@@ -20,4 +20,8 @@ public class boomPlayer {
         player.seek(Duration.millis(4100));
         resetTimeLine.stop();
     }
+    public void stop() {
+        resetTimeLine.stop();
+        player.stop();
+    }
 }
