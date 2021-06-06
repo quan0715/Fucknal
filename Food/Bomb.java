@@ -42,13 +42,16 @@ public class Bomb extends Food {
     body.setEffect(l);
     m_boomPlayer=MusicController.newboom();
     ef = new Timeline(new KeyFrame(Duration.millis(1),e ->{
-      if(!GameEntityCenter.contain(this))ef.stop();
+      if(!GameEntityCenter.contain(this)){
+        m_boomPlayer.stop();
+        ef.stop();
+      }
       count++;
       lifeCounter++;
-      if(count>=speed*0.4)l.setSpecularExponent(40);
+      if(lifeCounter>=duration-4000)m_boomPlayer.preboom();
+      if(count>=speed*0.4||count>=200)l.setSpecularExponent(40);
       if(count >= speed && lifeCounter <= duration){
         l.setSpecularExponent(0);
-        
         speed*=0.9;
         if(speed<=60) speed = 60;
         count = 0;
