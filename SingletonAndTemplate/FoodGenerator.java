@@ -113,7 +113,7 @@ public class FoodGenerator{
     move.play();
   }
   public static void NewBomb(SnakeBody snake) {
-    double duration=4600;
+    double duration=5000;
     for(SnakeBody s:GameEntityCenter.GetOtherSnakes(snake)){
       Direction d = s.GetDirection();
       Point p=new Point(s.GetHead().getX(),s.GetHead().getY());

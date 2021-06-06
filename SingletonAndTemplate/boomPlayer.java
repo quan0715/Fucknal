@@ -17,7 +17,7 @@ public class boomPlayer {
         boomed=false;
         player=new MediaPlayer(m);
         resetTimeLine=new Timeline(new KeyFrame(Duration.millis(2000),e->{
-            player.seek(Duration.millis(1500));
+            player.seek(Duration.millis(1800));
         }));
         resetTimeLine.setCycleCount(-1);
     }
