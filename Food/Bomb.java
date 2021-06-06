@@ -48,6 +48,7 @@ public class Bomb extends Food {
       }
       count++;
       lifeCounter++;
+      if(lifeCounter>=duration-4000)m_boomPlayer.preboom();
       if(count>=speed*0.4||count>=200)l.setSpecularExponent(40);
       if(count >= speed && lifeCounter <= duration){
         l.setSpecularExponent(0);
