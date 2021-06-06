@@ -12,11 +12,11 @@ public class boomPlayer {
     public boomPlayer(Media m){
         player=new MediaPlayer(m);
         player.play();
-        resetTimeLine=new Timeline(new KeyFrame(Duration.millis(3500),e->{player.seek(Duration.millis(100));}));
+        resetTimeLine=new Timeline(new KeyFrame(Duration.millis(3000),e->{player.seek(Duration.millis(700));}));
         resetTimeLine.setCycleCount(-1);
         resetTimeLine.play();
     }
-    public void boom() {
+    public void boom() { 
         player.seek(Duration.millis(4100));
         resetTimeLine.stop();
     }

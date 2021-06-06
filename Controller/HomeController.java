@@ -55,7 +55,13 @@ public class HomeController implements Initializable{
       }
     });
   }
-  
+  public void SwitchToGameGuide() throws IOException{
+    MusicController.ButtonClickSound();
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/GameGuideHome.fxml"));
+    Parent root = loader.load();
+    Scene scene = new Scene(root);
+    App.stage.setScene(scene);
+  }
   public void SwitchChoseSnake() throws IOException {
     MusicController.ButtonClickSound();
     FXMLLoader loader = new FXMLLoader(getClass().getResource("../Scene/SnakeControl.fxml"));

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="620.0" style="-fx-background-color: #292929#292929;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.GameGuideController">
+   <children>
+      <Text fill="#b9e4b5" fontSmoothingType="LCD" layoutX="99.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" text="GAME GUIDE" textAlignment="CENTER" wrappingWidth="420.0" AnchorPane.leftAnchor="99.0" AnchorPane.rightAnchor="101.0">
+         <font>
+            <Font name="JackeyFont" size="70.0" />
+         </font>
+      </Text>
+      <AnchorPane fx:id="Home" layoutX="2.0" layoutY="125.0" prefHeight="481.0" prefWidth="609.0" stylesheets="@../CSS/style.css">
+         <children>
+            <ImageView fitHeight="440.0" fitWidth="400.0" layoutX="-7.0" layoutY="2.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="223.0" AnchorPane.topAnchor="2.0">
+               <image>
+                  <Image url="@../img/HomeSnap.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="P2Hover32" layoutX="5.0" layoutY="28.0" prefHeight="440.0" prefWidth="388.0" style="-fx-border-color: #b9e4b5#b9e4b5; -fx-border-width: 5;" />
+            <Line endX="90.5" endY="-0.5" layoutX="280.0" layoutY="169.0" startX="148.0" startY="-10.0" stroke="#51bebf" strokeWidth="2.0" />
+            <Line endX="188.0" endY="-40.0" layoutX="238.0" layoutY="107.0" startX="133.0" startY="17.0" stroke="#51bebf" strokeWidth="2.0" />
+            <Line endX="-151.0" endY="79.5" layoutX="585.0" layoutY="130.0" startX="-214.5" startY="79.5" stroke="#51bebf" strokeWidth="2.0" />
+            <Pane fx:id="P2Hover" layoutX="331.0" layoutY="189.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
+            <Pane fx:id="P2Hover1" layoutX="331.0" layoutY="145.0" prefHeight="40.0" prefWidth="41.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
+            <Pane fx:id="P2Hover2" layoutX="331.0" layoutY="101.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
+            <Pane fx:id="P2Hover3" layoutX="106.0" layoutY="263.0" prefHeight="34.0" prefWidth="176.0" style="-fx-border-color: #00ffa2#00ffa2; -fx-border-width: 3;" />
+            <Pane fx:id="P2Hover31" layoutX="129.0" layoutY="365.0" prefHeight="34.0" prefWidth="130.0" style="-fx-border-color: #FFB549 #FFB549; -fx-border-width: 3;" />
+            <Pane fx:id="P2Hover311" layoutX="129.0" layoutY="319.0" prefHeight="34.0" prefWidth="130.0" style="-fx-border-color: #FFB549 #FFB549; -fx-border-width: 3;" />
+            <ImageView fx:id="Sound1" fitHeight="25.0" fitWidth="25.0" layoutX="522.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/no-sound.png" />
+               </image>
+            </ImageView>
+            <Line endX="-55.0" endY="26.0" layoutX="489.0" layoutY="254.0" startX="-208.0" startY="26.0" stroke="#00ffa2" strokeWidth="2.0" />
+            <Line endX="-188.0" endY="41.0" layoutX="628.0" layoutY="387.0" startX="-365.0" startY="-4.5" stroke="#ffb549" strokeWidth="2.0" />
+            <Text fill="#ffb549" layoutX="442.0" layoutY="329.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Single Snake Game          Try to get highest score as you can" wrappingWidth="164.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Line endX="268.0" endY="157.5" layoutX="166.0" layoutY="182.0" startX="93.0" startY="157.5" stroke="#ffb549" strokeWidth="2.0" />
+            <Text fill="#ffb549" layoutX="444.0" layoutY="423.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Double snake Battle     with heart and soul       kill your opponent" wrappingWidth="168.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="#00ffa2" layoutX="440.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Input your Game Pin (The defult is JACK)" wrappingWidth="155.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="AQUA" layoutX="439.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="GameGuide                  the Guide book for ANGRY JACK  APP" wrappingWidth="157.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
+            <Text fill="AQUA" layoutX="438.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Bakeground music mute (Not effect sound)" wrappingWidth="170.833251953125">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="477.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Not Mute" wrappingWidth="43.9998779296875" />
+            <Text fill="WHITE" layoutX="553.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Mute" wrappingWidth="43.9998779296875" />
+            <Text fill="AQUA" layoutX="435.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Choose your Snake                (The defult is Jack Snake)" wrappingWidth="196.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="Sound" fitHeight="25.0" fitWidth="25.0" layoutX="444.0" layoutY="99.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/sound.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Label fx:id="TitleLabel" alignment="CENTER" contentDisplay="BOTTOM" layoutX="196.0" layoutY="68.0" text="Home Page" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="14.0" layoutY="23.0" onMouseClicked="#BackToHomePage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/house.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="524.0" layoutY="80.0" onMouseClicked="#RightShift" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="70.0">
+         <image>
+            <Image url="@../img/right-arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="62.0" layoutY="80.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#LeftShift" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="70.0">
+         <image>
+            <Image url="@../img/right-arrow.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="Food" layoutX="12.0" layoutY="135.0" prefHeight="481.0" prefWidth="609.0" visible="false" />
+      <AnchorPane fx:id="GameOne" layoutX="22.0" layoutY="145.0" prefHeight="481.0" prefWidth="609.0" visible="false" />
+   </children>
+</AnchorPane>
