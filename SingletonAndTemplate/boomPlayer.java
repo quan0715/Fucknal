@@ -34,9 +34,22 @@ public class boomPlayer {
         boomed=true;
         player.seek(Duration.millis(4100));
         resetTimeLine.stop();
+        resetTimeLine=new Timeline(new KeyFrame(Duration.millis(2000),e->{
+            player.dispose();
+        }));
+        resetTimeLine.setCycleCount(1);
+        resetTimeLine.play();
     }
     public void stop() {
         resetTimeLine.stop();
         if(!boomed)player.stop();
+        else{
+            resetTimeLine.stop();
+            resetTimeLine=new Timeline(new KeyFrame(Duration.millis(2000),e->{
+                player.dispose();
+            }));
+            resetTimeLine.setCycleCount(1);
+            resetTimeLine.play();
+        }
     }
 }
