@@ -20,13 +20,14 @@ public class Bomb extends Food {
   private Lighting l;
   private Timeline ef;
   private int count = 0;
-  private int speed = 400;
+  private int speed;
   private boomPlayer m_boomPlayer;
   private double duration;
   private int lifeCounter;
   public Bomb(Point p,double duration) {
     super(p);
     this.duration=duration;
+    speed=(int)(50*(540+duration)/540);
   }
   @Override
   protected void FoodInit() {
