@@ -21,6 +21,26 @@
             <Font name="JackeyFont" size="70.0" />
          </font>
       </Text>
+      <Label fx:id="TitleLabel" alignment="CENTER" contentDisplay="BOTTOM" layoutX="196.0" layoutY="68.0" text="Home Page" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="38.0" fitWidth="34.0" layoutX="34.0" layoutY="19.0" onMouseClicked="#BackToHomePage" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/house.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="524.0" layoutY="80.0" onMouseClicked="#RightShift" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="70.0">
+         <image>
+            <Image url="@../img/right-arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="62.0" layoutY="80.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#LeftShift" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="70.0">
+         <image>
+            <Image url="@../img/right-arrow.png" />
+         </image>
+      </ImageView>
       <AnchorPane fx:id="Home" layoutX="2.0" layoutY="125.0" prefHeight="481.0" prefWidth="609.0" stylesheets="@../CSS/style.css" visible="false">
          <children>
             <ImageView fitHeight="440.0" fitWidth="400.0" layoutX="-7.0" layoutY="2.0" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-7.0" AnchorPane.rightAnchor="223.0" AnchorPane.topAnchor="2.0">
@@ -28,16 +48,16 @@
                   <Image url="@../img/HomeSnap.png" />
                </image>
             </ImageView>
-            <Pane fx:id="P2Hover32" layoutX="5.0" layoutY="28.0" prefHeight="440.0" prefWidth="388.0" style="-fx-border-color: #b9e4b5#b9e4b5; -fx-border-width: 5;" />
+            <Pane layoutX="5.0" layoutY="28.0" prefHeight="440.0" prefWidth="388.0" style="-fx-border-color: #b9e4b5#b9e4b5; -fx-border-width: 5;" />
             <Line endX="90.5" endY="-0.5" layoutX="280.0" layoutY="169.0" startX="148.0" startY="-10.0" stroke="#51bebf" strokeWidth="2.0" />
             <Line endX="188.0" endY="-40.0" layoutX="238.0" layoutY="107.0" startX="133.0" startY="17.0" stroke="#51bebf" strokeWidth="2.0" />
             <Line endX="-151.0" endY="79.5" layoutX="585.0" layoutY="130.0" startX="-214.5" startY="79.5" stroke="#51bebf" strokeWidth="2.0" />
-            <Pane fx:id="P2Hover" layoutX="331.0" layoutY="189.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
-            <Pane fx:id="P2Hover1" layoutX="331.0" layoutY="145.0" prefHeight="40.0" prefWidth="41.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
-            <Pane fx:id="P2Hover2" layoutX="331.0" layoutY="101.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
-            <Pane fx:id="P2Hover3" layoutX="106.0" layoutY="263.0" prefHeight="34.0" prefWidth="176.0" style="-fx-border-color: #00ffa2#00ffa2; -fx-border-width: 3;" />
-            <Pane fx:id="P2Hover31" layoutX="129.0" layoutY="365.0" prefHeight="34.0" prefWidth="130.0" style="-fx-border-color: #FFB549 #FFB549; -fx-border-width: 3;" />
-            <Pane fx:id="P2Hover311" layoutX="129.0" layoutY="319.0" prefHeight="34.0" prefWidth="130.0" style="-fx-border-color: #FFB549 #FFB549; -fx-border-width: 3;" />
+            <Pane layoutX="331.0" layoutY="189.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
+            <Pane layoutX="331.0" layoutY="145.0" prefHeight="40.0" prefWidth="41.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
+            <Pane layoutX="331.0" layoutY="101.0" prefHeight="40.0" prefWidth="40.0" style="-fx-border-color: #51bebf#51bebf; -fx-border-width: 3;" />
+            <Pane layoutX="106.0" layoutY="263.0" prefHeight="34.0" prefWidth="176.0" style="-fx-border-color: #00ffa2#00ffa2; -fx-border-width: 3;" />
+            <Pane layoutX="129.0" layoutY="365.0" prefHeight="34.0" prefWidth="130.0" style="-fx-border-color: #FFB549 #FFB549; -fx-border-width: 3;" />
+            <Pane layoutX="129.0" layoutY="319.0" prefHeight="34.0" prefWidth="130.0" style="-fx-border-color: #FFB549 #FFB549; -fx-border-width: 3;" />
             <ImageView fx:id="Sound1" fitHeight="25.0" fitWidth="25.0" layoutX="522.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/no-sound.png" />
@@ -85,26 +105,6 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label fx:id="TitleLabel" alignment="CENTER" contentDisplay="BOTTOM" layoutX="196.0" layoutY="68.0" text="Home Page" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0">
-         <font>
-            <Font size="48.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="14.0" layoutY="23.0" onMouseClicked="#BackToHomePage" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/house.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="524.0" layoutY="80.0" onMouseClicked="#RightShift" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="70.0">
-         <image>
-            <Image url="@../img/right-arrow.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="30.0" fitWidth="29.0" layoutX="62.0" layoutY="80.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#LeftShift" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="70.0">
-         <image>
-            <Image url="@../img/right-arrow.png" />
-         </image>
-      </ImageView>
       <AnchorPane fx:id="Food" layoutX="7.0" layoutY="128.0" prefHeight="508.0" prefWidth="609.0" visible="false">
          <children>
             <GridPane gridLinesVisible="true" layoutX="-1.0" layoutY="21.0" prefHeight="422.0" prefWidth="604.0" style="-fx-background-color: #333f48 #333f48; -fx-border-color: WHITE;" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="21.0">
@@ -339,7 +339,7 @@
                </children>
             </GridPane>
          </children></AnchorPane>
-      <AnchorPane fx:id="Keyboard" layoutX="6.0" layoutY="145.0" prefHeight="481.0" prefWidth="600.0">
+      <AnchorPane fx:id="Keyboard" layoutX="6.0" layoutY="145.0" prefHeight="481.0" prefWidth="600.0" visible="false">
          <children>
             <Rectangle arcHeight="50.0" arcWidth="5.0" fill="#333f48" height="37.0" layoutX="119.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="127.0" />
             <Text fill="#ffcccc" layoutX="128.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="SPACE" textAlignment="CENTER" wrappingWidth="118.49263763427734">
@@ -490,17 +490,145 @@
                </font>
             </Text>
          </children></AnchorPane>
-      <AnchorPane fx:id="GameOne" layoutX="22.0" layoutY="147.0" prefHeight="481.0" prefWidth="600.0" visible="false" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <AnchorPane fx:id="Developer" layoutX="4.0" layoutY="149.0" prefHeight="481.0" prefWidth="600.0">
          <children>
-            <Pane fx:id="P2Hover321" layoutX="115.0" layoutY="32.0" prefHeight="393.0" prefWidth="368.0" style="-fx-border-color: #b9e4b5#b9e4b5; -fx-border-width: 5;">
+            <GridPane layoutX="49.0" layoutY="78.0" prefHeight="281.0" prefWidth="503.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="60.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="139.0" minWidth="10.0" prefWidth="81.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="199.0" minWidth="10.0" prefWidth="94.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="368.3333435058594" minWidth="10.0" prefWidth="207.66665649414062" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="216.66668701171875" minWidth="10.0" prefWidth="144.33334350585938" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <ImageView fitHeight="398.0" fitWidth="359.0" layoutX="4.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="66.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/gameTwoScreen.png" />
+                        <Image url="@../img/Quan.JPG" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="77.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../img/Albert.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="72.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../img/Jack.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="#b9e4b5" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="QUAN" textAlignment="CENTER" wrappingWidth="71.99510192871094" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#b9e4b5" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="JACK" textAlignment="CENTER" wrappingWidth="71.32843017578125" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#b9e4b5" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="ALBERT" textAlignment="CENTER" wrappingWidth="87.99510192871094" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="GAME UI &amp; UX design and Programmer" textAlignment="CENTER" wrappingWidth="181.32839965820312" GridPane.columnIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="system architect and Programmer" textAlignment="CENTER" wrappingWidth="187.32846069335938" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Game Idea and  Main Charcter of the Game" textAlignment="CENTER" wrappingWidth="204.66171264648438" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                     <image>
+                        <Image url="@../img/facebook%20(1).png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                     <image>
+                        <Image url="@../img/instagram%20(1).png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="55.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3">
+                     <image>
+                        <Image url="@../img/gmail.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="90.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../img/facebook%20(1).png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../img/instagram%20(1).png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="55.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@../img/gmail.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="90.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../img/gmail.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="90.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../img/instagram%20(1).png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="55.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="@../img/facebook%20(1).png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
                </children>
-            </Pane>
+            </GridPane>
+            <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="274.0" layoutY="393.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/github.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>

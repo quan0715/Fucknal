@@ -53,7 +53,7 @@ public class StarFood extends Food {
           l.setLight(lightG);
           break;
         case 3:
-          //l.setLight();
+          l.setLight(null);
           break;
       }
       spark = (spark+1) % 4;

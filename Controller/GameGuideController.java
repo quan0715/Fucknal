@@ -23,6 +23,7 @@ public class GameGuideController implements Initializable {
   @FXML private AnchorPane GameOne;
   @FXML private AnchorPane GameTwo;
   @FXML private AnchorPane Keyboard;
+  @FXML private AnchorPane Developer;
   @FXML private Label TitleLabel;
   private int Case = 0;
   @Override
@@ -31,7 +32,7 @@ public class GameGuideController implements Initializable {
    topic.add(Home);
    topic.add(Food);
    topic.add(Keyboard);
-   topic.add(GameOne);
+   topic.add(Developer);
    //topic.add(GameTwo);
    Case = 0;
    TitleLabel.setText("Home Page");
@@ -50,25 +51,26 @@ public class GameGuideController implements Initializable {
   public void RightShift(){
     MusicController.ButtonClickSound();
     if (Case < topic.size()-1) Case+=1;
-    if (Case == 0 ) TitleLabel.setText("HomePage");
-    if (Case == 1 ) TitleLabel.setText("Food");
-    if (Case == 2 ) TitleLabel.setText("Keyboard");
-    if (Case == 3 ) TitleLabel.setText("Game One");
-    //if (Case == 4 )TitleLabel.setText("Game Two");
     Setvis(Case);
   }
   
   public void LeftShift() {
     MusicController.ButtonClickSound();
     if (Case > 0) Case-=1;
-    if (Case == 0 ) TitleLabel.setText("HomePage");
-    if (Case == 1 ) TitleLabel.setText("Food");
-    if (Case == 2 ) TitleLabel.setText("Keyboard Control");
-    if (Case == 3 ) TitleLabel.setText("Game One");
-    //if (Case == 4 ) TitleLabel.setText("Game Two");
     Setvis(Case);
   }
+  public void setTitle(int Case){
+    
+  }
   public void Setvis(int id){
+    if (Case == 0)
+      TitleLabel.setText("HomePage");
+    if (Case == 1)
+      TitleLabel.setText("Food");
+    if (Case == 2)
+      TitleLabel.setText("Keyboard");
+    if (Case == 3)
+      TitleLabel.setText("Developer");
     for(int i=0;i<topic.size();i++){
       if(i != id) ((AnchorPane)topic.get(i)).setVisible(false);
     }
