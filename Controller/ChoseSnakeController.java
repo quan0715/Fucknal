@@ -1,15 +1,12 @@
-package Application.Controller;
+package SnakeGame.Controller;
 
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileNameExtensionFilter;
-
-import Application.App;
-import Application.Enum.Direction;
-import Application.SingletonAndTemplate.*;
-import Application.Snake.*;
+import SnakeGame.App;
+import SnakeGame.Enum.Direction;
+import SnakeGame.SingletonAndTemplate.*;
+import SnakeGame.Snake.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;

@@ -1,9 +1,9 @@
-package Application.SingletonAndTemplate;
+package SnakeGame.SingletonAndTemplate;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-import Application.Enum.Direction;
+import SnakeGame.Enum.Direction;
 import javafx.scene.input.KeyCode;
 
 public class DirectionController {

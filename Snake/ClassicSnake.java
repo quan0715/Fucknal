@@ -1,8 +1,8 @@
-package Application.Snake;
+package SnakeGame.Snake;
 
 
-import Application.Enum.Point;
-import Application.SingletonAndTemplate.Snake;
+import SnakeGame.Enum.Point;
+import SnakeGame.SingletonAndTemplate.Snake;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 

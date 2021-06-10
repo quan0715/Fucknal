@@ -1,11 +1,11 @@
-package Application.Controller;
+package SnakeGame.Controller;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import Application.Enum.Direction;
-import Application.Enum.SnakePart;
-import Application.SingletonAndTemplate.*;
+import SnakeGame.Enum.Direction;
+import SnakeGame.Enum.SnakePart;
+import SnakeGame.SingletonAndTemplate.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;

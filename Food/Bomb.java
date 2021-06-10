@@ -1,11 +1,11 @@
-package Application.Food;
+package SnakeGame.Food;
 
-import Application.Enum.Point;
-import Application.SingletonAndTemplate.Food;
-import Application.SingletonAndTemplate.GameEntityCenter;
-import Application.SingletonAndTemplate.MusicController;
-import Application.SingletonAndTemplate.SnakeBody;
-import Application.SingletonAndTemplate.boomPlayer;
+import SnakeGame.Enum.Point;
+import SnakeGame.SingletonAndTemplate.Food;
+import SnakeGame.SingletonAndTemplate.GameEntityCenter;
+import SnakeGame.SingletonAndTemplate.MusicController;
+import SnakeGame.SingletonAndTemplate.SnakeBody;
+import SnakeGame.SingletonAndTemplate.boomPlayer;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.effect.Lighting;

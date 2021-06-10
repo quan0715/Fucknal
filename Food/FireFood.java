@@ -1,12 +1,10 @@
-package Application.Food;
+package SnakeGame.Food;
 
 import java.util.concurrent.Callable;
 
-import Application.Enum.Direction;
-import Application.Enum.Point;
-import Application.SingletonAndTemplate.*;
-import Application.SingletonAndTemplate.Food;
-import Application.SingletonAndTemplate.SnakeBody;
+import SnakeGame.Enum.Direction;
+import SnakeGame.Enum.Point;
+import SnakeGame.SingletonAndTemplate.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.effect.Lighting;

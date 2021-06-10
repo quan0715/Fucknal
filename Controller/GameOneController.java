@@ -1,4 +1,4 @@
-package Application.Controller;
+package SnakeGame.Controller;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -6,9 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.concurrent.Callable;
 
-import Application.Enum.Direction;
-import Application.Enum.SnakePart;
-import Application.SingletonAndTemplate.*;
+import SnakeGame.Enum.Direction;
+import SnakeGame.Enum.SnakePart;
+import SnakeGame.SingletonAndTemplate.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;

@@ -1,10 +1,10 @@
-package Application.SingletonAndTemplate;
+package SnakeGame.SingletonAndTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import Application.Enum.*;
+import SnakeGame.Enum.*;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.effect.Lighting;

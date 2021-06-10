@@ -1,5 +1,5 @@
-package Application.SingletonAndTemplate;
-import Application.Enum.Point;
+package SnakeGame.SingletonAndTemplate;
+import SnakeGame.Enum.Point;
 import javafx.scene.effect.Lighting;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;

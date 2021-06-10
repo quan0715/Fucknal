@@ -1,4 +1,4 @@
-package Application.Template;
+package SnakeGame.Template;
 
 import java.io.BufferedReader;
 import java.io.File;

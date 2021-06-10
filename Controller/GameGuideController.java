@@ -1,4 +1,4 @@
-package Application.Controller;
+package SnakeGame.Controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import Application.App;
-import Application.SingletonAndTemplate.*;
+import SnakeGame.App;
+import SnakeGame.SingletonAndTemplate.*;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

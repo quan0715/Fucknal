@@ -1,8 +1,8 @@
-package Application.Food;
+package SnakeGame.Food;
 
-import Application.Enum.Point;
-import Application.SingletonAndTemplate.Food;
-import Application.SingletonAndTemplate.SnakeBody;
+import SnakeGame.Enum.Point;
+import SnakeGame.SingletonAndTemplate.Food;
+import SnakeGame.SingletonAndTemplate.SnakeBody;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 

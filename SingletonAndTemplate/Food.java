@@ -1,8 +1,8 @@
-package Application.SingletonAndTemplate;
+package SnakeGame.SingletonAndTemplate;
 
 import java.util.List;
 
-import Application.Enum.Point;
+import SnakeGame.Enum.Point;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;

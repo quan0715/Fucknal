@@ -1,7 +1,7 @@
-package Application.SingletonAndTemplate;
+package SnakeGame.SingletonAndTemplate;
 
 
-import Application.Enum.SnakePart;
+import SnakeGame.Enum.SnakePart;
 
 public class FoodEvent {
     private Food food;
