@@ -3,6 +3,7 @@ package Application.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Application.App;
@@ -16,19 +17,22 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 
 public class GameGuideController implements Initializable {
-  private ArrayList topic;
-  @FXML AnchorPane Home;
-  @FXML AnchorPane Food;
-  @FXML AnchorPane GameOne;
-  @FXML AnchorPane GameTwo;
-  @FXML Label TitleLabel;
+  private List<AnchorPane> topic;
+  @FXML private AnchorPane Home;
+  @FXML private AnchorPane Food;
+  @FXML private AnchorPane GameOne;
+  @FXML private AnchorPane GameTwo;
+  @FXML private AnchorPane Keyboard;
+  @FXML private Label TitleLabel;
   private int Case = 0;
   @Override
   public void initialize(URL location, ResourceBundle resources) {
    topic = new ArrayList<AnchorPane>();
    topic.add(Home);
    topic.add(Food);
+   topic.add(Keyboard);
    topic.add(GameOne);
+   //topic.add(GameTwo);
    Case = 0;
    TitleLabel.setText("Home Page");
    Setvis(Case);
@@ -48,7 +52,9 @@ public class GameGuideController implements Initializable {
     if (Case < topic.size()-1) Case+=1;
     if (Case == 0 ) TitleLabel.setText("HomePage");
     if (Case == 1 ) TitleLabel.setText("Food");
-    if (Case == 2 ) TitleLabel.setText("Game One");
+    if (Case == 2 ) TitleLabel.setText("Keyboard");
+    if (Case == 3 ) TitleLabel.setText("Game One");
+    //if (Case == 4 )TitleLabel.setText("Game Two");
     Setvis(Case);
   }
   
@@ -57,6 +63,9 @@ public class GameGuideController implements Initializable {
     if (Case > 0) Case-=1;
     if (Case == 0 ) TitleLabel.setText("HomePage");
     if (Case == 1 ) TitleLabel.setText("Food");
+    if (Case == 2 ) TitleLabel.setText("Keyboard Control");
+    if (Case == 3 ) TitleLabel.setText("Game One");
+    //if (Case == 4 ) TitleLabel.setText("Game Two");
     Setvis(Case);
   }
   public void Setvis(int id){

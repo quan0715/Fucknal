@@ -78,12 +78,12 @@
       </Label>
       <Label id="Snake1" fx:id="SnakeName1" alignment="CENTER" layoutX="170.0" layoutY="32.0" prefHeight="27.0" prefWidth="120.0" styleClass="Snake1" text="Snake1" textAlignment="CENTER" textFill="#90716a">
          <font>
-            <Font name="System Bold Italic" size="18.0" />
+            <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
       <Label id="Snake2" fx:id="SnakeName2" alignment="CENTER" layoutX="330.0" layoutY="32.0" prefHeight="27.0" prefWidth="120.0" text="Snake2" textAlignment="CENTER" textFill="#90716a">
          <font>
-            <Font name="System Bold Italic" size="18.0" />
+            <Font name="System Bold Italic" size="16.0" />
          </font>
       </Label>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="287.0" layoutY="13.0" prefHeight="34.0" prefWidth="50.0" text="Vs" textFill="#e2ffc6">
