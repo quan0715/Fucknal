@@ -1,6 +1,10 @@
 package Application.Controller;
 
+import java.io.File;
 import java.io.IOException;
+
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Application.App;
 import Application.Enum.Direction;
@@ -8,6 +12,7 @@ import Application.SingletonAndTemplate.*;
 import Application.Snake.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,6 +23,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import javafx.util.Pair;
 
@@ -184,10 +190,10 @@ public class ChoseSnakeController{
     name[3][1] = "QuanSnake";
     name[3][2] = "AlbertSnake";
     name[3][3] = "SBBSnake";
-    name[4][0] = "ClassicSnake";
-    name[4][1] = "ClassicSnake";
-    name[4][2] = "ClassicSnake";
-    name[4][3] = "ClassicSnake";
+    name[4][0] = "QuestSnake";
+    name[4][1] = "QuestSnake";
+    name[4][2] = "QuestSnake";
+    name[4][3] = "QuestSnake";
   }
   private void handle(KeyEvent e) {
     table.getChildren().remove(P1select);
@@ -332,5 +338,18 @@ public class ChoseSnakeController{
   }
   public static String GetSnake2Name(){
     return Snake2Name;
+  }
+  private void setCostonmizePhoto(){
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.getExtensionFilters().addAll(
+			new FileChooser.ExtensionFilter("All Images", "*.*"),
+			new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+			new FileChooser.ExtensionFilter("GIF", "*.gif"),
+			new FileChooser.ExtensionFilter("BMP", "*.bmp"),
+			new FileChooser.ExtensionFilter("PNG", "*.png"),
+			new FileChooser.ExtensionFilter("JPNG", "*.jpng")
+		);
+		File selectedFile = fileChooser.showOpenDialog(App.stage);
+		System.out.println(selectedFile.getAbsolutePath());
   }
 }
