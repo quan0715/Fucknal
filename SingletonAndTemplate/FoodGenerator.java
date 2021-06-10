@@ -22,8 +22,8 @@ import Application.Food.TripleFood;
 public class FoodGenerator{
   private static FoodGenerator instance=new FoodGenerator();
   private List<Food> foods;
-  private static List<Integer> FoodRate;
-  private static Random random = new Random();
+  private List<Integer> FoodRate;
+  private Random random = new Random();
   private FoodGenerator(){
     foods=new ArrayList<>();
     FoodRate = new ArrayList<>();
@@ -44,25 +44,25 @@ public class FoodGenerator{
   }
   public static void RefreshFood(){
     GameEntityCenter.removeFood(instance.foods.get(0));
-    GetRandomFood(random.nextInt(100));
+    GetRandomFood(instance.random.nextInt(100));
   }
   public static void GetRandomFood(int c){
-    if(c < FoodRate.get(0)){
+    if(c < instance.FoodRate.get(0)){
       instance.foods.set(0, new TripleFood(Point.getrandompointGrid()));
     }
-    else if (c < FoodRate.get(1)) {
+    else if (c < instance.FoodRate.get(1)) {
       instance.foods.set(0, new BombFood(Point.getrandompointGrid()));
     }
-    else if (c <= FoodRate.get(2)) {
+    else if (c <= instance.FoodRate.get(2)) {
       instance.foods.set(0, new FireFood(Point.getrandompointGrid()));
     }
-    else if(c < FoodRate.get(3)){
+    else if(c < instance.FoodRate.get(3)){
       instance.foods.set(0, new IceFood(Point.getrandompointGrid()));
     }
-    else if (c < FoodRate.get(4)) {
+    else if (c < instance.FoodRate.get(4)) {
       instance.foods.set(0, new JackFood(Point.getrandompointGrid()));
     }
-    else if (c < FoodRate.get(5)) {
+    else if (c < instance.FoodRate.get(5)) {
       instance.foods.set(0, new StarFood(Point.getrandompointGrid()));
     }
   }
