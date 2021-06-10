@@ -9,7 +9,6 @@ import SnakeGame.SingletonAndTemplate.*;
 import SnakeGame.Snake.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
