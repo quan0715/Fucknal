@@ -17,6 +17,7 @@ import Application.Food.IceFood;
 import Application.Food.JackFood;
 import Application.Food.NormalFood;
 import Application.Food.StarFood;
+import Application.Food.TripleFood;
 
 public class FoodGenerator{
   private static FoodGenerator instance=new FoodGenerator();
@@ -47,7 +48,7 @@ public class FoodGenerator{
   }
   public static void GetRandomFood(int c){
     if(c < FoodRate.get(0)){
-      instance.foods.set(0, new BombFood(Point.getrandompointGrid()));
+      instance.foods.set(0, new TripleFood(Point.getrandompointGrid()));
     }
     else if (c < FoodRate.get(1)) {
       instance.foods.set(0, new BombFood(Point.getrandompointGrid()));

@@ -40,25 +40,20 @@ public class StarFood extends Food {
     s.RateBuff(SpeedUp);
     s.woody++;
     s.SkillText("SUPER", "Star");
+    s.SnakeEffect(l);
     Timeline SparkTimeline = new Timeline( new KeyFrame(Duration.millis(50),e ->{
       switch(spark){
         case 0:
-          s.SnakeEffect(null);
           l.setLight(lightY);
-          s.SnakeEffect(l);
           break;
         case 1:
-          s.SnakeEffect(null);
           l.setLight(lightB);
-          s.SnakeEffect(l);
           break;
         case 2:
-          s.SnakeEffect(null);
           l.setLight(lightG);
-          s.SnakeEffect(l);
           break;
         case 3:
-          s.SnakeEffect(null);
+          l.setLight();
           break;
       }
       spark = (spark+1) % 4;
