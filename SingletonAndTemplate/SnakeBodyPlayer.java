@@ -1,8 +1,8 @@
-package Application.SingletonAndTemplate;
+package SnakeGame.SingletonAndTemplate;
 
 import java.util.concurrent.Callable;
 
-import Application.Controller.HomeController;
+import SnakeGame.Controller.HomeController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;

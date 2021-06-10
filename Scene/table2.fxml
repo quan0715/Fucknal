@@ -36,7 +36,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="620.0" style="-fx-background-color: #292929#292929 #292929#292929;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.Controller.GameTwoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="620.0" style="-fx-background-color: #292929#292929 #292929#292929;" stylesheets="@../CSS/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SnakeGame.Controller.GameTwoController">
    <children>
       <AnchorPane fx:id="GameTable" layoutY="53.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #333f48;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
          <children>

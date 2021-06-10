@@ -1,4 +1,4 @@
-package Application.SingletonAndTemplate;
+package SnakeGame.SingletonAndTemplate;
 
 import java.util.ArrayList;
 import java.util.List;

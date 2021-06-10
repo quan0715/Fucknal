@@ -1,13 +1,13 @@
-package Application.Controller;
+package SnakeGame.Controller;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import Application.App;
-import Application.SingletonAndTemplate.*;
-import Application.Snake.PythonSnake;
-import Application.Snake.VscodeSnake;
+import SnakeGame.App;
+import SnakeGame.SingletonAndTemplate.*;
+import SnakeGame.Snake.PythonSnake;
+import SnakeGame.Snake.VscodeSnake;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

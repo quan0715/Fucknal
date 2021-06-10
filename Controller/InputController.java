@@ -1,12 +1,12 @@
-package Application.Controller;
+package SnakeGame.Controller;
 
 import java.io.IOException;
 
-import Application.App;
-import Application.SingletonAndTemplate.DirectionController;
-import Application.SingletonAndTemplate.GameCurrentChildrenArray;
-import Application.SingletonAndTemplate.MusicController;
-import Application.SingletonAndTemplate.SnakeBodyPlayer;
+import SnakeGame.App;
+import SnakeGame.SingletonAndTemplate.DirectionController;
+import SnakeGame.SingletonAndTemplate.GameCurrentChildrenArray;
+import SnakeGame.SingletonAndTemplate.MusicController;
+import SnakeGame.SingletonAndTemplate.SnakeBodyPlayer;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;

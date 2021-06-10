@@ -1,23 +1,23 @@
-package Application.SingletonAndTemplate;
+package SnakeGame.SingletonAndTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import SnakeGame.Enum.Direction;
+import SnakeGame.Enum.Point;
+import SnakeGame.Food.Bomb;
+import SnakeGame.Food.BombFood;
+import SnakeGame.Food.FireBullet;
+import SnakeGame.Food.FireFood;
+import SnakeGame.Food.IceFood;
+import SnakeGame.Food.JackFood;
+import SnakeGame.Food.NormalFood;
+import SnakeGame.Food.StarFood;
+import SnakeGame.Food.TripleFood;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
-import Application.Enum.Direction;
-import Application.Enum.Point;
-import Application.Food.Bomb;
-import Application.Food.BombFood;
-import Application.Food.FireBullet;
-import Application.Food.FireFood;
-import Application.Food.IceFood;
-import Application.Food.JackFood;
-import Application.Food.NormalFood;
-import Application.Food.StarFood;
-import Application.Food.TripleFood;
 
 public class FoodGenerator{
   private static FoodGenerator instance=new FoodGenerator();

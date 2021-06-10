@@ -1,4 +1,4 @@
-package Application.Enum;
+package SnakeGame.Enum;
 
 public enum SnakePart {
     HEAD,BODY;

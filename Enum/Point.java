@@ -1,4 +1,4 @@
-package Application.Enum;
+package SnakeGame.Enum;
 
 import java.util.Random;
 
