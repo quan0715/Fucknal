@@ -545,7 +545,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Game Idea and  Main Charcter of the Game" textAlignment="CENTER" wrappingWidth="204.66171264648438" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Game Idea and  Main Character of the Game" textAlignment="CENTER" wrappingWidth="209.99502563476562" GridPane.columnIndex="2" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>
