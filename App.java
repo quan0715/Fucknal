@@ -1,7 +1,7 @@
-package Application;
+package SnakeGame;
 import java.io.IOException;
 
-import Application.Controller.HomeController;
+import SnakeGame.Controller.HomeController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
